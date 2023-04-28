@@ -1,8 +1,9 @@
-/* #root {
+#root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #f2f2f2;
 }
 
 .logo {
@@ -39,4 +40,148 @@
 
 .read-the-docs {
   color: #888;
-} */
+}
+
+/* Botas */
+
+/* HOME NAV BUTTON */
+.left-arrow-home {
+  display: none;
+}
+
+.bg-background:hover > .left-arrow-home {
+  display: block;
+}
+
+.left-arrow-home-empty {
+  display: block;
+}
+
+.bg-background:hover > .left-arrow-home-empty {
+  display: none;
+}
+
+/* Quiz NAV BUTTON */
+
+.left-arrow-quiz {
+  display: none;
+}
+.right-arrow-quiz {
+  display: none;
+}
+
+.bg-background:hover > .left-arrow-quiz {
+  display: block;
+}
+.bg-background:hover > .right-arrow-quiz {
+  display: block;
+}
+
+.left-arrow-quiz-empty {
+  display: block;
+}
+.right-arrow-quiz-empty {
+  display: block;
+}
+
+.bg-background:hover > .left-arrow-quiz-empty {
+  display: none;
+}
+.bg-background:hover > .right-arrow-quiz-empty {
+  display: none;
+}
+
+/* Add Quiz NAV BUTTON */
+
+.left-arrow-addquiz {
+  display: none;
+}
+.right-arrow-addquiz {
+  display: none;
+}
+
+.bg-background:hover > .left-arrow-addquiz {
+  display: block;
+}
+.bg-background:hover > .right-arrow-addquiz {
+  display: block;
+}
+
+.left-arrow-addquiz-empty {
+  display: block;
+}
+.right-arrow-addquiz-empty {
+  display: block;
+}
+
+.bg-background:hover > .left-arrow-addquiz-empty {
+  display: none;
+}
+.bg-background:hover > .right-arrow-addquiz-empty {
+  display: none;
+}
+
+/* My Quiz NAV BUTTON */
+
+.left-arrow-myquiz {
+  display: none;
+}
+.right-arrow-myquiz {
+  display: none;
+}
+
+.bg-background:hover > .left-arrow-myquiz {
+  display: block;
+}
+.bg-background:hover > .right-arrow-myquiz {
+  display: block;
+}
+
+.left-arrow-myquiz-empty {
+  display: block;
+}
+.right-arrow-myquiz-empty {
+  display: block;
+}
+
+.bg-background:hover > .left-arrow-myquiz-empty {
+  display: none;
+}
+.bg-background:hover > .right-arrow-myquiz-empty {
+  display: none;
+}
+
+/* Profile NAV BUTTON */
+
+.right-arrow-profile {
+  display: none;
+}
+
+.bg-background:hover > .right-arrow-profile {
+  display: block;
+}
+
+.right-arrow-profile-empty {
+  display: block;
+}
+
+.bg-background:hover > .right-arrow-profile-empty {
+  display: none;
+}
+
+/* HOME NAV BUTTON */
+.arrow {
+  display: none;
+}
+
+.bg-background:hover .arrow {
+  display: block;
+}
+
+.empty-arrow {
+  display: block;
+}
+
+.bg-background:hover .empty-arrow {
+  display: none;
+}

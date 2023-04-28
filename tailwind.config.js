@@ -6,7 +6,11 @@ export default {
       yellow: "#F5FF7D",
       background: "#F2F2F2",
     },
-    extend: {},
+    extend: {
+      // Define the `.right-arrow` and `.left-arrow` classes
+    },
   },
   plugins: [],
+  // Add your custom CSS styles using the `@layer` directive
+  // in the `style` property of the `plugins` object
 };
