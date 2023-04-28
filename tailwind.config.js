@@ -8,6 +8,8 @@ export default {
       black: "#000000",
       white: "#FFFFFF",
       "border-gray-300": "#33333",
+      red: "#f72500",
+      grey: "#D9D9D9",
     },
     fontFamily: {
       sans: ['"Questrial"', "sans-serif"],

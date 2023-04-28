@@ -1,7 +1,7 @@
 import React from "react";
 import SingleQuizCard from "../quiz/SingleQuizCard";
 
-function QuizsPage() {
+function MyQuizPage() {
   return (
     <div className="mt-20 box-border">
       <h1 className="text-5xl mb-20">Active Quiz List</h1>
@@ -14,9 +14,8 @@ function QuizsPage() {
         </div>
       </div>
       <SingleQuizCard />
-      <SingleQuizCard />
     </div>
   );
 }
 
-export default QuizsPage;
+export default MyQuizPage;

@@ -1,7 +1,7 @@
 import React from "react";
 
 function SingleQuizPage() {
-  return <div>SingleQuizPage</div>;
+  return <div></div>;
 }
 
 export default SingleQuizPage;
