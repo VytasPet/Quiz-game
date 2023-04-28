@@ -7,6 +7,7 @@ export default {
       background: "#FFFFFF",
       black: "#000000",
       white: "#FFFFFF",
+      "border-gray-300": "#33333",
     },
     fontFamily: {
       sans: ['"Questrial"', "sans-serif"],
