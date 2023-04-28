@@ -21,7 +21,6 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/quiz/:quizUid" element={<SingleQuizPage />} />
         </Routes>
-        <h1 className="bg-black text-white">Laba diens</h1>
       </div>
     </>
   );
