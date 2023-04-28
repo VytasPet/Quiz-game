@@ -5,10 +5,12 @@ export default {
     colors: {
       yellow: "#F5FF7D",
       background: "#FFFFFF",
-      nav: "#FFFFFF",
+      black: "#000000",
+      white: "#FFFFFF",
     },
     fontFamily: {
       sans: ['"Questrial"', "sans-serif"],
+      cursive: ['"McLaren"', "cursive"],
     },
     extend: {
       // Define the `.right-arrow` and `.left-arrow` classes
