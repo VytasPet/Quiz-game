@@ -9,18 +9,18 @@ import toLeft from "/src/assets/images/toleft.svg";
 
 function Header() {
   return (
-    <header className="bg-background container mx-auto max-w-5xl flex justify-between items-center .right-arrow">
+    <header className=" container mx-auto max-w-5xl flex justify-between items-center .right-arrow">
       <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
-      <nav className="bg-yellow border border-black rounded-full flex items-center">
-        <div className="bg-background flex border border-tr rounded-full hover:bg-yellow items-center">
+      <nav className="border border-black rounded-full flex items-center">
+        <div className="bg-background flex border-l-0 rounded-full hover:bg-yellow items-center">
           <NavLink className="pl-4">Home</NavLink>
           <img className="display-inline-block left-arrow-home-empty" src={toLeftEmpty} alt="span" />
           <img className="display-inline-block left-arrow-home" src={toLeft} alt="span" />
         </div>
 
-        <div className="bg-background flex border border-tr rounded-full hover:bg-yellow items-center">
+        <div className="bg-background flex hover:bg-yellow items-center">
           <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
           <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
           <NavLink className="nav-link">Quiz</NavLink>
@@ -28,7 +28,7 @@ function Header() {
           <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
         </div>
 
-        <div className="bg-background flex border border-tr rounded-full hover:bg-yellow items-center">
+        <div className="bg-background flex hover:bg-yellow items-center">
           <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
           <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
           <NavLink className="nav-link">Add Quiz</NavLink>
@@ -36,7 +36,7 @@ function Header() {
           <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
         </div>
 
-        <div className="bg-background flex border border-tr rounded-full hover:bg-yellow items-center">
+        <div className="bg-background flex hover:bg-yellow items-center">
           <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
           <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
           <NavLink className="nav-link">My Quiz</NavLink>
@@ -44,10 +44,10 @@ function Header() {
           <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
         </div>
 
-        <div className="bg-background flex border border-tr rounded-full hover:bg-yellow items-center">
+        <div className="bg-background flex border-r-0 rounded-full hover:bg-yellow items-center">
           <img className="display-inline-block right-arrow-profile-empty" src={toRightEmpty} alt="span" />
           <img className="display-inline-block right-arrow-profile" src={toRight} alt="span" />
-          <NavLink className="pl-4">Profile</NavLink>
+          <NavLink className="pr-4">Profile</NavLink>
         </div>
       </nav>
 

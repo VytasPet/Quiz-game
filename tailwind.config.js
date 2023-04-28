@@ -4,7 +4,11 @@ export default {
   theme: {
     colors: {
       yellow: "#F5FF7D",
-      background: "#F2F2F2",
+      background: "#FFFFFF",
+      nav: "#FFFFFF",
+    },
+    fontFamily: {
+      sans: ['"Questrial"', "sans-serif"],
     },
     extend: {
       // Define the `.right-arrow` and `.left-arrow` classes
