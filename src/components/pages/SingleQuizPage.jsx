@@ -14,7 +14,7 @@ function QuizPage() {
       },
       {
         question: "Who was the first president of the United States?",
-        answers: ["George Washington", "Thomas Jefferson", "John Adams", "Abraham Lincoln"],
+        answers: ["George Washington", "Thomas Jefferson", "John Adams", "Abraham dscdsf"],
         correctAnswer: 0,
       },
       {
@@ -71,7 +71,7 @@ function QuizPage() {
               <div className="flex flex-wrap">
                 {q.answers.map((a, answerIndex) => (
                   <div key={answerIndex} className="w-1/4 pr-2">
-                    <label htmlFor={`answer-${questionIndex}-${answerIndex}`} className="block text-md font-medium text-gray-700">
+                    <label htmlFor={`answer-${questionIndex}-${answerIndex}`} className="block text-md font-medium border w-full rounded-lg text-gray">
                       {a}
                     </label>
                     <input
