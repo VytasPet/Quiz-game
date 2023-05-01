@@ -10,8 +10,8 @@ function LoginForm({ onLog }) {
   const navigate = useNavigate();
 
   const initialValues = {
-    email: "",
-    password: "",
+    email: "jonas@mekas.com",
+    password: "123123",
   };
 
   const validationSchema = Yup.object({

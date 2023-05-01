@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 
 function Header() {
   const [signOut, loading, error] = useSignOut(auth);
-  const { isLoggedIn } = useAuthCtx();
+  const { user, isLoggedIn } = useAuthCtx();
   const navigate = useNavigate();
 
   function signOutHandle() {
@@ -35,44 +35,63 @@ function Header() {
           <img className="display-inline-block left-arrow-home-empty" src={toLeftEmpty} alt="span" />
           <img className="display-inline-block left-arrow-home" src={toLeft} alt="span" />
         </div>
+        {isLoggedIn && (
+          <>
+            <div className="bg-background flex hover:bg-yellow items-center">
+              <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
+              <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
+              <NavLink to={"/quiz"} className="nav-link">
+                Quiz list
+              </NavLink>
+              <img className="display-inline-block left-arrow-myquiz" src={toLeft} alt="span" />
+              <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
+            </div>
+          </>
+        )}
+        {!isLoggedIn && (
+          <>
+            <div className="bg-background flex border-r-0 rounded-full hover:bg-yellow items-center">
+              <img className="display-inline-block right-arrow-profile-empty" src={toRightEmpty} alt="span" />
+              <img className="display-inline-block right-arrow-profile" src={toRight} alt="span" />
+              <NavLink to={"/quiz"} className="pr-4">
+                Quiz list
+              </NavLink>
+            </div>
+          </>
+        )}
+        {isLoggedIn && <></>}
 
-        <div className="bg-background flex hover:bg-yellow items-center">
-          <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
-          <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
-          <NavLink to={"/quiz"} className="nav-link">
-            Quiz
-          </NavLink>
-          <img className="display-inline-block left-arrow-myquiz" src={toLeft} alt="span" />
-          <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
-        </div>
+        {isLoggedIn && (
+          <>
+            <div className="bg-background flex hover:bg-yellow items-center">
+              <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
+              <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
+              <NavLink to={"/addquiz"} className="nav-link">
+                Add Quiz
+              </NavLink>
+              <img className="display-inline-block left-arrow-myquiz" src={toLeft} alt="span" />
+              <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
+            </div>
 
-        <div className="bg-background flex hover:bg-yellow items-center">
-          <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
-          <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
-          <NavLink to={"/addquiz"} className="nav-link">
-            Add Quiz
-          </NavLink>
-          <img className="display-inline-block left-arrow-myquiz" src={toLeft} alt="span" />
-          <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
-        </div>
+            <div className="bg-background flex hover:bg-yellow items-center">
+              <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
+              <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
+              <NavLink to={"/myquiz"} className="nav-link">
+                My Quiz
+              </NavLink>
+              <img className="display-inline-block left-arrow-myquiz" src={toLeft} alt="span" />
+              <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
+            </div>
 
-        <div className="bg-background flex hover:bg-yellow items-center">
-          <img className="display-inline-block right-arrow-myquiz-empty" src={toRightEmpty} alt="span" />
-          <img className="display-inline-block right-arrow-myquiz" src={toRight} alt="span" />
-          <NavLink to={"/myquiz"} className="nav-link">
-            My Quiz
-          </NavLink>
-          <img className="display-inline-block left-arrow-myquiz" src={toLeft} alt="span" />
-          <img className="display-inline-block left-arrow-myquiz-empty" src={toLeftEmpty} alt="span" />
-        </div>
-
-        <div className="bg-background flex border-r-0 rounded-full hover:bg-yellow items-center">
-          <img className="display-inline-block right-arrow-profile-empty" src={toRightEmpty} alt="span" />
-          <img className="display-inline-block right-arrow-profile" src={toRight} alt="span" />
-          <NavLink to={"/profile"} className="pr-4">
-            Profile
-          </NavLink>
-        </div>
+            <div className="bg-background flex border-r-0 rounded-full hover:bg-yellow items-center">
+              <img className="display-inline-block right-arrow-profile-empty" src={toRightEmpty} alt="span" />
+              <img className="display-inline-block right-arrow-profile" src={toRight} alt="span" />
+              <NavLink to={"/profile"} className="pr-4">
+                Profile
+              </NavLink>
+            </div>
+          </>
+        )}
 
         {/* <div className="bg-background flex border-r-0 rounded-full hover:bg-yellow items-center">
           <img className="display-inline-block right-arrow-profile-empty" src={toRightEmpty} alt="span" />
@@ -84,9 +103,12 @@ function Header() {
       </nav>
 
       {isLoggedIn && (
-        <Link onClick={signOutHandle} className="hover:bg-yellow border border-black text-white p-1 rounded-full">
-          <img className="bg-neutral-500" src={login} alt="Logo" />
-        </Link>
+        <div className="flex flex-col items-center gap-0">
+          <Link onClick={signOutHandle} className="hover:bg-yellow border border-black text-white p-1 rounded-full">
+            <img className="bg-neutral-500" src={login} alt="Logo" />
+          </Link>
+          {/* <p>{user.email}</p> */}
+        </div>
       )}
       {!isLoggedIn && (
         <Link to={"/login"} className="hover:bg-yellow border border-black text-white p-1 rounded-full">

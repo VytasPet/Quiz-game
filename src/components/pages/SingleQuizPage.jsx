@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 
-function QuizPage() {
+function QuizPage({ itemzxAA }) {
   // Example quiz data
   const quizData = {
     title: "Example Quiz",

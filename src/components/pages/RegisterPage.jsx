@@ -1,26 +1,37 @@
-import { useFormik } from "formik";
-import React from "react";
-import { Link } from "react-router-dom";
-import * as Yup from "yup";
+import React, { useEffect } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { auth } from "../../firebase/firebase";
+import RegisterForm from "../forms/RegisterForm";
 
 function RegisterPage() {
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+  const navigate = useNavigate();
+  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
-  const validationSchema = Yup.object({
-    email: Yup.string().email().required("Required"),
-    password: Yup.string().required("Required"),
-  });
+  function registrationFireBaseHook({ email, password }) {
+    const loadingToastId = toast.loading("Registering...");
+    createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        console.log("userCredential ===", userCredential.user);
+        toast.dismiss(loadingToastId);
+        toast.success("register completed!");
+        navigate("/quiz");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.dismiss(loadingToastId);
+        console.warn("errorMessage ===", errorMessage);
+      });
+  }
 
-  const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+      toast.error(`Failed to register! ${error.message}`);
+    }
+  }, [error]);
 
   return (
     <div className="mt-20 box-border">
@@ -29,39 +40,7 @@ function RegisterPage() {
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-center px-4 pt-2 pb-5 w-80 max-w-1/3 mb-10 bg-black text-white rounded-lg">
           <div className="font-cursive text-white underline pt-3 pb-3 px-5"></div>
-          <form onSubmit={formik.handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">
-            <label htmlFor="email" className="block text-black text-sm font-medium">
-              Email:
-            </label>
-            <input
-              id="email"
-              name="email"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-              placeholder="Your email"
-              type="text"
-              className="mt-1 w-full py-2 px-3 border text-black border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm"
-            />
-            {formik.errors.email && formik.touched.email && <p className="text-red text-sm">{formik.errors.email}</p>}
-            <label htmlFor="email" className="block text-black text-sm font-medium">
-              Password:
-            </label>
-            <input
-              id="password"
-              name="password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-              placeholder="Your email"
-              type="password"
-              className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm"
-            />
-            {formik.errors.password && formik.touched.password && <p className="text-red text-sm">{formik.errors.password}</p>}
-            <button type="submit" className="bg-black mt-10 text-white  py-2 px-4 rounded hover:bg-background hover:text-black hover:outline ">
-              Register
-            </button>
-          </form>
+          <RegisterForm onReg={registrationFireBaseHook} />
         </div>
       </div>
     </div>

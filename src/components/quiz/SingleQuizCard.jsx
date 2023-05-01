@@ -1,6 +1,7 @@
 import React from "react";
 
-function SingleQuizCard() {
+function SingleQuizCard({ item }) {
+  console.log("item ===", item);
   return (
     <div className="flex flex-col items-center">
       <div className="group flex flex-col items-center px-4 pt-2 pb-5 w-2/3 mb-10 bg-black text-white rounded-full">

@@ -2,10 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useAuthCtx } from "../../store/AuthProvider";
 
-function QuizForm() {
+function QuizForm({ addQuiz }) {
   const [category, setCategory] = useState("history");
   const [numQuestions, setNumQuestions] = useState("5");
+  const { user } = useAuthCtx();
 
   const initialValues = {
     category: category,
@@ -33,6 +35,8 @@ function QuizForm() {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      const quizObj = { userUid: user.uid, ...values };
+      addQuiz(quizObj);
       console.log(values);
     },
   });

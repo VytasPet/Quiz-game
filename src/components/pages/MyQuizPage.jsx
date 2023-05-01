@@ -1,7 +1,44 @@
 import React from "react";
+import { db } from "../../firebase/firebase";
 import SingleQuizCard from "../quiz/SingleQuizCard";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { collection, deleteDoc, doc } from "firebase/firestore";
+import { useState } from "react";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { useAuthCtx } from "../../store/AuthProvider";
 
-function MyQuizPage() {
+function QuizsPage() {
+  const quizCollRef = collection(db, "quiz");
+  const [value, loading, error] = useCollection(quizCollRef);
+  const [arrToShow, setArr] = useState([]);
+  const [loadingToast, setloadingToast] = useState(null);
+  const { user } = useAuthCtx();
+
+  useEffect(() => {
+    if (loading) {
+      setloadingToast(toast.loading("Loading..."));
+    } else {
+      toast.dismiss(loadingToast);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    let arrK;
+    if (value) {
+      //console.log("value.docs.data ===", value.docs[0]._document.data.value.mapValue.fields);
+      arrK = value.docs;
+      console.log("arrK ===", arrK);
+      arrK = arrK.map((doc) => ({ uid: doc.id, ...doc._document.data.value.mapValue.fields }));
+      console.log("userio ===", user.uid);
+      const myQuiz = arrK.filter((quiz) => quiz.userUid.stringValue === user.uid);
+      console.log("myQuiz ===", myQuiz);
+      setArr(myQuiz);
+    }
+  }, [value]);
+
+  //   const shopsWithUid = value && value.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
+
   return (
     <div className="mt-20 box-border">
       <h1 className="text-5xl mb-20">Active Quiz List</h1>
@@ -13,9 +50,9 @@ function MyQuizPage() {
           <p className="border p-3 mb-1 rounded-full inline hover:bg-yellow">History</p>
         </div>
       </div>
-      <SingleQuizCard />
+      {value && arrToShow.map((quiz) => <SingleQuizCard key={quiz.uid} item={quiz} />)}
     </div>
   );
 }
 
-export default MyQuizPage;
+export default QuizsPage;
