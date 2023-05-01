@@ -9,10 +9,12 @@ import QuizsPage from "./components/pages/QuizsPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import SingleQuizPage from "./components/pages/SingleQuizPage";
 import Header from "./components/ui/layout/Header";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <div className="full">
+      <Toaster />
       <Header />
       <div>
         <Routes>

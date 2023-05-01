@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuthCtx } from "../../store/AuthProvider";
 import hero from "/src/assets/images/bighero.svg";
 import quiz from "/src/assets/images/totalApl.svg";
 

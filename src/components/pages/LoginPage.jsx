@@ -1,16 +1,39 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import LoginForm from "../forms/LoginForm";
+import { auth } from "../../firebase/firebase";
+import { useAuthCtx } from "../../store/AuthProvider";
+import { useEffect } from "react";
 
 function LoginPage() {
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuthCtx();
+
+  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
   function loginWithFirebaseHook({ email, password }) {
     const loadingToastId = toast.loading("Signing in...");
+    console.log("email ===", email);
+    //const loadingToastId = toast.loading("Signing in...");
     signInWithEmailAndPassword(email, password).then(() => {
       toast.dismiss(loadingToastId);
+      console.log("labas");
+      //toast.dismiss(loadingToastId);
     });
   }
+
+  useEffect(() => {
+    if (user) {
+      console.log("isLoggedIn ===", isLoggedIn);
+      navigate("/");
+      toast.success("Signed in successfully!");
+    } else if (error) {
+      toast.error(`Failed to sign in: ${error.message}`);
+    }
+  }, [user, error]);
 
   return (
     <div className="mt-20 box-border">

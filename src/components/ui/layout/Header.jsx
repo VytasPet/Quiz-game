@@ -1,13 +1,27 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useSignOut } from "react-firebase-hooks/auth";
 import logo from "/src/assets/images/logo_black.svg";
 import login from "/src/assets/images/icon_login.svg";
 import toRightEmpty from "/src/assets/images/empty-nav-toright.svg";
 import toLeftEmpty from "/src/assets/images/empty-nav-toleft.svg";
 import toRight from "/src/assets/images/toright.svg";
 import toLeft from "/src/assets/images/toleft.svg";
+import { useAuthCtx } from "../../../store/AuthProvider";
+import { auth } from "../../../firebase/firebase";
+import toast from "react-hot-toast";
 
 function Header() {
+  const [signOut, loading, error] = useSignOut(auth);
+  const { isLoggedIn } = useAuthCtx();
+  const navigate = useNavigate();
+
+  function signOutHandle() {
+    toast.success("You just logged out!");
+    signOut();
+    navigate("/");
+  }
+
   return (
     <header className=" container mx-auto max-w-5xl flex justify-between items-center .right-arrow">
       <Link to="/">
@@ -69,9 +83,16 @@ function Header() {
         </div> */}
       </nav>
 
-      <Link to={"/login"} className="hover:bg-yellow border border-black text-white p-1 rounded-full">
-        <img className="bg-neutral-500" src={login} alt="Logo" />
-      </Link>
+      {isLoggedIn && (
+        <Link onClick={signOutHandle} className="hover:bg-yellow border border-black text-white p-1 rounded-full">
+          <img className="bg-neutral-500" src={login} alt="Logo" />
+        </Link>
+      )}
+      {!isLoggedIn && (
+        <Link to={"/login"} className="hover:bg-yellow border border-black text-white p-1 rounded-full">
+          <img className="bg-neutral-500" src={login} alt="Logo" />
+        </Link>
+      )}
     </header>
   );
 }

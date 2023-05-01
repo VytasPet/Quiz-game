@@ -24,6 +24,7 @@ function LoginForm({ onLog }) {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log(values);
+      onLog(values);
     },
   });
 
