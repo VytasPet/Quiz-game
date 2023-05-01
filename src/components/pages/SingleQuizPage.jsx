@@ -56,45 +56,46 @@ function QuizPage() {
   const { handleSubmit } = formik;
 
   return (
-    <div className="mt-20 box-border">
+    <div className="mt-20 box-border ">
       <h1 className="text-5xl mb-20">{quizData.title}</h1>
       <h2 className="text-2xl mb-10">{quizData.category}</h2>
-
-      <form onSubmit={handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">
-        {quizData.questions.map((q, questionIndex) => (
-          <div key={questionIndex} className="space-y-4">
-            <div>
-              <label htmlFor={`question-${questionIndex}`} className="block text-lg font-medium text-gray-700">
-                {q.question}
-              </label>
+      <div className="border p-5 bg-black rounded-lg">
+        <form onSubmit={handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">
+          {quizData.questions.map((q, questionIndex) => (
+            <div key={questionIndex} className="space-y-4">
+              <div>
+                <label htmlFor={`question-${questionIndex}`} className="block text-lg font-medium text-gray-700">
+                  {q.question}
+                </label>
+              </div>
+              <div className="flex flex-wrap">
+                {q.answers.map((a, answerIndex) => (
+                  <div key={answerIndex} className="w-1/4 pr-2">
+                    <label htmlFor={`answer-${questionIndex}-${answerIndex}`} className="block text-md font-medium text-gray-700">
+                      {a}
+                    </label>
+                    <input
+                      id={`answer-${questionIndex}-${answerIndex}`}
+                      type="radio"
+                      name={`answer-${questionIndex}`}
+                      value={answerIndex}
+                      checked={userAnswers[questionIndex] === answerIndex}
+                      onChange={() => handleAnswerChange(questionIndex, answerIndex)}
+                      className="mt-1"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-wrap">
-              {q.answers.map((a, answerIndex) => (
-                <div key={answerIndex} className="w-1/4 pr-2">
-                  <label htmlFor={`answer-${questionIndex}-${answerIndex}`} className="block text-md font-medium text-gray-700">
-                    {a}
-                  </label>
-                  <input
-                    id={`answer-${questionIndex}-${answerIndex}`}
-                    type="radio"
-                    name={`answer-${questionIndex}`}
-                    value={answerIndex}
-                    checked={userAnswers[questionIndex] === answerIndex}
-                    onChange={() => handleAnswerChange(questionIndex, answerIndex)}
-                    className="mt-1"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
 
-        {error && <div className="text-red-500">{error}</div>}
+          {error && <div className="text-red-500">{error}</div>}
 
-        <button type="submit" className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
-          Submit Answers
-        </button>
-      </form>
+          <button type="submit" className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
+            Submit Answers
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
