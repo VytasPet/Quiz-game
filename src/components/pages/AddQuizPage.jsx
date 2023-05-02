@@ -18,7 +18,7 @@ function AddQuizPage() {
   const [value, loading, error] = useCollection(q);
 
   const [userDocId, setUserDocId] = useState(null);
-
+  const navigate = useNavigate();
   //   const docRef = doc(db, "quiz", userDocId);
   //   const [values, loadings, errors] = useDocument(docRef);
 
@@ -46,8 +46,6 @@ function AddQuizPage() {
   //const docRef = doc(db, "users");
   //const [value, loading, error] = useDocument(docRef);
 
-  const navigate = useNavigate();
-
   //   useEffect(() => {
   //     if (value) {
   //       console.log("value ===", value);
@@ -63,6 +61,7 @@ function AddQuizPage() {
       toast.success("You added new Quiz!");
       //navigate("/quiz");
     });
+    navigate("/quiz");
   }
   // console.log('Document written with ID: ', docRef.id);
   // navigate('/posts');
