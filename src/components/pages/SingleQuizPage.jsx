@@ -110,7 +110,7 @@ function QuizPage() {
                 </div>
               ))}
 
-              {erroras && <div className="text-red-500">{error}</div>}
+              {erroras && <div className="text-red-500">Must answer all questions!</div>}
 
               <button type="submit" className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
                 Submit Answers
