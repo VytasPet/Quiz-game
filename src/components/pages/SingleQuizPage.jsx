@@ -27,6 +27,9 @@ function QuizPage() {
   const q = query(quizCollRef, where("userUid", "==", user.uid));
   const [values, loadings, errors] = useCollection(q);
 
+  const qQuiz = query(quizCollRef, quizUid);
+  const [valuesQ, loadingsQ, errorsQ] = useCollection(qQuiz);
+
   const [userDocId, setUserDocId] = useState(null);
 
   useEffect(() => {
@@ -56,7 +59,7 @@ function QuizPage() {
       console.log("ansArr ===", ansArr);
       setcorAnsArr(ansArr);
       setQuizObj(obj);
-      setUserAnswers(Array(obj.questions.length).fill(-1));
+      //   setUserAnswers(Array(obj.questions.length).fill(-1));
     }
   }, [value]);
 
@@ -107,7 +110,7 @@ function QuizPage() {
       updateDoc(docRef, { result: newScore });
       console.log("result ===", resultat);
 
-      let visiskas = values.docs[0].data();
+      let visiskas = valuesQ.docs[0].data();
       let numer = Number(visiskas.completed) + 1;
       let numerRez = Number(visiskas.result) + (countTrueValues(resultat) / userAnswers.length) * 100;
 
