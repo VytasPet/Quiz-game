@@ -6,8 +6,43 @@ import QuizForm from "../forms/QuizForm";
 import toast from "react-hot-toast";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { useDocument } from "react-firebase-hooks/firestore";
+import { query, where, getDocs } from "firebase/firestore";
+import { useState } from "react";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 function AddQuizPage() {
+  const { user } = useAuthCtx();
+
+  const quizCollRef = collection(db, "users");
+  const q = query(quizCollRef, where("userUid", "==", user.uid));
+  const [value, loading, error] = useCollection(q);
+
+  const [userDocId, setUserDocId] = useState(null);
+
+  //   const docRef = doc(db, "quiz", userDocId);
+  //   const [values, loadings, errors] = useDocument(docRef);
+
+  useEffect(() => {
+    if (value) {
+      const userDoc = value.docs.find((doc) => doc.data().userUid === user.uid);
+      if (userDoc) {
+        console.log("User document ID:", userDoc.id);
+        setUserDocId(userDoc.id);
+      } else {
+        console.log("User document not found.");
+      }
+    }
+  }, [value, user]);
+
+  function addCreating() {
+    let viskas = value.docs[0].data();
+    console.log("viskas ===", viskas);
+    let numer = Number(viskas.created) + 1;
+
+    const docRef = doc(db, "users", userDocId);
+    updateDoc(docRef, { created: numer });
+  }
+
   //const docRef = doc(db, "users");
   //const [value, loading, error] = useDocument(docRef);
 
@@ -21,7 +56,7 @@ function AddQuizPage() {
 
   function addNewShop(newQuiz) {
     console.log("newQuiz ===", newQuiz);
-
+    addCreating();
     const shopRef = collection(db, "quiz");
     addDoc(shopRef, newQuiz).then(() => {
       console.log("prideta!");

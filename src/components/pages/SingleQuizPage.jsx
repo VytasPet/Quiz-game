@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { doc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useAuthCtx } from "../../store/AuthProvider";
+import { query, where, getDocs } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 
 function QuizPage() {
+  const navigate = useNavigate();
   const { quizUid } = useParams();
   const docRef = doc(db, "quiz", quizUid);
   const [value, loading, error] = useDocument(docRef);
@@ -16,6 +20,34 @@ function QuizPage() {
   const [showResults, setshowResults] = useState(false);
   const [corAnsArr, setcorAnsArr] = useState([]);
   const [result, setresult] = useState([]);
+
+  const { user } = useAuthCtx();
+
+  const quizCollRef = collection(db, "users");
+  const q = query(quizCollRef, where("userUid", "==", user.uid));
+  const [values, loadings, errors] = useCollection(q);
+
+  const [userDocId, setUserDocId] = useState(null);
+
+  useEffect(() => {
+    if (values) {
+      const userDoc = values.docs.find((doc) => doc.data().userUid === user.uid);
+      if (userDoc) {
+        console.log("User document ID:", userDoc.id);
+        setUserDocId(userDoc.id);
+      } else {
+        console.log("User document not found.");
+      }
+    }
+  }, [values, user]);
+
+  function addComplete() {
+    let viskas = values.docs[0].data();
+    let numer = Number(viskas.completed) + 1;
+
+    const docRef = doc(db, "users", userDocId);
+    updateDoc(docRef, { completed: numer });
+  }
 
   useEffect(() => {
     if (value) {
@@ -58,16 +90,23 @@ function QuizPage() {
         setError("Please answer all questions.");
         return;
       }
+
       setafterSub(true);
       setUserAnswers(userAnswers);
 
       console.log("corAnsArr ===", corAnsArr);
       console.log("userAnswers ===", userAnswers);
 
-      const result = compareAnswers(corAnsArr, userAnswers);
-      setresult(result);
+      const resultat = compareAnswers(corAnsArr, userAnswers);
+      console.log("resultat ===", resultat);
+      setresult(resultat);
+      addComplete();
 
-      console.log("result ===", result);
+      let viskas = values.docs[0].data();
+      const newScore = Number(viskas.result) + (countTrueValues(resultat) / userAnswers.length) * 100;
+      const docRef = doc(db, "users", userDocId);
+      updateDoc(docRef, { result: newScore });
+      console.log("result ===", resultat);
 
       // TODO: Submit user answers to server
     },
@@ -135,11 +174,12 @@ function QuizPage() {
                 </button>
               )}
               {afterSub && (
-                <button type="submit" className="bg-white text-black hover:bg-grey hover:text-white py-2 px-4 rounded">
+                <button onClick={() => navigate("/quiz")} className="bg-white mt-3 text-black hover:bg-grey hover:text-white py-2 px-4 rounded">
                   Back to Quiz List
                 </button>
               )}
             </form>
+            <button onClick={addComplete}>add</button>
           </div>
         </div>
       )}

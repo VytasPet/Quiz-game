@@ -28,7 +28,7 @@ function Profile() {
       <h1 className="text-5xl mb-10">Your Statistic</h1>
       <p className="border-y py-2 w-1/2">Created Quiz: {useris.created}</p>
       <p className="border-y py-2 w-1/2">Quiz Completed: {useris.completed}</p>
-      <p className="border-y py-2 w-1/2">Average result: 86% {Number(useris.result) / Number(useris.completed)}%</p>
+      <p className="border-y py-2 w-1/2">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
     </div>
   );
 }
