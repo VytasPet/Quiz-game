@@ -10,49 +10,30 @@ function QuizPage() {
   const { quizUid } = useParams();
   const docRef = doc(db, "quiz", quizUid);
   const [value, loading, error] = useDocument(docRef);
+  const [afterSub, setafterSub] = useState(false);
   const [quizObj, setQuizObj] = useState(null);
   const [picShop, setPicShop] = useState(null);
+  const [showResults, setshowResults] = useState(false);
+  const [corAnsArr, setcorAnsArr] = useState([]);
 
   useEffect(() => {
     if (value) {
       const obj = value.data();
-      console.log("obj ===", obj);
+      const ansArr = obj.questions.map((que) => que.correctAnswer);
+      setcorAnsArr(ansArr);
       setQuizObj(obj);
+      setUserAnswers(Array(obj.questions.length).fill(-1));
     }
   }, [value]);
 
   // Example quiz data
-  const quizData = {
-    title: "Example Quiz",
-    category: "History",
-    questions: [
-      {
-        question: "What year did Christopher Columbus discover America?",
-        answers: ["1492", "1776", "1865", "1969"],
-        correctAnswer: 0,
-      },
-      {
-        question: "Who was the first president of the United States?",
-        answers: ["George Washington", "Thomas Jefferson", "John Adams", "Abraham dscdsf"],
-        correctAnswer: 0,
-      },
-      {
-        question: "What is the capital of France?",
-        answers: ["London", "Paris", "Berlin", "Rome"],
-        correctAnswer: 1,
-      },
-    ],
-  };
 
-  const [userAnswers, setUserAnswers] = useState(Array(quizData.questions.length).fill(-1));
+  const [userAnswers, setUserAnswers] = useState([]);
   const [erroras, setError] = useState("");
 
   const handleAnswerChange = (questionIndex, answerIndex) => {
     const newUserAnswers = [...userAnswers];
     newUserAnswers[questionIndex] = answerIndex;
-    if (!newUserAnswers.includes(-1)) {
-      setError("");
-    }
     setUserAnswers(newUserAnswers);
   };
 
@@ -62,6 +43,7 @@ function QuizPage() {
     },
     onSubmit: () => {
       setError("");
+      setafterSub(true);
       const hasUnansweredQuestions = userAnswers.includes(-1);
       if (hasUnansweredQuestions) {
         setError("Please answer all questions.");
@@ -107,16 +89,18 @@ function QuizPage() {
                       </div>
                     ))}
                   </div>
+                  {userAnswers[questionIndex] === -1 && afterSub && <div className="text-red-500">Please answer this question.</div>}
                 </div>
               ))}
 
-              {erroras && <div className="text-red-500">Must answer all questions!</div>}
+              {/* {erroras && <div className="text-red-500">Must answer all questions!</div>} */}
 
               <button type="submit" className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
                 Submit Answers
               </button>
             </form>
           </div>
+          {showResults && <p>You answered correct 1 questions</p>}
         </div>
       )}
     </>
