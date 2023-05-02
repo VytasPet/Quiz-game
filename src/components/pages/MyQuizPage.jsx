@@ -73,6 +73,7 @@ function QuizsPage() {
           </Link>
         </div>
       </div>
+      {value && arrFiltered.length < 1 && <h2>Sorry, there are no quiz...</h2>}
       {value && arrFiltered.map((quiz) => <SingleQuizCard key={quiz.uid} item={quiz} />)}
     </div>
   );

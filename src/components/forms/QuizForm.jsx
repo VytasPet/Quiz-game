@@ -5,11 +5,13 @@ import * as Yup from "yup";
 import { useAuthCtx } from "../../store/AuthProvider";
 
 function QuizForm({ addQuiz }) {
+  const [name, setName] = useState("");
   const [category, setCategory] = useState("history");
   const [numQuestions, setNumQuestions] = useState("5");
   const { user } = useAuthCtx();
 
   const initialValues = {
+    name: name,
     category: category,
     numQuestions: numQuestions,
     questions: Array.from({ length: 5 }, () => ({
@@ -20,6 +22,7 @@ function QuizForm({ addQuiz }) {
   };
 
   const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Required"),
     category: Yup.string().required("Required"),
     numQuestions: Yup.number().required("Required"),
     questions: Yup.array().of(
@@ -61,6 +64,9 @@ function QuizForm({ addQuiz }) {
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
   const handleQuestionChange = (questionIndex, e) => {
     const newQuestions = [...formik.values.questions];
@@ -76,6 +82,16 @@ function QuizForm({ addQuiz }) {
   return (
     <form onSubmit={formik.handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">
       <div>
+        <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+          Name
+        </label>
+        <input
+          id="name"
+          value={name}
+          onChange={handleNameChange}
+          type="text"
+          className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm"
+        />
         <label htmlFor="category" className="block text-sm font-medium text-gray-700">
           Category
         </label>
