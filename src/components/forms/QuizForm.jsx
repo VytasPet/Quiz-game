@@ -27,12 +27,25 @@ function QuizForm({ addQuiz }) {
     numQuestions: Yup.number().required("Required"),
     questions: Yup.array().of(
       Yup.object().shape({
-        question: Yup.string(),
-        answers: Yup.array().of(Yup.string()),
-        correctAnswer: Yup.number().min(0, "Required"),
+        question: Yup.string().required("Question is required"),
+        answers: Yup.array().of(Yup.string().required("Answer is required")).min(2, "At least two answers are required"),
+        correctAnswer: Yup.number().min(0, "Select the correct answer").required("Correct answer is required"),
       })
     ),
   });
+
+  //   const validationSchema = Yup.object().shape({
+  //     name: Yup.string().required("Required"),
+  //     category: Yup.string().required("Required"),
+  //     numQuestions: Yup.number().required("Required"),
+  //     questions: Yup.array().of(
+  //       Yup.object().shape({
+  //         question: Yup.string(),
+  //         answers: Yup.array().of(Yup.string()),
+  //         correctAnswer: Yup.number().min(0, "Required"),
+  //       })
+  //     ),
+  //   });
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -135,6 +148,9 @@ function QuizForm({ addQuiz }) {
             type="text"
             className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm"
           />
+          {formik.errors.questions?.[questionIndex]?.question && formik.touched.questions?.[questionIndex]?.question && (
+            <div className="text-red-500">{formik.errors.questions[questionIndex].question}</div>
+          )}
 
           <div className="flex flex-wrap">
             {q.answers.map((a, answerIndex) => (
@@ -149,6 +165,10 @@ function QuizForm({ addQuiz }) {
                   type="text"
                   className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-black sm:text-sm"
                 />
+                {formik.errors.questions?.[questionIndex]?.answers?.[answerIndex] && formik.touched.questions?.[questionIndex]?.answers?.[answerIndex] && (
+                  <div className="text-red-500">{formik.errors.questions[questionIndex].answers[answerIndex]}</div>
+                )}
+
                 <input
                   type="radio"
                   id={`correctAnswer-${questionIndex}-${answerIndex}`}
