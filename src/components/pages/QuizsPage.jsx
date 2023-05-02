@@ -38,7 +38,9 @@ function QuizsPage() {
 
   function filterWord(word) {
     const bum = word.target.innerHTML.toLowerCase();
-    if (bum === "Show all") {
+    console.log("bum ===", bum);
+    if (bum === "show all") {
+      console.log("bum ===", bum);
       setArrFilt(arrToShow);
     } else {
       setArrFilt(arrToShow.filter((quiz) => quiz.category.stringValue === bum));
@@ -55,6 +57,9 @@ function QuizsPage() {
       <div className="text-left fixed">
         <h2 className="text-2xl mb-3">Filters:</h2>
         <div className="flex flex-col items-start">
+          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+            Show all
+          </button>
           <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
             Sports
           </button>

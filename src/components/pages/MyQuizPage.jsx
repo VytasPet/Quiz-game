@@ -7,11 +7,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useAuthCtx } from "../../store/AuthProvider";
+import { Link } from "react-router-dom";
 
 function QuizsPage() {
   const quizCollRef = collection(db, "quiz");
   const [value, loading, error] = useCollection(quizCollRef);
   const [arrToShow, setArr] = useState([]);
+  const [arrFiltered, setArrFilt] = useState([]);
   const [loadingToast, setloadingToast] = useState(null);
   const { user } = useAuthCtx();
 
@@ -34,8 +36,20 @@ function QuizsPage() {
       const myQuiz = arrK.filter((quiz) => quiz.userUid.stringValue === user.uid);
       console.log("myQuiz ===", myQuiz);
       setArr(myQuiz);
+      setArrFilt(myQuiz);
     }
   }, [value]);
+
+  function filterWord(word) {
+    const bum = word.target.innerHTML.toLowerCase();
+    console.log("bum ===", bum);
+    if (bum === "show all") {
+      console.log("bum ===", bum);
+      setArrFilt(arrToShow);
+    } else {
+      setArrFilt(arrToShow.filter((quiz) => quiz.category.stringValue === bum));
+    }
+  }
 
   //   const shopsWithUid = value && value.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
 
@@ -45,12 +59,21 @@ function QuizsPage() {
       <div className="text-left fixed">
         <h2 className="text-2xl mb-3">Filters:</h2>
         <div className="flex flex-col items-start">
-          <p className="border p-3 mb-1 rounded-full inline hover:bg-yellow">Sports</p>
-          <p className="border p-3 mb-1 rounded-full inline hover:bg-yellow">Geography</p>
-          <p className="border p-3 mb-1 rounded-full inline hover:bg-yellow">History</p>
+          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+            Show all
+          </button>
+          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+            Sports
+          </button>
+          <Link onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+            Geography
+          </Link>
+          <Link onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+            History
+          </Link>
         </div>
       </div>
-      {value && arrToShow.map((quiz) => <SingleQuizCard key={quiz.uid} item={quiz} />)}
+      {value && arrFiltered.map((quiz) => <SingleQuizCard key={quiz.uid} item={quiz} />)}
     </div>
   );
 }
