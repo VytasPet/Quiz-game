@@ -64,9 +64,6 @@ function QuizForm({ addQuiz }) {
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
 
   const handleQuestionChange = (questionIndex, e) => {
     const newQuestions = [...formik.values.questions];
@@ -87,11 +84,13 @@ function QuizForm({ addQuiz }) {
         </label>
         <input
           id="name"
-          value={name}
-          onChange={handleNameChange}
+          name="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
           type="text"
           className="mt-1 w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:border-indigo-500 sm:text-sm"
         />
+
         <label htmlFor="category" className="block text-sm font-medium text-gray-700">
           Category
         </label>
