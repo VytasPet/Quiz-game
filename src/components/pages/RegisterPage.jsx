@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { auth } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
 import RegisterForm from "../forms/RegisterForm";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -14,6 +15,17 @@ function RegisterPage() {
     createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         console.log("userCredential ===", userCredential.user);
+        const user = userCredential.user;
+        const userDocRef = doc(db, "users", user.uid);
+
+        const info = {
+          completed: 0,
+          created: 0,
+          result: [],
+          userUid: user.uid,
+        };
+
+        setDoc(userDocRef, info);
         toast.dismiss(loadingToastId);
         toast.success("register completed!");
         navigate("/quiz");

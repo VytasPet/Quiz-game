@@ -1,16 +1,27 @@
-import { addDoc, collection } from "firebase/firestore";
-import React from "react";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase/firebase";
 import QuizForm from "../forms/QuizForm";
 import toast from "react-hot-toast";
 import { useAuthCtx } from "../../store/AuthProvider";
+import { useDocument } from "react-firebase-hooks/firestore";
 
 function AddQuizPage() {
+  //const docRef = doc(db, "users");
+  //const [value, loading, error] = useDocument(docRef);
+
   const navigate = useNavigate();
+
+  //   useEffect(() => {
+  //     if (value) {
+  //       console.log("value ===", value);
+  //     }
+  //   }, [value]);
 
   function addNewShop(newQuiz) {
     console.log("newQuiz ===", newQuiz);
+
     const shopRef = collection(db, "quiz");
     addDoc(shopRef, newQuiz).then(() => {
       console.log("prideta!");
