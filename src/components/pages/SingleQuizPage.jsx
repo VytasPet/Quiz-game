@@ -20,6 +20,7 @@ function QuizPage() {
     if (value) {
       const obj = value.data();
       const ansArr = obj.questions.map((que) => que.correctAnswer);
+      console.log("ansArr ===", ansArr);
       setcorAnsArr(ansArr);
       setQuizObj(obj);
       setUserAnswers(Array(obj.questions.length).fill(-1));
@@ -37,6 +38,10 @@ function QuizPage() {
     setUserAnswers(newUserAnswers);
   };
 
+  const compareAnswers = (corArr, userArr) => {
+    return corArr.map((correctAnswer, index) => correctAnswer === userArr[index]);
+  };
+
   const formik = useFormik({
     initialValues: {
       userAnswers: userAnswers,
@@ -49,7 +54,15 @@ function QuizPage() {
         setError("Please answer all questions.");
         return;
       }
-      console.log(userAnswers);
+      setUserAnswers(userAnswers);
+
+      console.log("corAnsArr ===", corAnsArr);
+      console.log("userAnswers ===", userAnswers);
+
+      const result = compareAnswers(corAnsArr, userAnswers);
+
+      console.log("result ===", result);
+
       // TODO: Submit user answers to server
     },
   });
@@ -70,6 +83,8 @@ function QuizPage() {
                     <label htmlFor={`question-${questionIndex}`} className="block text-lg font-medium text-gray-700">
                       {q.question}
                     </label>
+                    {afterSub && corAnsArr[questionIndex] === userAnswers[questionIndex] && <p>correct!</p>}
+                    {afterSub && corAnsArr[questionIndex] !== userAnswers[questionIndex] && <p>Wrong!</p>}
                   </div>
                   <div className="flex flex-wrap">
                     {q.answers.map((a, answerIndex) => (
@@ -95,12 +110,12 @@ function QuizPage() {
 
               {/* {erroras && <div className="text-red-500">Must answer all questions!</div>} */}
 
+              {afterSub && <div>You answered correct 1 questions</div>}
               <button type="submit" className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
                 Submit Answers
               </button>
             </form>
           </div>
-          {showResults && <p>You answered correct 1 questions</p>}
         </div>
       )}
     </>
