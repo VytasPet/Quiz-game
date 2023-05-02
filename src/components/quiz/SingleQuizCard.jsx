@@ -11,7 +11,7 @@ function SingleQuizCard({ item }) {
         <div className="bg-yellow font-cursive text-black pt-6 pb-3 px-5 rounded-full w-full hover:bg-background">
           <h2 className="bg-background uppercase text-center p-2 rounded-full inline group-hover:bg-yellow">2023 NBA season statistics</h2>
           <p className="font-cursive my-5">Questions: {item.numQuestions.stringValue}</p>
-          <p className="font-sans">Average result: 88%</p>
+          <p className="font-sans">Average result: {(item.result.integerValue / item.completed.integerValue).toFixed(2)}%</p>
         </div>
       </div>
     </Link>

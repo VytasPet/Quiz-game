@@ -92,7 +92,6 @@ function QuizPage() {
       }
 
       setafterSub(true);
-      setUserAnswers(userAnswers);
 
       console.log("corAnsArr ===", corAnsArr);
       console.log("userAnswers ===", userAnswers);
@@ -108,6 +107,15 @@ function QuizPage() {
       updateDoc(docRef, { result: newScore });
       console.log("result ===", resultat);
 
+      let visiskas = values.docs[0].data();
+      let numer = Number(visiskas.completed) + 1;
+      let numerRez = Number(visiskas.result) + (countTrueValues(resultat) / userAnswers.length) * 100;
+
+      const docRefQuiz = doc(db, "quiz", quizUid);
+      updateDoc(docRefQuiz, { completed: numer });
+      updateDoc(docRefQuiz, { result: numerRez });
+
+      setUserAnswers(userAnswers);
       // TODO: Submit user answers to server
     },
   });
