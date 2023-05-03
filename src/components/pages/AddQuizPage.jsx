@@ -67,13 +67,13 @@ function AddQuizPage() {
   // navigate('/posts');
 
   return (
-    <div className="mt-20 box-border">
-      <h1 className="text-5xl mb-20">Active Quiz List</h1>
+    <div className="mt-20 box-border max-sm:mt-10">
+      <h1 className="text-5xl mb-20 max-sm:text-3xl max-sm:mb-10">Active Quiz List</h1>
 
       <div className="flex flex-col items-center">
-        <div className="flex flex-col items-center px-4 pt-2 pb-5 w-full mb-10 bg-black text-white rounded-lg">
-          <p className="text-center text-qxl pb-1">Please fill the new quiz form</p>
-          <div className="font-cursive text-black pt-6 pb-3 px-5">
+        <div className="flex flex-col items-center px-4 pt-2 pb-5 w-full mb-10 bg-black text-white rounded-lg max-sm:mb-5 max-sm:px-1">
+          <p className="text-center text-qxl pb-1 max-sm:pb-0">Please fill the new quiz form</p>
+          <div className="font-cursive text-black pt-6 pb-3 px-5 max-sm:pt-2 max-sm:pb-1 max-sm:px-2">
             <QuizForm addQuiz={addNewShop} />
           </div>
         </div>

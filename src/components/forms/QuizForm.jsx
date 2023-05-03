@@ -86,7 +86,7 @@ function QuizForm({ addQuiz }) {
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">
+    <form onSubmit={formik.handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5 max-sm:p-2">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">
           Name
