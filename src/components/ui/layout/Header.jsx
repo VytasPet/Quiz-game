@@ -131,8 +131,7 @@ function Header() {
           </Link>
         </nav>
       )}
-
-      <a className="invisible max-sm:visible" onClick={menuOpener}>
+      <a className="hidden sm:max:hidden max-sm:inline-block" onClick={menuOpener}>
         <img src={menu} alt="" />
       </a>
 
