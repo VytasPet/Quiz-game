@@ -5,9 +5,10 @@ import { useAuthCtx } from "../../store/AuthProvider";
 function SingleQuizCard({ item }) {
   console.log("item ===", item);
   const { isLoggedIn } = useAuthCtx();
+  const toValue = isLoggedIn ? `/quiz/${item?.uid}` : "/login";
 
   return (
-    <Link to={`/quiz/${item?.uid}`} className="flex flex-col items-center">
+    <Link to={toValue} className="flex flex-col items-center">
       <div className="group flex flex-col items-center px-4 pt-2 pb-5 w-2/3 mb-10 bg-black text-white rounded-full">
         <p className=" text-qxl pl-10 pb-1">{item.name.stringValue}</p>
         <div className="bg-yellow font-cursive text-black pt-6 pb-3 px-5 rounded-full w-full hover:bg-background">
