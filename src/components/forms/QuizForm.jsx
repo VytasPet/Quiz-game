@@ -51,7 +51,7 @@ function QuizForm({ addQuiz }) {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      const quizObj = { userUid: user.uid, ...values };
+      const quizObj = { userUid: user.uid, completed: 0, results: 0, ...values };
       addQuiz(quizObj);
       console.log(values);
     },

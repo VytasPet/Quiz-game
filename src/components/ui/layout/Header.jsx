@@ -104,7 +104,7 @@ function Header() {
 
       {isLoggedIn && (
         <div className="flex flex-col items-center gap-0">
-          <Link onClick={signOutHandle} className="hover:bg-yellow border border-black text-white p-1 rounded-full">
+          <Link onClick={signOutHandle} className="bg-red hover:bg-yellow border border-black text-white p-1 rounded-full">
             <img className="bg-neutral-500" src={login} alt="Logo" />
           </Link>
           {/* <p>{user.email}</p> */}

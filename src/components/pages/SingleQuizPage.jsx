@@ -27,8 +27,8 @@ function QuizPage() {
   const q = query(quizCollRef, where("userUid", "==", user.uid));
   const [values, loadings, errors] = useCollection(q);
 
-  const qQuiz = query(quizCollRef, quizUid);
-  const [valuesQ, loadingsQ, errorsQ] = useCollection(qQuiz);
+  const docRefas = doc(db, "quiz", quizUid);
+  const [valueQ, loadingQ, errorQ] = useDocument(docRefas);
 
   const [userDocId, setUserDocId] = useState(null);
 
@@ -110,13 +110,16 @@ function QuizPage() {
       updateDoc(docRef, { result: newScore });
       console.log("result ===", resultat);
 
-      let visiskas = valuesQ.docs[0].data();
+      //quizui update
+      let visiskas = valueQ.data();
+      console.log("visiskas ===", visiskas);
       let numer = Number(visiskas.completed) + 1;
-      let numerRez = Number(visiskas.result) + (countTrueValues(resultat) / userAnswers.length) * 100;
+      console.log("resultat ===", resultat);
+      let numerRez = Number(visiskas.results) + (countTrueValues(resultat) / userAnswers.length) * 100;
 
       const docRefQuiz = doc(db, "quiz", quizUid);
       updateDoc(docRefQuiz, { completed: numer });
-      updateDoc(docRefQuiz, { result: numerRez });
+      updateDoc(docRefQuiz, { results: numerRez });
 
       setUserAnswers(userAnswers);
       // TODO: Submit user answers to server

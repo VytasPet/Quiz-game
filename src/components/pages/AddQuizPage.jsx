@@ -54,10 +54,9 @@ function AddQuizPage() {
 
   function addNewShop(newQuiz) {
     console.log("newQuiz ===", newQuiz);
-    const updated = { completed: 0, results: 0, ...newQuiz };
     addCreating();
     const shopRef = collection(db, "quiz");
-    addDoc(shopRef, updated).then(() => {
+    addDoc(shopRef, newQuiz).then(() => {
       console.log("prideta!");
       toast.success("You added new Quiz!");
       //navigate("/quiz");

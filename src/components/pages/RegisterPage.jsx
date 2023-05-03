@@ -22,6 +22,7 @@ function RegisterPage() {
           completed: 0,
           created: 0,
           result: [],
+          email: user.email,
           userUid: user.uid,
         };
 
