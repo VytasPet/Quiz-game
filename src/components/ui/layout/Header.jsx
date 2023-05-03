@@ -10,11 +10,18 @@ import toLeft from "/src/assets/images/toleft.svg";
 import { useAuthCtx } from "../../../store/AuthProvider";
 import { auth } from "../../../firebase/firebaseConfig";
 import toast from "react-hot-toast";
+import menu from "/src/assets/images/menu-svgrepo-com.svg";
+import { useState } from "react";
 
 function Header() {
   const [signOut, loading, error] = useSignOut(auth);
   const { user, isLoggedIn } = useAuthCtx();
   const navigate = useNavigate();
+  const [menuOn, setmenuOn] = useState(false);
+
+  function menuOpener() {
+    setmenuOn(!menuOn);
+  }
 
   function signOutHandle() {
     toast.success("You just logged out!");
@@ -27,7 +34,7 @@ function Header() {
       <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
-      <nav className="border border-black rounded-full flex items-center">
+      <nav className="border border-black rounded-full flex items-center max-sm:invisible">
         <div className="bg-background flex border-l-0 rounded-full hover:bg-yellow items-center">
           <NavLink to={"/"} className="pl-4">
             Home
@@ -101,9 +108,22 @@ function Header() {
           </NavLink>
         </div> */}
       </nav>
+      {menuOn && (
+        <nav className="fixed inset-28 flex flex-col gap-5 items-center justify-center rounded-lg bg-white text-black text-3xl z-10">
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/quiz"}>Quiz List</NavLink>
+          <NavLink to={"/addquiz"}>Add Quiz</NavLink>
+          <NavLink to={"/myquiz"}>My Quiz</NavLink>
+          <Link onClick={signOutHandle}>My Quiz</Link>
+        </nav>
+      )}
+
+      <a className="invisible max-sm:visible" onClick={menuOpener}>
+        <img src={menu} alt="" />
+      </a>
 
       {isLoggedIn && (
-        <div className="flex flex-col items-center gap-0">
+        <div className="flex flex-col items-center gap-0 max-sm:invisible">
           <Link onClick={signOutHandle} className="bg-red hover:bg-yellow border border-black text-white p-1 rounded-full">
             <img className="bg-neutral-500" src={login} alt="Logo" />
           </Link>
