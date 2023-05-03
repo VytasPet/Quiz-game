@@ -74,10 +74,6 @@ function QuizForm({ addQuiz }) {
     formik.setFieldValue(`questions.${questionIndex}.correctAnswer`, answerIndex);
   };
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
-
   const handleQuestionChange = (questionIndex, e) => {
     const newQuestions = [...formik.values.questions];
     console.log("newQuestions ===", newQuestions);
@@ -92,7 +88,7 @@ function QuizForm({ addQuiz }) {
   return (
     <form onSubmit={formik.handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">
       <div>
-        <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
           Name
         </label>
         <input
@@ -109,8 +105,8 @@ function QuizForm({ addQuiz }) {
         </label>
         <select
           id="category"
-          value={category}
-          onChange={handleCategoryChange}
+          value={formik.values.category}
+          onChange={formik.handleChange}
           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           <option value="history">History</option>
