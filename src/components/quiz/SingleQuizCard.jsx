@@ -10,7 +10,7 @@ function SingleQuizCard({ item }) {
   console.log("item ===", item.userUid.stringValue);
   const { isLoggedIn } = useAuthCtx();
   const toValue = isLoggedIn ? `/quiz/${item?.uid}` : "/login";
-  const isYou = item.userUid.stringValue === user.uid;
+  const isYou = item.userUid.stringValue === user?.uid;
 
   async function delQuiz(quizId) {
     console.log("quizId ===", quizId);
