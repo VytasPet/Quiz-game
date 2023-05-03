@@ -131,8 +131,8 @@ function QuizPage() {
   return (
     <>
       {quizObj && (
-        <div className="mt-20 box-border ">
-          <h1 className="text-5xl mb-20">{quizObj.name}</h1>
+        <div className="mt-20 box-border max-sm:mt-10">
+          <h1 className="text-5xl mb-20 max-sm:mb-10">{quizObj.name}</h1>
           <h2 className="text-2xl mb-10">{quizObj.category}</h2>
           <div className="border p-5 bg-black rounded-lg max-sm:p-2">
             <form onSubmit={handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5 max-sm:p-1 max-sm:space-y-3 max-sm:">
