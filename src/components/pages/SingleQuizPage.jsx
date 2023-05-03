@@ -134,8 +134,8 @@ function QuizPage() {
         <div className="mt-20 box-border ">
           <h1 className="text-5xl mb-20">{quizObj.name}</h1>
           <h2 className="text-2xl mb-10">{quizObj.category}</h2>
-          <div className="border p-5 bg-black rounded-lg">
-            <form onSubmit={handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">
+          <div className="border p-5 bg-black rounded-lg max-sm:p-2">
+            <form onSubmit={handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5 max-sm:p-1 max-sm:space-y-3 max-sm:">
               {quizObj.questions.map((q, questionIndex) => (
                 <div key={questionIndex} className="space-y-4">
                   <div>
@@ -147,10 +147,12 @@ function QuizPage() {
                   </div>
                   <div className="flex flex-wrap">
                     {q.answers.map((a, answerIndex) => (
-                      <div key={answerIndex} className={`w-1/4 pr-2`}>
+                      <div key={answerIndex} className={`w-1/4 pr-1`}>
                         <label
                           htmlFor={`answer-${questionIndex}-${answerIndex}`}
-                          className={`block text-md font-medium border w-full rounded-lg text-gray max-sm:text-xs ${afterSub && corAnsArr[questionIndex] === answerIndex ? "bg-green" : ""}`}
+                          className={`block text-md font-medium border w-full rounded-lg text-gray max-sm:text-xs max-sm:text-center ${
+                            afterSub && corAnsArr[questionIndex] === answerIndex ? "bg-green" : ""
+                          }`}
                         >
                           {a}
                         </label>
