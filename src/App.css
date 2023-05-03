@@ -1,8 +1,4 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem;
-  text-align: center;
   background-color: #f2f2f2;
   box-sizing: border-box;
 }
@@ -45,7 +41,13 @@
 }
 
 .full {
-  min-height: calc(100vh - 32px);
+  min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
 }
 /* Botas */
 
