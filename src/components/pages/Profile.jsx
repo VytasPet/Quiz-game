@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
+import { db } from "../../firebase/fireBase";
 import { useEffect } from "react";
 
 function Profile() {

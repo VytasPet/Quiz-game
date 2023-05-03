@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { db } from "../../firebase/firebase";
+import { db } from "../../firebase/fireBase";
 import hero from "/src/assets/images/bighero.svg";
 import quiz from "/src/assets/images/totalApl.svg";
 import { useCollection } from "react-firebase-hooks/firestore";
