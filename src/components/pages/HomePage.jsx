@@ -50,7 +50,7 @@ function HomePage() {
             <ul className="flex flex-col items-start">
               {value &&
                 sortArr.slice(0, 3).map((obj, index) => (
-                  <li key={obj.userUid}>
+                  <li key={obj.userUid} className="max-sm:text-sm">
                     {index + 1}. {obj.email}
                   </li>
                 ))}

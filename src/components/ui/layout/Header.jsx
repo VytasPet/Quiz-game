@@ -110,7 +110,7 @@ function Header() {
         </div> */}
       </nav>
       {menuOn && (
-        <nav className="fixed inset-28 flex flex-col gap-5 items-center justify-center rounded-lg bg-white text-black text-3xl z-10">
+        <nav className="fixed inset-16 flex flex-col gap-5 items-center justify-center rounded-lg bg-white text-black text-3xl z-10">
           <NavLink to={"/"} onClick={() => setmenuOn(false)}>
             Home
           </NavLink>

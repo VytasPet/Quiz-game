@@ -11,6 +11,7 @@ export default {
       red: "#f72500",
       grey: "#D9D9D9",
       green: "#D9D9D9",
+      transparent: "#f2f2f200",
     },
     fontFamily: {
       sans: ['"Questrial"', "sans-serif"],
