@@ -26,6 +26,7 @@ function Header() {
   function signOutHandle() {
     toast.success("You just logged out!");
     signOut();
+    setmenuOn(false);
     navigate("/");
   }
 
@@ -122,8 +123,11 @@ function Header() {
           <NavLink to={"/myquiz"} onClick={() => setmenuOn(false)}>
             My Quiz
           </NavLink>
-          <Link onClick={signOutHandle} onClick={() => setmenuOn(false)}>
-            My Quiz
+          <NavLink to={"/profile"} onClick={() => setmenuOn(false)}>
+            Profile
+          </NavLink>
+          <Link onClick={signOutHandle} className="text-red">
+            Log Out
           </Link>
         </nav>
       )}
