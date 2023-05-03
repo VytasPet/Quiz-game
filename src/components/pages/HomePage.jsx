@@ -46,15 +46,16 @@ function HomePage() {
       {sortArr && (
         <div className="w-1/2 right item-center border-none rounded-lg mt-5 bg-black text-white">
           <p>Best 3 players</p>
-          <div className="rounded-lg bg-yellow text-black w-full">
-            <ul>
+          <div className="flex justify-center gap-5 bg-yellow text-black w-full rounded-lg ">
+            <ul className="flex flex-col">
               {value &&
                 sortArr.slice(0, 3).map((obj, index) => (
                   <li key={obj.userUid}>
-                    {index + 1}. {obj.email} - avg: {obj.average.toFixed(2)}%
+                    {index + 1}. {obj.email}
                   </li>
                 ))}
             </ul>
+            <ul className="flex flex-col ">{value && sortArr.slice(0, 3).map((obj, index) => <li key={obj.userUid}>avg: {obj.average.toFixed(2)}%</li>)}</ul>
           </div>
         </div>
       )}
