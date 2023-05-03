@@ -110,11 +110,21 @@ function Header() {
       </nav>
       {menuOn && (
         <nav className="fixed inset-28 flex flex-col gap-5 items-center justify-center rounded-lg bg-white text-black text-3xl z-10">
-          <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={"/quiz"}>Quiz List</NavLink>
-          <NavLink to={"/addquiz"}>Add Quiz</NavLink>
-          <NavLink to={"/myquiz"}>My Quiz</NavLink>
-          <Link onClick={signOutHandle}>My Quiz</Link>
+          <NavLink to={"/"} onClick={() => setmenuOn(false)}>
+            Home
+          </NavLink>
+          <NavLink to={"/quiz"} onClick={() => setmenuOn(false)}>
+            Quiz List
+          </NavLink>
+          <NavLink to={"/addquiz"} onClick={() => setmenuOn(false)}>
+            Add Quiz
+          </NavLink>
+          <NavLink to={"/myquiz"} onClick={() => setmenuOn(false)}>
+            My Quiz
+          </NavLink>
+          <Link onClick={signOutHandle} onClick={() => setmenuOn(false)}>
+            My Quiz
+          </Link>
         </nav>
       )}
 
