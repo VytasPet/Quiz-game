@@ -117,37 +117,48 @@ function Header() {
           <NavLink to={"/quiz"} onClick={() => setmenuOn(false)}>
             Quiz List
           </NavLink>
-          <NavLink to={"/addquiz"} onClick={() => setmenuOn(false)}>
-            Add Quiz
-          </NavLink>
-          <NavLink to={"/myquiz"} onClick={() => setmenuOn(false)}>
-            My Quiz
-          </NavLink>
-          <NavLink to={"/profile"} onClick={() => setmenuOn(false)}>
-            Profile
-          </NavLink>
-          <Link onClick={signOutHandle} className="text-red">
-            Log Out
-          </Link>
+          {!isLoggedIn && (
+            <NavLink to={"/login"} onClick={() => setmenuOn(false)}>
+              Login
+            </NavLink>
+          )}
+          {isLoggedIn && (
+            <>
+              <NavLink to={"/addquiz"} onClick={() => setmenuOn(false)}>
+                Add Quiz
+              </NavLink>
+              <NavLink to={"/myquiz"} onClick={() => setmenuOn(false)}>
+                My Quiz
+              </NavLink>
+              <NavLink to={"/profile"} onClick={() => setmenuOn(false)}>
+                Profile
+              </NavLink>
+              <Link onClick={signOutHandle} className="text-red">
+                Log Out
+              </Link>
+            </>
+          )}
         </nav>
       )}
-      <a className="hidden sm:max:hidden max-sm:inline-block" onClick={menuOpener}>
-        <img src={menu} alt="" />
-      </a>
+      <div className="flex gap-3">
+        <a className="hidden sm:max:hidden max-sm:inline-block" onClick={menuOpener}>
+          <img src={menu} alt="" />
+        </a>
 
-      {isLoggedIn && (
-        <div className="flex flex-col items-center gap-0 max-sm:invisible">
-          <Link onClick={signOutHandle} className="bg-red hover:bg-yellow border border-black text-white p-1 rounded-full">
+        {isLoggedIn && (
+          <div className="flex flex-col items-center gap-0 max-sm:invisible">
+            <Link onClick={signOutHandle} className="bg-red hover:bg-yellow border border-black text-white p-1 rounded-full">
+              <img className="bg-neutral-500" src={login} alt="Logo" />
+            </Link>
+            {/* <p>{user.email}</p> */}
+          </div>
+        )}
+        {!isLoggedIn && (
+          <Link to={"/login"} className="hover:bg-yellow border border-black text-white p-1 rounded-full">
             <img className="bg-neutral-500" src={login} alt="Logo" />
           </Link>
-          {/* <p>{user.email}</p> */}
-        </div>
-      )}
-      {!isLoggedIn && (
-        <Link to={"/login"} className="hover:bg-yellow border border-black text-white p-1 rounded-full">
-          <img className="bg-neutral-500" src={login} alt="Logo" />
-        </Link>
-      )}
+        )}
+      </div>
     </header>
   );
 }
