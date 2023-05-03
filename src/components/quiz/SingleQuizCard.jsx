@@ -26,14 +26,14 @@ function SingleQuizCard({ item }) {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="group flex flex-col items-center px-4 pt-2 pb-5 w-2/3 mb-10 bg-black text-white rounded-full">
-        <p className=" text-qxl pb-1">{item.category.stringValue}</p>
-        <div className="bg-yellow font-cursive text-black pt-6 pb-3 px-5 rounded-full w-full hover:bg-background">
+    <div className="flex flex-col items-center max-sm:pl-7">
+      <div className="group flex flex-col items-center px-4 pt-2 pb-5 w-2/3 mb-10 bg-black text-white rounded-full max-sm:rounded-lg max-sm:pt-1 max-sm:pb-2 max-sm:px-1 max-sm:mb-5">
+        <p className=" text-qxl pb-1 max-sm:text-md">{item.category.stringValue}</p>
+        <div className="bg-yellow font-cursive text-black pt-6 pb-3 px-5 rounded-full w-full hover:bg-background max-sm:pt-3 max-sm:pb-1">
           <Link to={toValue}>
-            <h2 className="bg-black text-white uppercase text-center p-2 rounded-full inline ">{item.name.stringValue}</h2>
-            <p className="font-cursive my-5">Questions: {item.numQuestions.stringValue}</p>
-            <p className="font-sans">Average result: {item?.completed.integerValue > 0 ? (item?.results.integerValue / item?.completed.integerValue).toFixed(2) : 0}%</p>
+            <h2 className="bg-black text-white uppercase text-center p-2 rounded-full inline max-sm:p-1 max-sm:text-sm">{item.name.stringValue}</h2>
+            <p className="font-cursive my-5 max-sm:text-sm">Questions: {item.numQuestions.stringValue}</p>
+            <p className="font-sans max-sm:text-sm">Average result: {item?.completed.integerValue > 0 ? (item?.results.integerValue / item?.completed.integerValue).toFixed(2) : 0}%</p>
           </Link>
           {isYou && (
             <button onClick={() => delQuiz(item.uid)} className="bg-red rounded-lg p-1">

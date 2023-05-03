@@ -39,15 +39,15 @@ function HomePage() {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="container flex justify-around items-center mx-auto mt-10 max-w-5xl flex-row">
-        <h1 className="p-5 text-6xl text-black leading-normal mt-5 mb-5 text-center w-2/5 ">Welcome to the greatest Quiz application</h1>
+      <div className="container flex justify-around items-center mx-auto mt-10 max-w-5xl flex-row max-sm:mt-1 max-sm:flex-col">
+        <h1 className="p-5 text-6xl text-black leading-normal mt-5 mb-5 text-center w-2/5 max-sm:text-4xl max-sm:w-full max-sm:mb-1">Welcome to the greatest Quiz application</h1>
         <img className="w-1/3" src={hero} alt="hero" />
       </div>
       {sortArr && (
-        <div className="w-1/2 right item-center border-none rounded-lg mt-5 bg-black text-white">
+        <div className="w-1/2 right items-center border-none rounded-lg mt-5 bg-black text-white max-sm:w-full max-sm:mt-10">
           <p>Best 3 players</p>
           <div className="flex justify-center gap-5 bg-yellow text-black w-full rounded-lg ">
-            <ul className="flex flex-col">
+            <ul className="flex flex-col items-start">
               {value &&
                 sortArr.slice(0, 3).map((obj, index) => (
                   <li key={obj.userUid}>
