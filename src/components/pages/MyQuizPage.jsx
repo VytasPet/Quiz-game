@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../../firebase/fireBase";
+import { db } from "../../firebase/firebase";
 import SingleQuizCard from "../quiz/SingleQuizCard";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc } from "firebase/firestore";

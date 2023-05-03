@@ -4,7 +4,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import LoginForm from "../forms/LoginForm";
-import { auth } from "../../firebase/fireBase";
+import { auth } from "../../firebase/firebase";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { useEffect } from "react";
 

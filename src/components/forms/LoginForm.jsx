@@ -4,7 +4,7 @@ import React from "react";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider } from "../../firebase/fireBase";
+import { auth, googleProvider } from "../../firebase/firebase";
 
 function LoginForm({ onLog }) {
   const navigate = useNavigate();

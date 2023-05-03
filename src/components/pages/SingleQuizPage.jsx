@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { db } from "../../firebase/fireBase";
+import { db } from "../../firebase/firebase";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
