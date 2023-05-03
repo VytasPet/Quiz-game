@@ -55,7 +55,7 @@ function SingleQuizCard({ item }) {
               </Link>
               {isYou && (
                 <button onClick={() => delQuiz(item.uid)} className="bg-red rounded-lg p-1">
-                  Delete Quiz
+                  Delete
                 </button>
               )}
             </div>

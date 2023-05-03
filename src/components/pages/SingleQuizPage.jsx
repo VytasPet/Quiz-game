@@ -150,7 +150,7 @@ function QuizPage() {
                       <div key={answerIndex} className={`w-1/4 pr-2`}>
                         <label
                           htmlFor={`answer-${questionIndex}-${answerIndex}`}
-                          className={`block text-md font-medium border w-full rounded-lg text-gray ${afterSub && corAnsArr[questionIndex] === answerIndex ? "bg-green" : ""}`}
+                          className={`block text-md font-medium border w-full rounded-lg text-gray max-sm:text-xs ${afterSub && corAnsArr[questionIndex] === answerIndex ? "bg-green" : ""}`}
                         >
                           {a}
                         </label>
