@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { auth, db } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebaseConfig";
 import RegisterForm from "../forms/RegisterForm";
 import { collection, doc, setDoc } from "firebase/firestore";
 

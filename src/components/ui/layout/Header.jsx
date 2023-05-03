@@ -8,7 +8,7 @@ import toLeftEmpty from "/src/assets/images/empty-nav-toleft.svg";
 import toRight from "/src/assets/images/toright.svg";
 import toLeft from "/src/assets/images/toleft.svg";
 import { useAuthCtx } from "../../../store/AuthProvider";
-import { auth } from "../../../firebase/firebase";
+import { auth } from "../../../firebase/firebaseConfig";
 import toast from "react-hot-toast";
 
 function Header() {
