@@ -46,7 +46,7 @@ function SingleQuizCard({ item }) {
             <p className=" text-qxl pb-1 max-sm:text-md">{item.category.stringValue}</p>
             <div className="bg-yellow font-cursive text-black pt-6 pb-3 px-5 rounded-full w-full hover:bg-background max-sm:pt-3 max-sm:pb-1">
               <Link to={toValue}>
-                <h2 className="bg-greyDark text-white uppercase text-center p-2 rounded-full inline max-sm:bg-transparent max-sm:text-black max-sm:text-sm">{item.name.stringValue}</h2>
+                <h2 className="bg-greyDark text-white uppercase text-center p-2 rounded-full inline max-sm:bg-transparent max-sm:text-black max-sm:text-xs max-sm:w-max">{item.name.stringValue}</h2>
                 <p className="font-cursive my-5 max-sm:text-xs max-sm:my-3">Questions: {item.numQuestions.stringValue}</p>
                 <p className="font-sans max-sm:text-xs">
                   Average: {rezas > 0 && comp > 0 && (rezas / comp).toFixed(2)}
@@ -54,7 +54,7 @@ function SingleQuizCard({ item }) {
                 </p>
               </Link>
               {isYou && (
-                <button onClick={() => delQuiz(item.uid)} className="bg-red rounded-lg p-1">
+                <button onClick={() => delQuiz(item.uid)} className="bg-red rounded-lg p-1 max-sm:mt-2 max-sm:mb-2">
                   Delete
                 </button>
               )}
