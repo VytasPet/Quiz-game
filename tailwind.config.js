@@ -12,6 +12,7 @@ export default {
       grey: "#D9D9D9",
       green: "#D9D9D9",
       transparent: "#f2f2f200",
+      greyDark: "#787878",
     },
     fontFamily: {
       sans: ['"Questrial"', "sans-serif"],
