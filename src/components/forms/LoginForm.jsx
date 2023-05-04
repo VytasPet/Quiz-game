@@ -1,10 +1,9 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+// import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useFormik } from "formik";
 import React from "react";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider } from "../../firebase/firebase";
 
 function LoginForm({ onLog }) {
   const navigate = useNavigate();
@@ -28,38 +27,38 @@ function LoginForm({ onLog }) {
     },
   });
 
-  function loginWithGmail() {
-    const loginGooglePromise = signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        console.log("result ===", result);
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-        console.log("user ===", user);
-        navigate("/shops");
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        console.log("error ===", error);
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.warn("errorMessage ===", errorMessage);
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-    toast.promise(loginGooglePromise, {
-      loading: "Loading",
-      success: "Login success",
-      error: "Error when loging in",
-    });
-  }
+  // function loginWithGmail() {
+  //   const loginGooglePromise = signInWithPopup(auth, googleProvider)
+  //     .then((result) => {
+  //       console.log("result ===", result);
+  //       // This gives you a Google Access Token. You can use it to access the Google API.
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
+  //       // The signed-in user info.
+  //       const user = result.user;
+  //       // IdP data available using getAdditionalUserInfo(result)
+  //       // ...
+  //       console.log("user ===", user);
+  //       navigate("/shops");
+  //     })
+  //     .catch((error) => {
+  //       // Handle Errors here.
+  //       console.log("error ===", error);
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.warn("errorMessage ===", errorMessage);
+  //       // The email of the user's account used.
+  //       const email = error.customData.email;
+  //       // The AuthCredential type that was used.
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //       // ...
+  //     });
+  //   toast.promise(loginGooglePromise, {
+  //     loading: "Loading",
+  //     success: "Login success",
+  //     error: "Error when loging in",
+  //   });
+  // }
 
   return (
     <form onSubmit={formik.handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">

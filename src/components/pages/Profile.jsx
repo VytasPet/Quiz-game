@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
+import { db } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
 
 function Profile() {
@@ -63,7 +63,8 @@ function Profile() {
 
   return (
     <div className="mt-20 box-border flex flex-col items-center bg-grey space-y-4 space-b-10 rounded-lg p-5">
-      <h1 className="text-5xl mb-10">Your Statistic</h1>
+      <h1 className="text-5xl mb-2">Your Statistic</h1>
+      <h2 className="text-3xl pb-10">{useris.email}</h2>
       <p className="border-y py-2 w-1/2">Your ranking: {position}</p>
       <p className="border-y py-2 w-1/2">Created Quiz: {useris.created}</p>
       <p className="border-y py-2 w-1/2">Quiz Completed: {useris.completed}</p>

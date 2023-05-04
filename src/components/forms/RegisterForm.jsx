@@ -23,7 +23,7 @@ function RegisterForm({ onReg }) {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5">
+    <form onSubmit={formik.handleSubmit} className="bg-yellow space-y-4 space-b-10 w-64 rounded-lg p-5">
       <label htmlFor="email" className="block text-black text-sm font-medium">
         Email:
       </label>

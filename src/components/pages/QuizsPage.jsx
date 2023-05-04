@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../../firebase/firebase";
+import { db } from "../../firebase/firebaseConfig";
 import SingleQuizCard from "../quiz/SingleQuizCard";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc } from "firebase/firestore";
@@ -52,26 +52,26 @@ function QuizsPage() {
   //   const shopsWithUid = value && value.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
 
   return (
-    <div className="mt-20 box-border">
-      <h1 className="text-5xl mb-20">Active Quiz List</h1>
+    <div className="mt-20 box-border max-sm:mt-10">
+      <h1 className="text-5xl mb-20 max-sm:text-2xl max-sm:mb-6">Active Quiz List</h1>
       <div className="text-left fixed">
-        <h2 className="text-2xl mb-3">Filters:</h2>
+        <h2 className="text-2xl mb-3 max-sm:text-lg">Filters:</h2>
         <div className="flex flex-col items-start">
-          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow max-sm:text-sm max-sm:p-1">
             Show all
           </button>
-          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow max-sm:text-sm max-sm:p-1">
             Sports
           </button>
-          <Link onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+          <Link onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow max-sm:text-sm max-sm:p-1">
             Geography
           </Link>
-          <Link onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow">
+          <Link onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow max-sm:text-sm max-sm:p-1">
             History
           </Link>
         </div>
       </div>
-      {value && arrFiltered.map((quiz) => <SingleQuizCard key={quiz.uid} item={quiz} />)}
+      <div>{value && arrFiltered.map((quiz) => <SingleQuizCard key={quiz.uid} item={quiz} />)}</div>
     </div>
   );
 }
