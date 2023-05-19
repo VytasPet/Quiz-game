@@ -17,7 +17,7 @@ function RegisterForm({ onReg }) {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
       onReg(values);
     },
   });

@@ -14,7 +14,7 @@ function RegisterPage() {
     const loadingToastId = toast.loading("Registering...");
     createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        console.log("userCredential ===", userCredential.user);
+        // console.log("userCredential ===", userCredential.user);
         const user = userCredential.user;
         const userDocRef = doc(db, "users", user.uid);
 
@@ -35,13 +35,13 @@ function RegisterPage() {
         const errorCode = error.code;
         const errorMessage = error.message;
         toast.dismiss(loadingToastId);
-        console.warn("errorMessage ===", errorMessage);
+        // console.warn("errorMessage ===", errorMessage);
       });
   }
 
   useEffect(() => {
     if (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(`Failed to register! ${error.message}`);
     }
   }, [error]);

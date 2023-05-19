@@ -36,10 +36,10 @@ function QuizPage() {
     if (values) {
       const userDoc = values.docs.find((doc) => doc.data().userUid === user.uid);
       if (userDoc) {
-        console.log("User document ID:", userDoc.id);
+        // console.log("User document ID:", userDoc.id);
         setUserDocId(userDoc.id);
       } else {
-        console.log("User document not found.");
+        // console.log("User document not found.");
       }
     }
   }, [values, user]);
@@ -56,7 +56,7 @@ function QuizPage() {
     if (value) {
       const obj = value.data();
       const ansArr = obj.questions.map((que) => que.correctAnswer);
-      console.log("ansArr ===", ansArr);
+      // console.log("ansArr ===", ansArr);
       setcorAnsArr(ansArr);
       setQuizObj(obj);
       //   setUserAnswers(Array(obj.questions.length).fill(-1));
@@ -96,11 +96,11 @@ function QuizPage() {
 
       setafterSub(true);
 
-      console.log("corAnsArr ===", corAnsArr);
-      console.log("userAnswers ===", userAnswers);
+      // console.log("corAnsArr ===", corAnsArr);
+      // console.log("userAnswers ===", userAnswers);
 
       const resultat = compareAnswers(corAnsArr, userAnswers);
-      console.log("resultat ===", resultat);
+      // console.log("resultat ===", resultat);
       setresult(resultat);
       addComplete();
 
@@ -108,13 +108,13 @@ function QuizPage() {
       const newScore = Number(viskas.result) + (countTrueValues(resultat) / userAnswers.length) * 100;
       const docRef = doc(db, "users", userDocId);
       updateDoc(docRef, { result: newScore });
-      console.log("result ===", resultat);
+      // console.log("result ===", resultat);
 
       //quizui update
       let visiskas = valueQ.data();
-      console.log("visiskas ===", visiskas);
+      // console.log("visiskas ===", visiskas);
       let numer = Number(visiskas.completed) + 1;
-      console.log("resultat ===", resultat);
+      // console.log("resultat ===", resultat);
       let numerRez = Number(visiskas.results) + (countTrueValues(resultat) / userAnswers.length) * 100;
 
       const docRefQuiz = doc(db, "quiz", quizUid);

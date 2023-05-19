@@ -26,17 +26,17 @@ function AddQuizPage() {
     if (value) {
       const userDoc = value.docs.find((doc) => doc.data().userUid === user.uid);
       if (userDoc) {
-        console.log("User document ID:", userDoc.id);
+        // console.log("User document ID:", userDoc.id);
         setUserDocId(userDoc.id);
       } else {
-        console.log("User document not found.");
+        // console.log("User document not found.");
       }
     }
   }, [value, user]);
 
   function addCreating() {
     let viskas = value.docs[0].data();
-    console.log("viskas ===", viskas);
+    // console.log("viskas ===", viskas);
     let numer = Number(viskas.created) + 1;
 
     const docRef = doc(db, "users", userDocId);
@@ -53,11 +53,11 @@ function AddQuizPage() {
   //   }, [value]);
 
   function addNewShop(newQuiz) {
-    console.log("newQuiz ===", newQuiz);
+    // console.log("newQuiz ===", newQuiz);
     addCreating();
     const shopRef = collection(db, "quiz");
     addDoc(shopRef, newQuiz).then(() => {
-      console.log("prideta!");
+      // console.log("prideta!");
       toast.success("You added new Quiz!");
       //navigate("/quiz");
     });

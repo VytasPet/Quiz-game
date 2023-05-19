@@ -34,13 +34,13 @@ function QuizsPage() {
     }
   }, [value]);
 
-  console.log("arrK ===", arrK);
+  // console.log("arrK ===", arrK);
 
   function filterWord(word) {
     const bum = word.target.innerHTML.toLowerCase();
-    console.log("bum ===", bum);
+    // console.log("bum ===", bum);
     if (bum === "show all") {
-      console.log("bum ===", bum);
+      // console.log("bum ===", bum);
       setArrFilt(arrToShow);
     } else {
       setArrFilt(arrToShow.filter((quiz) => quiz.category.stringValue === bum));

@@ -30,12 +30,12 @@ function Profile() {
       valuesUsers.forEach((userObj) => {
         userObj.average = calculateAverage(userObj);
       });
-      console.log("valuesUsers ===", valuesUsers);
+      // console.log("valuesUsers ===", valuesUsers);
 
       // Sort valuesUsers by average
       valuesUsers.sort((a, b) => b.average - a.average);
 
-      console.log(valuesUsers);
+      // console.log(valuesUsers);
       setsortArr(valuesUsers);
     }
   }, [value]);
@@ -46,7 +46,7 @@ function Profile() {
 
   useEffect(() => {
     const userIndex = findUserIndex(user.uid, sortArr);
-    console.log("User ranking position:", userIndex + 1);
+    // console.log("User ranking position:", userIndex + 1);
     setposition(userIndex + 1);
   }, [sortArr]);
 
@@ -54,9 +54,9 @@ function Profile() {
     if (value) {
       const bendras = value.docs;
       const valuesUsers = bendras.map((quiz) => quiz.data());
-      console.log("kazkas ===", valuesUsers);
+      // console.log("kazkas ===", valuesUsers);
       const thisUser = valuesUsers.find((quiz) => quiz.userUid === user.uid);
-      console.log("thisUser ===", thisUser);
+      // console.log("thisUser ===", thisUser);
       setuser(thisUser);
     }
   }, [value]);

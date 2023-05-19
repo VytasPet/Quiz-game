@@ -53,7 +53,7 @@ function QuizForm({ addQuiz }) {
     onSubmit: (values) => {
       const quizObj = { userUid: user.uid, completed: 0, results: 0, ...values };
       addQuiz(quizObj);
-      console.log(values);
+      // console.log(values);
     },
   });
 
@@ -76,7 +76,7 @@ function QuizForm({ addQuiz }) {
 
   const handleQuestionChange = (questionIndex, e) => {
     const newQuestions = [...formik.values.questions];
-    console.log("newQuestions ===", newQuestions);
+    // console.log("newQuestions ===", newQuestions);
     newQuestions[questionIndex].question = e.target.value;
     formik.setFieldValue("questions", newQuestions);
   };

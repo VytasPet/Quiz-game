@@ -16,18 +16,18 @@ function LoginPage() {
 
   function loginWithFirebaseHook({ email, password }) {
     const loadingToastId = toast.loading("Signing in...");
-    console.log("email ===", email);
+    // console.log("email ===", email);
     //const loadingToastId = toast.loading("Signing in...");
     signInWithEmailAndPassword(email, password).then(() => {
       toast.dismiss(loadingToastId);
-      console.log("labas");
+      // console.log("labas");
       //toast.dismiss(loadingToastId);
     });
   }
 
   useEffect(() => {
     if (user) {
-      console.log("isLoggedIn ===", isLoggedIn);
+      // console.log("isLoggedIn ===", isLoggedIn);
       navigate("/");
       toast.success("Signed in successfully!");
     } else if (error) {

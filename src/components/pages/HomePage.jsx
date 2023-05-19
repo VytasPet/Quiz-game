@@ -31,9 +31,9 @@ function HomePage() {
       // Sort valuesUsers by average
       valuesUsers.sort((a, b) => b.average - a.average);
 
-      console.log(valuesUsers);
+      // console.log(valuesUsers);
       setsortArr(valuesUsers);
-      console.log("sortArr ===", sortArr);
+      // console.log("sortArr ===", sortArr);
     }
   }, [value]);
 

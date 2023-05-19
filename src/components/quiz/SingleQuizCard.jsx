@@ -7,11 +7,11 @@ import { db } from "../../firebase/firebaseConfig";
 import { useAuthCtx } from "../../store/AuthProvider";
 
 function SingleQuizCard({ item }) {
-  console.log("item ===", item);
+  // console.log("item ===", item);
   const [rezas, setrezas] = useState(Number);
   const [comp, setcomp] = useState(Number);
   const { user } = useAuthCtx();
-  console.log("item ===", item.userUid.stringValue);
+  // console.log("item ===", item.userUid.stringValue);
   const { isLoggedIn } = useAuthCtx();
   const toValue = isLoggedIn ? `/quiz/${item?.uid}` : "/login";
   const isYou = item.userUid.stringValue === user?.uid;
@@ -19,21 +19,21 @@ function SingleQuizCard({ item }) {
   useEffect(() => {
     if (item) {
       setrezas(item.results.integerValue);
-      console.log("item.results.integerValue ===", item.results.integerValue);
-      console.log("item.completed.integerValue ===", item.completed.integerValue);
+      // console.log("item.results.integerValue ===", item.results.integerValue);
+      // console.log("item.completed.integerValue ===", item.completed.integerValue);
       setcomp(item.completed.integerValue);
     }
   }, [item]);
 
   async function delQuiz(quizId) {
-    console.log("quizId ===", quizId);
+    // console.log("quizId ===", quizId);
     try {
       const itemRef = doc(db, "quiz", quizId);
       await deleteDoc(itemRef);
-      console.log("Item deleted successfully");
+      // console.log("Item deleted successfully");
       toast.success("Successfully deleted Quiz!");
     } catch (error) {
-      console.error("Error deleting item:", error);
+      // console.error("Error deleting item:", error);
       toast.error("Error to delet Quiz!");
     }
   }

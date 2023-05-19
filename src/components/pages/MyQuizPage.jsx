@@ -30,11 +30,11 @@ function QuizsPage() {
     if (value) {
       //console.log("value.docs.data ===", value.docs[0]._document.data.value.mapValue.fields);
       arrK = value.docs;
-      console.log("arrK ===", arrK);
+      // console.log("arrK ===", arrK);
       arrK = arrK.map((doc) => ({ uid: doc.id, ...doc._document.data.value.mapValue.fields }));
-      console.log("userio ===", user.uid);
+      // console.log("userio ===", user.uid);
       const myQuiz = arrK.filter((quiz) => quiz.userUid.stringValue === user.uid);
-      console.log("myQuiz ===", myQuiz);
+      // console.log("myQuiz ===", myQuiz);
       setArr(myQuiz);
       setArrFilt(myQuiz);
     }
@@ -42,9 +42,9 @@ function QuizsPage() {
 
   function filterWord(word) {
     const bum = word.target.innerHTML.toLowerCase();
-    console.log("bum ===", bum);
+    // console.log("bum ===", bum);
     if (bum === "show all") {
-      console.log("bum ===", bum);
+      // console.log("bum ===", bum);
       setArrFilt(arrToShow);
     } else {
       setArrFilt(arrToShow.filter((quiz) => quiz.category.stringValue === bum));
