@@ -2,23 +2,24 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    colors: {
-      yellow: "#F5FF7D",
-      background: "#FFFFFF",
-      black: "#000000",
-      white: "#FFFFFF",
-      "border-gray-300": "#33333",
-      red: "#f72500",
-      grey: "#D9D9D9",
-      green: "#D9D9D9",
-      transparent: "#f2f2f200",
-      greyDark: "#787878",
-    },
-    fontFamily: {
-      sans: ['"Questrial"', "sans-serif"],
-      cursive: ['"McLaren"', "cursive"],
-    },
     extend: {
+      fontFamily: {
+        sans: ['"Roboto"', "sans-serif"],
+        cursive: ['"McLaren"', "cursive"],
+      },
+      colors: {
+        lightBorder: "#EFEFEF",
+        orange: "#FF9F41",
+        blue: "#3EB8D4",
+        black: "#1C1C1C",
+        white: "#FFFFFF",
+        "border-gray-300": "#33333",
+        lightBlue: "#DCF8FF",
+        grey: "#737373",
+        red: "#FF5341",
+        transparent: "#f2f2f200",
+        lightRed: "#FFDFDC",
+      },
       // Define the `.right-arrow` and `.left-arrow` classes
     },
   },
