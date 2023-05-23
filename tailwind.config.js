@@ -15,6 +15,7 @@ export default {
         white: "#FFFFFF",
         "border-gray-300": "#33333",
         lightBlue: "#DCF8FF",
+        lightGray: "#F6F6F6",
         grey: "#737373",
         red: "#FF5341",
         transparent: "#f2f2f200",

@@ -199,3 +199,33 @@
 .bg-background:hover .empty-arrow {
   display: none;
 }
+
+
+.input-with-image {
+  padding-left: 40px;
+  background-image: url('src/assets/images/personusername.svg');
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 20px;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.left-2 {
+  left: 0.5rem;
+}
+
+
+.transform {
+  transform: translateY(-50%);
+}
+
+.pl-8 {
+  padding-left: 2rem;
+}
