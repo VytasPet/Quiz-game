@@ -229,3 +229,19 @@
 .pl-8 {
   padding-left: 2rem;
 }
+
+.statsMid{
+  position: fixed; 
+  top: 50vh; 
+  left: 50vw; 
+  transform: translate(-50%, -50%); 
+  /* background-image: url('src/assets/images/backCol.png');  */
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 30px 20px;
+  z-index: 20;
+  border-radius: 20px;
+  background-color: lightblue;
+  color: orange;
+}
+

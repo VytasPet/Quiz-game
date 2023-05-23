@@ -15,6 +15,7 @@ function Profile() {
   const [sortArr, setsortArr] = useState([]);
   const [position, setposition] = useState("loading...");
   const [showStats, setshowStats] = useState(false);
+  const [editProf, seteditProf] = useState(false);
 
   //calculating users avg result
   function calculateAverage(userObj) {
@@ -74,7 +75,7 @@ function Profile() {
       </div>
       <h1 className="text-[26px] font-bold text-black mb-2">Your username</h1>
       <h2 className="text-[16px] text-blue bg-lightBlue py-[14px] px-[30px] mb-[45px] rounded-[20px]">{useris.email}</h2>
-      <div className="bg-white p-[12px]  mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between ">
+      <div className="bg-white p-[12px]  mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between " onClick={()=>seteditProf(!editProf)}>
         <div className="flex flex-row items-center">
         <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
         <p>Edit profile</p>
@@ -110,31 +111,34 @@ function Profile() {
           
 
     </div>
+
+    {/* VIEW STATS */}
     {showStats &&  
-      <div className={`bg-lightGray text-blue bg-[url('src/assets/images/backCol.png')] bg-cover bg-no-repeat absolute top-[60%] left-[50%] translate-y-[-60%] translate-x-[-50%] py-[30px] px-[20px] z-20 rounded-[20px]`}>
-            <div className="bg-white p-[12px]  mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
+      <div className="statsMid">
+
+            <div className="bg-white p-[12px] font-light mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
         <div className="flex flex-row items-center">
-        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
+        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/usersstatpeopl (1).svg" alt="" />
         <p>Your ranking: {position}</p>
         </div>
 
       </div>
-            <div className="bg-white p-[12px]  mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
+            <div className="bg-white p-[12px] font-light mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
         <div className="flex flex-row items-center">
-        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
+        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/edit-2created.svg" alt="" />
         <p>Created Quiz: {useris.created}</p>
         </div>
       </div>
-            <div className="bg-white p-[12px]  mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
+            <div className="bg-white p-[12px] font-light mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
         <div className="flex flex-row items-center">
-        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
+        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/boxbox.svg" alt="" />
         <p>Quiz Completed: {useris.completed}</p>
         </div>
        
       </div>
-            <div className="bg-white p-[12px]  mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
+            <div className="bg-white p-[12px] font-light mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
         <div className="flex flex-row items-center">
-        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
+        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/sliderssta.svg" alt="" />
         <p>Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
         </div>
       </div>
@@ -143,7 +147,30 @@ function Profile() {
       <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
       <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
        */}
-       <div onClick={()=>setshowStats(!showStats)} className="bg-white p-[12px] border-2 cursor-pointer border-grey mt-[30px] text-red w-full max-w-[400px] rounded-[20px] flex justify-center ">
+       <div onClick={()=>setshowStats(!showStats)} className="bg-white p-[12px] border-2 cursor-pointer border-grey mt-[30px] text-red w-full max-w-[400px] rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
+        <p>Back</p>
+      </div>
+      </div>
+      }
+    
+    {/* EDIT PROFILE */}
+    {editProf &&  
+      <div className="statsMid">
+          <h2 className="text-white font-light mb-[20px]">Change your username</h2>
+          <form onSubmit={()=>console.log('laba diena')}>
+            <input placeholder="labas" className="bg-#F6F6F6 p-[12px] text-center mb-[10px] font-light w-full max-w-[400px] rounded-[20px] flex justify-between ">
+            </input>
+            <button type="submit" className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
+        Change
+      </button>
+            </form>
+      {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
+      <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
+      <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
+      <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
+       */}
+
+       <div onClick={()=>seteditProf(!editProf)} className="bg-white p-[6px] border-2 cursor-pointer border-lightGray mt-[10px] text-grey w-full max-w-[400px] rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
         <p>Back</p>
       </div>
       </div>
