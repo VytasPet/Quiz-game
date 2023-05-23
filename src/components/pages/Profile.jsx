@@ -62,9 +62,34 @@ function Profile() {
   }, [value]);
 
   return (
-    <div className="mt-20 box-border flex flex-col items-center bg-grey space-y-4 space-b-10 rounded-lg p-5">
-      <h1 className="text-5xl mb-2">Your Statistic</h1>
-      <h2 className="text-3xl pb-10">{useris.email}</h2>
+    <div className="flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px]">
+      <div className="relative mb-6">
+      <img className="" src="src/assets/images/happywinner.svg" alt="" />
+      <img className="absolute top-[50%]" src="src/assets/images/addpic.svg" alt="" />
+      </div>
+      <h1 className="text-[26px] font-bold text-black mb-2">Your username</h1>
+      <h2 className="text-[16px] text-blue bg-lightBlue py-[14px] px-[30px] mb-[45px] rounded-[20px]">{useris.email}</h2>
+      <div className="bg-white p-[12px]  mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between ">
+        <div className="flex flex-row items-center">
+        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
+        <p>Edit profile</p>
+        </div>
+        <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+      </div>
+      <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between ">
+        <div className="flex flex-row items-center">
+        <img className="inline p-[12px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/Unionpass.svg" alt="" />
+        <p>Change password</p>
+        </div>
+        <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+      </div>
+      <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between ">
+        <div className="flex flex-row items-center">
+        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/exitlogout.svg" alt="" />
+        <p>Log out</p>
+        </div>
+        <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+      </div>
       <p className="border-y py-2 w-1/2">Your ranking: {position}</p>
       <p className="border-y py-2 w-1/2">Created Quiz: {useris.created}</p>
       <p className="border-y py-2 w-1/2">Quiz Completed: {useris.completed}</p>

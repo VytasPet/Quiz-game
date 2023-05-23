@@ -20,6 +20,7 @@ export default {
         red: "#FF5341",
         transparent: "#f2f2f200",
         lightRed: "#FFDFDC",
+        profileBack: "#FAFAFA",
       },
       // Define the `.right-arrow` and `.left-arrow` classes
     },

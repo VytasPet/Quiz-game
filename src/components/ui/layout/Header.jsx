@@ -36,6 +36,7 @@ function Header() {
         <img src={logo} alt="Logo" />
       </Link>
     <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/register"}>Sign up</Link>
+    {isLoggedIn && <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/profile"}>Profile</Link>}
     </header>
   );
 }
