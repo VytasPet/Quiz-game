@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
+import { auth, db } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
+import { useSignOut } from "react-firebase-hooks/auth";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 function Profile() {
@@ -16,6 +18,9 @@ function Profile() {
   const [position, setposition] = useState("loading...");
   const [showStats, setshowStats] = useState(false);
   const [editProf, seteditProf] = useState(false);
+  const [changePass, setchangePass] = useState(false);
+  const [signOut] = useSignOut(auth);
+  const navigate = useNavigate();
 
   //calculating users avg result
   function calculateAverage(userObj) {
@@ -23,6 +28,11 @@ function Profile() {
       return 0;
     }
     return (userObj.result / userObj.completed) * 100;
+  }
+
+  function logoutinimas(){
+    signOut();
+    navigate('/');
   }
 
   useEffect(() => {
@@ -67,7 +77,7 @@ function Profile() {
 
   return (
     <div> 
-    <div className={`relative flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px] ${showStats ? 'blur-[5px]' : ''}`}>
+    <div className={`relative flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px] ${showStats || editProf || changePass ? 'blur-[5px]' : ''}`}>
       
       <div className="relative mb-6">
       <img className="" src="src/assets/images/happywinner.svg" alt="" />
@@ -89,14 +99,14 @@ function Profile() {
         </div>
         <img src="src/assets/images/chevron-downgoin.svg" alt="" />
       </div>
-      <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between ">
+      <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] cursor-pointer rounded-[20px] flex justify-between " onClick={()=>setchangePass(!changePass)}>
         <div className="flex flex-row items-center">
         <img className="inline p-[12px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/Unionpass.svg" alt="" />
         <p>Change password</p>
         </div>
         <img src="src/assets/images/chevron-downgoin.svg" alt="" />
       </div>
-      <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between ">
+      <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] cursor-pointer rounded-[20px] flex justify-between " onClick={logoutinimas}>
         <div className="flex flex-row items-center">
         <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/exitlogout.svg" alt="" />
         <p>Log out</p>
@@ -147,7 +157,7 @@ function Profile() {
       <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
       <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
        */}
-       <div onClick={()=>setshowStats(!showStats)} className="bg-white p-[12px] border-2 cursor-pointer border-grey mt-[30px] text-red w-full max-w-[400px] rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
+       <div onClick={()=>setshowStats(!showStats)} className="bg-white p-[12px] border-2 cursor-pointer  mt-[30px] text-red w-full max-w-[400px] rounded-[20px] flex justify-center hover:outline-4 hover:border-blue ">
         <p>Back</p>
       </div>
       </div>
@@ -156,7 +166,7 @@ function Profile() {
     {/* EDIT PROFILE */}
     {editProf &&  
       <div className="statsMid">
-          <h2 className="text-white font-light mb-[20px]">Change your username</h2>
+          <h2 className="text-black font-light mb-[20px]">Change your username</h2>
           <form onSubmit={()=>console.log('laba diena')}>
             <input placeholder="labas" className="bg-#F6F6F6 p-[12px] text-center mb-[10px] font-light w-full max-w-[400px] rounded-[20px] flex justify-between ">
             </input>
@@ -170,12 +180,37 @@ function Profile() {
       <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
        */}
 
-       <div onClick={()=>seteditProf(!editProf)} className="bg-white p-[6px] border-2 cursor-pointer border-lightGray mt-[10px] text-grey w-full max-w-[400px] rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
+       <div onClick={()=>seteditProf(!editProf)} className="bg-white p-[6px] border-2 cursor-pointer border-lightGray mt-[10px] text-black w-full max-w-[400px] rounded-[20px] flex justify-center hover:outline-4 hover:border-blue ">
         <p>Back</p>
       </div>
       </div>
       }
-    </div>
+    
+    {/* CHANGE PASSWORD */}
+    {changePass &&  
+      <div className="statsMid">
+          <h2 className="text-black font-light mb-[20px]">Change your password</h2>
+          <form onSubmit={()=>console.log('laba diena')}>
+            <input placeholder="Password" className="bg-#F6F6F6 p-[12px] text-center mb-[10px] font-light w-full max-w-[400px] rounded-[20px] flex justify-between ">
+            </input>
+            <input placeholder="Repeat password" className="bg-#F6F6F6 p-[12px] text-center mb-[10px] font-light w-full max-w-[400px] rounded-[20px] flex justify-between ">
+            </input>
+            <button type="submit" className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
+        Change
+      </button>
+            </form>
+      {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
+      <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
+      <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
+      <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
+       */}
+
+       <div onClick={()=>setchangePass(!changePass)} className="bg-white p-[6px] border-2 cursor-pointer border-lightGray mt-[10px] text-black w-full max-w-[400px] rounded-[20px] flex justify-center hover:outline-4 hover:border-blue ">
+        <p>Back</p>
+      </div>
+      </div>
+      }
+      </div>
   );
 }
 

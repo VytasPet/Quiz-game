@@ -240,8 +240,9 @@
   background-repeat: no-repeat;
   padding: 30px 20px;
   z-index: 20;
+  border: 2px solid #03BDF2;
   border-radius: 20px;
-  background-color: lightblue;
-  color: orange;
+  background-color: #DCF8FF;
+  color: #737373;
 }
 

@@ -31,8 +31,9 @@ function Header() {
   }
 
   return (
-    <header className="mx-auto px-[55px] py-[10px] rounded-b-[30px] bg-lightBlue  .right-arrow">
-      <div className="mx-auto max-w-5xl w-full flex justify-between items-center">
+    <div className="mx-auto bg-[#52BED8]">
+    <header className=" px-[55px] py-[10px] rounded-b-[30px] bg-lightBlue">
+      <div className="mx-auto bg-lightBlue max-w-5xl w-full flex justify-between items-center">
 
       
     <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/register"}> <img src="src/assets/images/homehom.svg" alt="" /> </Link>
@@ -42,6 +43,7 @@ function Header() {
     {isLoggedIn && <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/profile"}> <img src="src/assets/images/personprof.svg" alt="" /> </Link>}
     </div>
     </header>
+    </div>
   );
 }
 
