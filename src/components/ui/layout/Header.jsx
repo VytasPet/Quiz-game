@@ -31,12 +31,16 @@ function Header() {
   }
 
   return (
-    <header className=" container mx-auto max-w-5xl flex justify-between items-center .right-arrow">
+    <header className="mx-auto px-[55px] py-[10px] rounded-b-[30px] bg-lightBlue  .right-arrow">
+      <div className="mx-auto max-w-5xl w-full flex justify-between items-center">
+
+      
+    <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/register"}> <img src="src/assets/images/homehom.svg" alt="" /> </Link>
       <Link to="/">
-        <img src={logo} alt="Logo" />
+        <img className="w-[90px]" src="src/assets/images/button-explorequizes.svg" alt="Logo" />
       </Link>
-    <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/register"}>Sign up</Link>
-    {isLoggedIn && <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/profile"}>Profile</Link>}
+    {isLoggedIn && <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/profile"}> <img src="src/assets/images/personprof.svg" alt="" /> </Link>}
+    </div>
     </header>
   );
 }

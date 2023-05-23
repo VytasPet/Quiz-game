@@ -10,17 +10,20 @@ import RegisterPage from "./components/pages/RegisterPage";
 import SingleQuizPage from "./components/pages/SingleQuizPage";
 import Header from "./components/ui/layout/Header";
 import { Toaster } from "react-hot-toast";
+import Stats from "./components/pages/Stats";
 
 function App() {
   return (
-    <div className="full">
+    <>
       <Toaster />
       <Header />
+    <div className="full">
       <div>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/quiz" element={<QuizsPage />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/stats" element={<Stats />} />
           <Route path="/addquiz" element={<AddQuizPage />} />
           <Route path="/myquiz" element={<MyQuizPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -29,6 +32,7 @@ function App() {
         </Routes>
       </div>
     </div>
+    </>
   );
 }
 

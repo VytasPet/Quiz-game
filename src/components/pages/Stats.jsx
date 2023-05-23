@@ -4,17 +4,16 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
-
-function Profile() {
-
+function Stats() {
+    const navigate = useNavigate();
   const { user } = useAuthCtx();
   const quizCollRef = collection(db, "users");
   const [value, loading, error] = useCollection(quizCollRef);
   const [useris, setuser] = useState({});
   const [sortArr, setsortArr] = useState([]);
   const [position, setposition] = useState("loading...");
-  const [showStats, setshowStats] = useState(false);
 
   //calculating users avg result
   function calculateAverage(userObj) {
@@ -65,9 +64,7 @@ function Profile() {
   }, [value]);
 
   return (
-    <div> 
-    <div className={`relative flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px] ${showStats ? 'blur-[5px]' : ''}`}>
-      
+    <div className="flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px]">
       <div className="relative mb-6">
       <img className="" src="src/assets/images/happywinner.svg" alt="" />
       <img className="absolute top-[50%]" src="src/assets/images/addpic.svg" alt="" />
@@ -81,7 +78,7 @@ function Profile() {
         </div>
         <img src="src/assets/images/chevron-downgoin.svg" alt="" />
       </div>
-      <div className="bg-white p-[12px] cursor-pointer mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between " onClick={()=>setshowStats(!showStats)}>
+      <div onClick={()=>navigate('/stats')} className="bg-white p-[12px] cursor-pointer mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between ">
         <div className="flex flex-row items-center">
         <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/awardstats.svg" alt="" />
         <p>Your stats</p>
@@ -102,54 +99,12 @@ function Profile() {
         </div>
         <img src="src/assets/images/chevron-downgoin.svg" alt="" />
       </div>
-      {/* <p className="border-y py-2 w-1/2">Your ranking: {position}</p>
+      <p className="border-y py-2 w-1/2">Your ranking: {position}</p>
       <p className="border-y py-2 w-1/2">Created Quiz: {useris.created}</p>
       <p className="border-y py-2 w-1/2">Quiz Completed: {useris.completed}</p>
       <p className="border-y py-2 w-1/2">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
-       */}
-          
-
-    </div>
-    {showStats &&  
-      <div className={`bg-lightGray text-blue bg-[url('src/assets/images/backCol.png')] bg-cover bg-no-repeat absolute top-[60%] left-[50%] translate-y-[-60%] translate-x-[-50%] py-[30px] px-[20px] z-20 rounded-[20px]`}>
-            <div className="bg-white p-[12px]  mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
-        <div className="flex flex-row items-center">
-        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
-        <p>Your ranking: {position}</p>
-        </div>
-
-      </div>
-            <div className="bg-white p-[12px]  mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
-        <div className="flex flex-row items-center">
-        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
-        <p>Created Quiz: {useris.created}</p>
-        </div>
-      </div>
-            <div className="bg-white p-[12px]  mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
-        <div className="flex flex-row items-center">
-        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
-        <p>Quiz Completed: {useris.completed}</p>
-        </div>
-       
-      </div>
-            <div className="bg-white p-[12px]  mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
-        <div className="flex flex-row items-center">
-        <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
-        <p>Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
-        </div>
-      </div>
-      {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
-      <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
-      <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
-      <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
-       */}
-       <div onClick={()=>setshowStats(!showStats)} className="bg-white p-[12px] border-2 cursor-pointer border-grey mt-[30px] text-red w-full max-w-[400px] rounded-[20px] flex justify-center ">
-        <p>Back</p>
-      </div>
-      </div>
-      }
     </div>
   );
 }
 
-export default Profile;
+export default Stats;
