@@ -50,7 +50,8 @@
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
-  background-image: url(./assets/images/svgBack.svg), url(./assets/images/backCol.png);
+  /* background-image: url(./assets/images/svgBack.svg), url(./assets/images/backCol.png); */
+  background-color: #FAFAFA;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center, center center;

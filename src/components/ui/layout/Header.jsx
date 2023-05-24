@@ -31,16 +31,19 @@ function Header() {
   }
 
   return (
-    <div className="mx-auto bg-[#52BED8]">
+    <div className="mx-auto bg-[#FAFAFA]">
     <header className=" px-[55px] py-[10px] rounded-b-[30px] bg-lightBlue">
       <div className="mx-auto bg-lightBlue max-w-5xl w-full flex justify-between items-center">
 
       
-    <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/register"}> <img src="src/assets/images/homehom.svg" alt="" /> </Link>
-      <Link to="/">
+    <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={isLoggedIn ? '/userhome' : '/'}> <img src="src/assets/images/homehom.svg" alt="" /> </Link>
+      <Link to="/quiz">
         <img className="w-[90px]" src="src/assets/images/button-explorequizes.svg" alt="Logo" />
       </Link>
+      
+    {isLoggedIn && <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/addquiz"}> <img src="src/assets/images/edit-2created.svg" alt="" /> </Link>}
     {isLoggedIn && <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/profile"}> <img src="src/assets/images/personprof.svg" alt="" /> </Link>}
+    {!isLoggedIn && <Link className="bg-white font-bold py-4 px-6 rounded-[16px] cursor-pointer" to={"/register"}> <img src="src/assets/images/editsign.svg" alt="" /> </Link>}
     </div>
     </header>
     </div>

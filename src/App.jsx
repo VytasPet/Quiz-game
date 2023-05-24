@@ -11,6 +11,7 @@ import SingleQuizPage from "./components/pages/SingleQuizPage";
 import Header from "./components/ui/layout/Header";
 import { Toaster } from "react-hot-toast";
 import Stats from "./components/pages/Stats";
+import UserHomePage from "./components/pages/UserHomePage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/stats" element={<Stats />} />
           <Route path="/addquiz" element={<AddQuizPage />} />
+          <Route path="/userhome" element={<UserHomePage />} />
           <Route path="/myquiz" element={<MyQuizPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
