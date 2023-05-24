@@ -52,27 +52,65 @@ function QuizsPage() {
   //   const shopsWithUid = value && value.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
 
   return (
-    <div className="mt-20 box-border max-sm:mt-10">
-      <h1 className="text-5xl mb-20 max-sm:text-2xl max-sm:mb-6">Active Quiz List</h1>
-      <div className="text-left fixed">
-        <h2 className="text-2xl mb-3 max-sm:text-lg">Filters:</h2>
-        <div className="flex flex-col items-start">
-          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow max-sm:text-sm max-sm:p-1">
+    <>
+      <div className=" mt-[35px] px-[30px]">
+        <img src="src/assets/images/arrow-leftback.svg" alt="" />
+        <h3 className="text-center mb-[30px]">Public quiz</h3>
+      </div>
+      <div className="flex justify-center">
+        <div className="max-w-full bg-lightBlue rounded-[16px] mb-[30px] p-1 flex justify-between">
+          <Link to={"/login"} className="px-[45px] text-grey py-[13px] max-w-full rounded-[16px]  z-10">
             Show all
-          </button>
-          <button onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow max-sm:text-sm max-sm:p-1">
-            Sports
-          </button>
-          <Link onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow max-sm:text-sm max-sm:p-1">
+          </Link>
+          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">
             Geography
           </Link>
-          <Link onClick={filterWord} className="border p-3 mb-1 rounded-full inline hover:bg-yellow max-sm:text-sm max-sm:p-1">
+          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px]  text-grey z-10">
+            Sports
+          </Link>
+          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px]  text-grey z-10">
             History
+          </Link>
+          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px]  text-grey z-10">
+            Others
           </Link>
         </div>
       </div>
-      <div>{value && arrFiltered.map((quiz) => <SingleQuizCard key={quiz.uid} item={quiz} />)}</div>
-    </div>
+      <div className="flex flex-col items-center">
+        <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
+          <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+          <div className="flex flex-col w-full items-start justify-around">
+            <h3 className="text-[15px]">Mathematics XI-2</h3>
+            <p className="text-[12px]">Mathematic</p>
+            <div className="flex w-full justify-between">
+              <h5 className="text-[10px] text-grey">THG89X</h5>
+              <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                <span>
+                  <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                </span>{" "}
+                77.5%
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
+          <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+          <div className="flex flex-col w-full items-start justify-around">
+            <h3 className="text-[15px]">Mathematics XI-2</h3>
+            <p className="text-[12px]">Mathematic </p>
+            <div className="flex w-full justify-between">
+              <h5 className="text-[10px] text-grey">THG89X</h5>
+              <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                <span>
+                  <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                </span>{" "}
+                77.5%
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

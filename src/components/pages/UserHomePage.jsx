@@ -86,26 +86,33 @@ function UserHomePage() {
         </div>
         </div>
       </div>
-    <div className="flex items-center justify-between px-[30px]">
+    <div className="flex items-center justify-between mt-[35px] px-[30px]">
       <h3 className="text-left">Public quiz</h3>
       <img src="src/assets/images/arrow-leftarrow.svg" alt="" />
     </div>
+    
 {/* Public quiz list */}
 <div className="flex flex-col items-center">
-    <div className="bg-blue p-[20px] rounded-[20px] flex gap-5 mt-[25px] max-w-[400px]">
+    <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
     <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-    <div className="flex flex-col items-start justify-around">
+    <div className="flex flex-col w-full items-start justify-around">
         <h3 className="text-[15px]">Mathematics XI-2</h3>
         <p className="text-[12px]">Mathematic</p>
-        <h5 className="text-[10px]">THG89X</h5>
+        <div className="flex w-full justify-between">
+        <h5 className="text-[10px] text-grey">THG89X</h5>
+        <p className=" text-[10px] text-grey font-bold pr-[20px]"><span><img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" /></span> 77.5%</p>
+        </div>
     </div>
     </div>
-    <div className="bg-blue p-[20px] rounded-[20px] flex gap-5 mt-[25px] max-w-[400px]">
+    <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
     <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-    <div className="flex flex-col items-start justify-around">
+    <div className="flex flex-col w-full items-start justify-around">
         <h3 className="text-[15px]">Mathematics XI-2</h3>
-        <p className="text-[12px]">Mathematic</p>
-        <h5 className="text-[10px]">THG89X</h5>
+        <p className="text-[12px]">Mathematic </p>
+        <div className="flex w-full justify-between">
+        <h5 className="text-[10px] text-grey">THG89X</h5>
+        <p className=" text-[10px] text-grey font-bold pr-[20px]"><span><img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" /></span> 77.5%</p>
+        </div>
     </div>
     </div>
 </div>
