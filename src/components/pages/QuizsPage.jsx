@@ -6,7 +6,7 @@ import { collection, deleteDoc, doc } from "firebase/firestore";
 import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function QuizsPage() {
   const quizCollRef = collection(db, "quiz");
@@ -14,6 +14,7 @@ function QuizsPage() {
   const [arrToShow, setArr] = useState([]);
   const [arrFiltered, setArrFilt] = useState([]);
   const [loadingToast, setloadingToast] = useState(null);
+  const navigate = useNavigate();
 
   let arrK = arrToShow;
   useEffect(() => {
@@ -31,6 +32,7 @@ function QuizsPage() {
       arrK = arrK.map((doc) => ({ uid: doc.id, ...doc._document.data.value.mapValue.fields }));
       setArr(arrK);
       setArrFilt(arrK);
+      console.log('arrK ===', arrK);
     }
   }, [value]);
 
@@ -54,7 +56,7 @@ function QuizsPage() {
   return (
     <>
       <div className=" mt-[35px] px-[30px]">
-        <img src="src/assets/images/arrow-leftback.svg" alt="" />
+        <img className="cursor-pointer" onClick={()=>navigate('/userhome')} src="src/assets/images/arrow-leftback.svg" alt="" />
         <h3 className="text-center mb-[30px]">Public quiz</h3>
       </div>
       <div className="flex justify-center">
@@ -93,7 +95,7 @@ function QuizsPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
+        <div onClick={()=>navigate('/quiz/7Hgonr6p2B6ndU1onqoC')} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
           <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
           <div className="flex flex-col w-full items-start justify-around">
             <h3 className="text-[15px]">Mathematics XI-2</h3>

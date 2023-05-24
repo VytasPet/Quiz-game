@@ -6,7 +6,7 @@ import { collection, deleteDoc, doc } from "firebase/firestore";
 import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserHomePage() {
   const quizCollRef = collection(db, "quiz");
@@ -14,7 +14,8 @@ function UserHomePage() {
   const [arrToShow, setArr] = useState([]);
   const [arrFiltered, setArrFilt] = useState([]);
   const [loadingToast, setloadingToast] = useState(null);
-
+  const navigate = useNavigate();
+  
   let arrK = arrToShow;
   useEffect(() => {
     if (loading) {
@@ -88,7 +89,7 @@ function UserHomePage() {
       </div>
     <div className="flex items-center justify-between mt-[35px] px-[30px]">
       <h3 className="text-left">Public quiz</h3>
-      <img src="src/assets/images/arrow-leftarrow.svg" alt="" />
+      <img className="cursor-pointer" onClick={()=>navigate('/quiz')} src="src/assets/images/arrow-leftarrow.svg" alt="" />
     </div>
     
 {/* Public quiz list */}
