@@ -22,14 +22,12 @@ function QuizPage() {
   const [corAnsArr, setcorAnsArr] = useState([]);
   const [result, setresult] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-const [currentResultQuestion, setCurrentResultQuestion] = useState(0);
-
+  const [currentResultQuestion, setCurrentResultQuestion] = useState(0);
+  const [toWatchResults, settoWatchResults] = useState([]);
 
   useEffect(() => {
     resetForm();
   }, [currentQuestion]);
-
-
 
   const { user } = useAuthCtx();
 
@@ -89,12 +87,12 @@ const [currentResultQuestion, setCurrentResultQuestion] = useState(0);
   const [erroras, setError] = useState("");
 
   const handleAnswerChange = (questionIndex, answerIndex) => {
-    console.log('handleAnswerChange ===', 'paspaudem mygtuka');
+    console.log("handleAnswerChange ===", "paspaudem mygtuka");
     const newUserAnswers = [...userAnswers];
     newUserAnswers[questionIndex] = answerIndex;
-    console.log('newUserAnswers ===', newUserAnswers);
+    console.log("newUserAnswers ===", newUserAnswers);
     setUserAnswers(newUserAnswers);
-    console.log('userAnswers ===', userAnswers);
+    console.log("userAnswers ===", userAnswers);
   };
 
   const compareAnswers = (corArr, userArr) => {
@@ -149,8 +147,9 @@ const [currentResultQuestion, setCurrentResultQuestion] = useState(0);
   });
 
   useEffect(() => {
-    console.log('userAnswers ===', userAnswers);
-}, [userAnswers]);
+    console.log("userAnswers ===", userAnswers);
+    console.log("toWatchResults ===", toWatchResults);
+  }, [userAnswers]);
 
   const { handleSubmit, resetForm } = formik;
 
@@ -182,85 +181,88 @@ const [currentResultQuestion, setCurrentResultQuestion] = useState(0);
               </div>
             )}
           </div>
-          {!afterSub && 
-          <form onSubmit={handleSubmit} className="pb-[30px] bg-blue rounded-lg max-sm:p-1 max-sm:space-y-3 max-sm:">
-            {quizObj.questions.map(
-              (q, questionIndex) =>
-                questionIndex === currentQuestion && (
-                  <div key={questionIndex} className=" flex w-full flex-col justify-center items-center">
-                    <div className="bg-blue">
-                      <div className="flex flex-col items-center">
-                        <div className=" text-white bg-blue font-light pt-[20px] flex flex-col items-center">
-                          <p className=" text-white mb-[30px]">{quizObj.name}</p>
-                          {/* <h2 className="text-2xl font-light text-grey mb-10">{quizObj.category}</h2> */}
-                        </div>
-                        <div className="bg-white p-[12px] mb-[40px] rounded-[20px] ">
-                          <div className="flex justify-center">
-                            <label htmlFor={`question-${questionIndex}`} className="block text-lg font-normal text-gray-700">
-                              {q.question}
-                            </label>
+          {!afterSub && (
+            <form onSubmit={handleSubmit} className="pb-[30px] bg-blue rounded-lg max-sm:p-1 max-sm:space-y-3 max-sm:">
+              {quizObj.questions.map(
+                (q, questionIndex) =>
+                  questionIndex === currentQuestion && (
+                    <div key={questionIndex} className=" flex w-full flex-col justify-center items-center">
+                      <div className="bg-blue">
+                        <div className="flex flex-col items-center">
+                          <div className=" text-white bg-blue font-light pt-[20px] flex flex-col items-center">
+                            <p className=" text-white mb-[30px]">{quizObj.name}</p>
+                            {/* <h2 className="text-2xl font-light text-grey mb-10">{quizObj.category}</h2> */}
+                          </div>
+                          <div className="bg-white p-[12px] mb-[40px] rounded-[20px] ">
+                            <div className="flex justify-center">
+                              <label htmlFor={`question-${questionIndex}`} className="block text-lg font-normal text-gray-700">
+                                {q.question}
+                              </label>
+                            </div>
                           </div>
                         </div>
+                        {afterSub && corAnsArr[questionIndex] === userAnswers[questionIndex] && <p className="text-green">correct!</p>}
+                        {afterSub && corAnsArr[questionIndex] !== userAnswers[questionIndex] && <p className="text-red">Wrong!</p>}
                       </div>
-                      {afterSub && corAnsArr[questionIndex] === userAnswers[questionIndex] && <p className="text-green">correct!</p>}
-                      {afterSub && corAnsArr[questionIndex] !== userAnswers[questionIndex] && <p className="text-red">Wrong!</p>}
-                    </div>
-                    <div className="bg-blue flex justify-center w-full">
-                      
-                      <div className=" p-5 bg-profileBack rounded-[20px] mx-[20px] w-[700px] flex flex-col items-center">
-                        {q.answers.map((a, answerIndex) => (
-                          <div
-                            key={answerIndex}
-                            onClick={() => !afterSub && handleAnswerChange(questionIndex, answerIndex)}
-                            className={`cursor-pointer pr-1 p-[12px] w-2/3 mb-[20px] rounded-[20px] flex bg-white ${userAnswers[questionIndex] === answerIndex ? "outline outline-grey" : ""}`}
-                          >
-                            <label
-                              htmlFor={`answer-${questionIndex}-${answerIndex}`}
-                              className={`block text-md font-medium w-full rounded-lg text-gray max-sm:text-xs max-sm:text-center ${
-                                afterSub && corAnsArr[questionIndex] === answerIndex ? "bg-green" : ""
-                              }`}
+                      <div className="bg-blue flex justify-center w-full">
+                        <div className=" p-5 bg-profileBack rounded-[20px] mx-[20px] w-[700px] flex flex-col items-center">
+                          {q.answers.map((a, answerIndex) => (
+                            <div
+                              key={answerIndex}
+                              onClick={() => !afterSub && handleAnswerChange(questionIndex, answerIndex)}
+                              className={`cursor-pointer pr-1 p-[12px] w-2/3 mb-[20px] rounded-[20px] flex bg-white ${userAnswers[questionIndex] === answerIndex ? "outline outline-grey" : ""}`}
                             >
-                              {a}
-                            </label>
-                            <input
-                              id={`answer-${questionIndex}-${answerIndex}`}
-                              type="radio"
-                              name={`answer-${questionIndex}`}
-                              value={answerIndex}
-                              checked={userAnswers[questionIndex] === answerIndex}
-                              onChange={() => handleAnswerChange(questionIndex, answerIndex)}
-                              className="mt-1 p-5"
-                              disabled={afterSub}
-                              style={{ display: "none" }} // hide the radio button
-                            />
-                          </div>
-                        ))}
-                        {userAnswers[questionIndex] === -1 && erroras && <div className="bg-profileBack text-red-500 m-0">Please answer this question.</div>}
+                              <label
+                                htmlFor={`answer-${questionIndex}-${answerIndex}`}
+                                className={`block text-md font-medium w-full rounded-lg text-gray max-sm:text-xs max-sm:text-center ${
+                                  afterSub && corAnsArr[questionIndex] === answerIndex ? "bg-green" : ""
+                                }`}
+                              >
+                                {a}
+                              </label>
+                              <input
+                                id={`answer-${questionIndex}-${answerIndex}`}
+                                type="radio"
+                                name={`answer-${questionIndex}`}
+                                value={answerIndex}
+                                checked={userAnswers[questionIndex] === answerIndex}
+                                onChange={() => handleAnswerChange(questionIndex, answerIndex)}
+                                className="mt-1 p-5"
+                                disabled={afterSub}
+                                style={{ display: "none" }} // hide the radio button
+                              />
+                            </div>
+                          ))}
+                          {userAnswers[questionIndex] === -1 && erroras && <div className="bg-profileBack text-red-500 m-0">Please answer this question.</div>}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-            )}
-            {currentQuestion < quizObj.questions.length - 1 && (
-              <button
-                onClick={() => setCurrentQuestion(currentQuestion + 1)}
-                className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-profileBack text-blue mt-[30px] outline  hover:outline-white z-10"
-                disabled={userAnswers[currentQuestion] === -1}
-              >
-                Next
-              </button>
-            )}
-            {currentQuestion === quizObj.questions.length - 1 && !afterSub && (
-              <div className="flex justify-center">
-                <button type="submit" className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-profileBack text-blue mt-[30px] outline hover:outline-grey z-10">
-                  Submit Answers
+                  )
+              )}
+              {currentQuestion < quizObj.questions.length - 1 && (
+                <button
+                  onClick={() => setCurrentQuestion(currentQuestion + 1)}
+                  className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-profileBack text-blue mt-[30px] outline  hover:outline-white z-10"
+                  disabled={userAnswers[currentQuestion] === -1}
+                >
+                  Next
                 </button>
-              </div>
-            )}
+              )}
+              {currentQuestion === quizObj.questions.length - 1 && !afterSub && (
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    onClick={() => settoWatchResults(userAnswers)}
+                    className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-profileBack text-blue mt-[30px] outline hover:outline-grey z-10"
+                  >
+                    Submit Answers
+                  </button>
+                </div>
+              )}
 
-            {/* {erroras && <div className="text-red-500">Must answer all questions!</div>} */}
-          </form>
-      }
+              {/* {erroras && <div className="text-red-500">Must answer all questions!</div>} */}
+            </form>
+          )}
           {/* <button onClick={addComplete}>add</button> */}
         </div>
       )}
