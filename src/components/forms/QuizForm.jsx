@@ -87,7 +87,7 @@ function QuizForm({ addQuiz }) {
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className="bg-blue font-sans space-y-4 space-b-10 rounded-lg p-5 max-sm:p-2">
+    <form onSubmit={formik.handleSubmit} className="bg-blue font-sans rounded-lg p-5 max-sm:p-2 pb-[30px]">
       <div className="flex justify-center mb-[50px]">
       <div className="max-w-[300px] bg-lightBlue rounded-[16px] p-1 flex justify-between">
         <Link to={"/login"} className="px-[45px] text-blue py-[13px] max-w-full rounded-[16px] z-10">
@@ -145,7 +145,7 @@ function QuizForm({ addQuiz }) {
       </div>
 
       {formik.values.questions.map((q, questionIndex) => (
-        <div key={questionIndex} className="space-y-4 border p-5 bg-profileBack rounded-[20px] flex flex-col items-center text-blue">
+        <div key={questionIndex} className="space-y-4 border p-5 bg-profileBack rounded-[20px] flex flex-col items-center text-blue ">
           <label htmlFor={`question-${questionIndex}`} className="block text-start mb-[10px] mr-[10px] font-light text-sm ">
             Question {questionIndex + 1}
           </label>
