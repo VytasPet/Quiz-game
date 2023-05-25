@@ -8,7 +8,7 @@ import { useAuthCtx } from "../../store/AuthProvider";
 import { query, where, getDocs } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-import finisas from '/src/assets/images/finito.svg';
+import finisas from "/src/assets/images/finito.svg";
 
 function QuizPage() {
   const navigate = useNavigate();
@@ -23,12 +23,9 @@ function QuizPage() {
   const [result, setresult] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
-
-
-
   useEffect(() => {
     resetForm();
-}, [currentQuestion]);
+  }, [currentQuestion]);
 
   const { user } = useAuthCtx();
 
@@ -59,10 +56,9 @@ function QuizPage() {
       const ansArr = obj.questions.map((que) => que.correctAnswer);
       setcorAnsArr(ansArr);
       setQuizObj(obj);
-      setUserAnswers(Array(obj.questions.length).fill(-1));  // Initialize userAnswers here
+      setUserAnswers(Array(obj.questions.length).fill(-1)); // Initialize userAnswers here
     }
   }, [value]);
-
 
   function addComplete() {
     let viskas = values.docs[0].data();
@@ -150,13 +146,13 @@ function QuizPage() {
   return (
     <>
       {quizObj && (
-        <div className="box-border max-sm:mt-10">
-          <div className="bg-lightBlue text-white font-light pt-[20px] flex flex-col items-center">
-            <p className="text-grey mb-[30px]">Biologi Quiz IX</p>
+        <div className="box-border  max-sm:mt-10">
+          <div className=" text-white bg-blue font-light pt-[20px] flex flex-col items-center">
+            <p className=" text-white mb-[30px]">{quizObj.name}</p>
 
             <div className="bg-white p-[12px] mb-[40px] w-fit rounded-[20px] flex ">
               <div className="flex flex-row">
-                <h4 className="text-xl text-grey max-sm:mb-10">1. Klausimas. Kas as esu? {quizObj.name}</h4>
+                <h4 className="text-xl text-grey max-sm:mb-10">{quizObj.name}</h4>
               </div>
             </div>
 
@@ -193,83 +189,90 @@ function QuizPage() {
           </div>
 
           <div>
-          <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center ">
-            <img src="src/assets/images/finito.svg" alt="" />
-            <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex items-center justify-center ">
-              <div className="flex flex-col ">
-                <img src={finisas} alt="" />
-                <h4 className="text-xl mb-[10px] text-grey">Congrats!</h4>
-                <p className="font-light">Your results of <span className="font-bold">{quizObj.name}</span> quiz:</p>
-                <p className="font-bold">{(countTrueValues(result) / result.length) * 100}%</p>
-                <div className="flex flex-col gap-[20px] justify-center mt-[20px]">
-            <button className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">See Results</button>
-            <Link to={'/quiz'} className="px-[45px] py-[13px] max-w-full rounded-[16px] border-2 border-grey bg-white text-grey z-10">Back to Quiz page</Link>
-          </div>
+            {/* Finish quiz */}
+            <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center ">
+              <img src="src/assets/images/finito.svg" alt="" />
+              <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex items-center justify-center ">
+                <div className="flex flex-col ">
+                  <img src={finisas} alt="" />
+                  <h4 className="text-xl mb-[10px] text-grey">Congrats!</h4>
+                  <p className="font-light">
+                    Your results of <span className="font-bold">{quizObj.name}</span> quiz:
+                  </p>
+                  <p className="font-bold">{(countTrueValues(result) / result.length) * 100}%</p>
+                  <div className="flex flex-col gap-[20px] justify-center mt-[20px]">
+                    <button className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">See Results</button>
+                    <Link to={"/quiz"} className="px-[45px] py-[13px] max-w-full rounded-[16px] border-2 border-grey bg-white text-grey z-10">
+                      Back to Quiz page
+                    </Link>
+                  </div>
+                </div>
               </div>
-              
             </div>
-          </div>
           </div>
 
           <div className="border p-5 bg-profileBack rounded-lg max-sm:p-2">
             <form onSubmit={handleSubmit} className="bg-yellow space-y-4 space-b-10 rounded-lg p-5 max-sm:p-1 max-sm:space-y-3 max-sm:">
-            {quizObj.questions.map((q, questionIndex) => (
-  questionIndex === currentQuestion && (
-    <div key={questionIndex} className="space-y-4">
-      <div>
-        <label htmlFor={`question-${questionIndex}`} className="block text-lg font-medium text-gray-700">
-          {q.question}
-        </label>
-        {afterSub && corAnsArr[questionIndex] === userAnswers[questionIndex] && <p className="text-green">correct!</p>}
-        {afterSub && corAnsArr[questionIndex] !== userAnswers[questionIndex] && <p className="text-red">Wrong!</p>}
-      </div>
-      <div className="flex flex-wrap">
-        {q.answers.map((a, answerIndex) => (
-          <div key={answerIndex} className={`w-1/4 pr-1`}>
-            <label
-              htmlFor={`answer-${questionIndex}-${answerIndex}`}
-              className={`block text-md font-medium border w-full rounded-lg text-gray max-sm:text-xs max-sm:text-center ${
-                afterSub && corAnsArr[questionIndex] === answerIndex ? "bg-green" : ""
-              }`}
-            >
-              {a}
-            </label>
-            <input
-              id={`answer-${questionIndex}-${answerIndex}`}
-              type="radio"
-              name={`answer-${questionIndex}`}
-              value={answerIndex}
-              checked={userAnswers[questionIndex] === answerIndex}
-              onChange={() => handleAnswerChange(questionIndex, answerIndex)}
-              className="mt-1"
-              disabled={afterSub}
-            />
-          </div>
-        ))}
-      </div>
-      {userAnswers[questionIndex] === -1 && erroras && <div className="text-red-500">Please answer this question.</div>}
-    </div>
-  )
-))}
-{currentQuestion < quizObj.questions.length - 1 && (
-  <button 
-    onClick={() => setCurrentQuestion(currentQuestion + 1)} 
-    className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded"
-  >
-    Next
-  </button>
-)}
-{currentQuestion === quizObj.questions.length - 1 && !afterSub && (
-  <button 
-    type="submit" 
-    className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded"
-  >
-    Submit Answers
-  </button>
-)}
+              {quizObj.questions.map(
+                (q, questionIndex) =>
+                  questionIndex === currentQuestion && (
+                    <div key={questionIndex} className="space-y-4 bg-blue">
+                      <div className="flex flex-col items-center">
+                        <div className=" text-white bg-blue font-light pt-[20px] flex flex-col items-center">
+                          <p className=" text-white mb-[30px]">{quizObj.name}</p>
+                          {/* <h2 className="text-2xl font-light text-grey mb-10">{quizObj.category}</h2> */}
+                        </div>
+                        <div className="bg-white p-[12px] mb-[40px] w-fit rounded-[20px] flex ">
+                          <div className="flex  justify-center">
+                            <label htmlFor={`question-${questionIndex}`} className="block text-lg font-medium text-gray-700">
+                            {q.question}
+                            </label>
+                          </div>
+                        </div>
+
+                        {afterSub && corAnsArr[questionIndex] === userAnswers[questionIndex] && <p className="text-green">correct!</p>}
+                        {afterSub && corAnsArr[questionIndex] !== userAnswers[questionIndex] && <p className="text-red">Wrong!</p>}
+                      </div>
+                      <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center justify-center">
+                        {q.answers.map((a, answerIndex) => (
+                          <div key={answerIndex} className={` pr-1 bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex `}>
+                            <label
+                              htmlFor={`answer-${questionIndex}-${answerIndex}`}
+                              className={`block text-md font-medium w-full rounded-lg text-gray max-sm:text-xs max-sm:text-center ${
+                                afterSub && corAnsArr[questionIndex] === answerIndex ? "bg-green" : ""
+                              }`}
+                            >
+                              {a}
+                            </label>
+                            <input
+                              id={`answer-${questionIndex}-${answerIndex}`}
+                              type="radio"
+                              name={`answer-${questionIndex}`}
+                              value={answerIndex}
+                              checked={userAnswers[questionIndex] === answerIndex}
+                              onChange={() => handleAnswerChange(questionIndex, answerIndex)}
+                              className="mt-1 p-5"
+                              disabled={afterSub}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      {userAnswers[questionIndex] === -1 && erroras && <div className="text-red-500">Please answer this question.</div>}
+                    </div>
+                  )
+              )}
+              {currentQuestion < quizObj.questions.length - 1 && (
+                <button onClick={() => setCurrentQuestion(currentQuestion + 1)} className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
+                  Next
+                </button>
+              )}
+              {currentQuestion === quizObj.questions.length - 1 && !afterSub && (
+                <button type="submit" className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
+                  Submit Answers
+                </button>
+              )}
 
               {/* {erroras && <div className="text-red-500">Must answer all questions!</div>} */}
-
             </form>
             {/* <button onClick={addComplete}>add</button> */}
           </div>

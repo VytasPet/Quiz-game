@@ -88,7 +88,7 @@ function QuizForm({ addQuiz }) {
 
   return (
     <form onSubmit={formik.handleSubmit} className="bg-blue font-sans space-y-4 space-b-10 rounded-lg p-5 max-sm:p-2">
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-[50px]">
       <div className="max-w-[300px] bg-lightBlue rounded-[16px] p-1 flex justify-between">
         <Link to={"/login"} className="px-[45px] text-blue py-[13px] max-w-full rounded-[16px] z-10">
           Public

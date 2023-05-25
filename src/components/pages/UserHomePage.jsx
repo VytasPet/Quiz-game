@@ -15,7 +15,7 @@ function UserHomePage() {
   const [arrFiltered, setArrFilt] = useState([]);
   const [loadingToast, setloadingToast] = useState(null);
   const navigate = useNavigate();
-  
+
   let arrK = arrToShow;
   useEffect(() => {
     if (loading) {
@@ -55,7 +55,7 @@ function UserHomePage() {
   return (
     <div className="mx-auto box-border mt-5 max-sm:mt-10 bg-profileBack">
         
-        <div className="flex justify-end mr-10">
+        <div className="flex justify-center mr-10">
         <div className="bg-white p-[12px]  mb-[20px] max-w-[300px] rounded-[20px] flex ">
           <div className="flex flex-row items-center">
             <img className="inline p-[8px] mr-[5px]  rounded-[16px]" src="src/assets/images/hello.svg" alt="" />
