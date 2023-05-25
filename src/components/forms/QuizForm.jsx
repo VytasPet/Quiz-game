@@ -98,31 +98,7 @@ function QuizForm({ addQuiz }) {
         </Link>
       </div>
       </div>
-      <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center ">
-        <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex ">
-          <div className="flex flex-row">
-            <h4 className="text-xl text-grey max-sm:mb-10">1. Klausimas. Kas as esu? </h4>
-          </div>
-        </div>
-        <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex ">
-          <div className="flex flex-row">
-            <h4 className="text-xl text-grey max-sm:mb-10">2. Klausimas. Kas tu esi? </h4>
-          </div>
-        </div>
-        <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex ">
-          <div className="flex flex-row">
-            <h4 className="text-xl text-grey max-sm:mb-10">3. Klausimas. Kas jie ra? </h4>
-          </div>
-        </div>
-        <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex ">
-          <div className="flex flex-row">
-            <h4 className="text-xl text-grey max-sm:mb-10">4. Klausimas. Kas mes esam? </h4>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-end">
-        <button className="px-[45px] py-[13px] mr-[30px] max-w-full rounded-[16px] bg-blue text-white z-10">NEXT</button>
-      </div>
+
       <div className="flex flex-col items-center">
         <label htmlFor="name" className="block text-start mb-[10px] mr-[10px] font-light text-sm  text-white">
           Quiz name
@@ -133,7 +109,7 @@ function QuizForm({ addQuiz }) {
           value={formik.values.name}
           onChange={formik.handleChange}
           type="text"
-          className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex "
+          className="bg-white p-[12px] w-2/3 max-sm:w-full mb-[20px] rounded-[20px] flex "
         />
 
         <label htmlFor="category" className="block my-[10px] mr-[10px] font-light text-sm  text-white">
@@ -178,15 +154,15 @@ function QuizForm({ addQuiz }) {
             value={q.question}
             onChange={(e) => handleQuestionChange(questionIndex, e)}
             type="text"
-            className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex"
+            className="bg-white p-[12px] px-[20px] w-2/3 max-sm:w-full mb-[20px] rounded-[20px] flex"
           />
           {formik.errors.questions?.[questionIndex]?.question && formik.touched.questions?.[questionIndex]?.question && (
             <div className="text-red-500">{formik.errors.questions[questionIndex].question}</div>
           )}
 
-          <div className="flex flex-wrap ">
+          <div className="flex flex-wrap max-sm:flex-col">
             {q.answers.map((a, answerIndex) => (
-              <div key={answerIndex} className="w-1/4 pr-2 ">
+              <div key={answerIndex} className="w-1/4 max-sm:w-full max-sm:mb-[15px] pr-2 ">
                 <label htmlFor={`answer-${questionIndex}-${answerIndex}`} className="block text-sm font-medium text-gray-700">
                   Answer {answerIndex + 1}
                 </label>
@@ -219,7 +195,7 @@ function QuizForm({ addQuiz }) {
         </div>
       ))}
 
-      <button type="submit" className="bg-black mt-10 text-white py-2 px-4 rounded hover:bg-background hover:text-black hover:outline ">
+      <button type="submit" className="px-[45px] outline hover:outline-lightGray py-[13px] mr-[30px] mt-[30px] max-w-full rounded-[16px] bg-lightBlue text-blue z-10">
         Create Quiz
       </button>
     </form>
