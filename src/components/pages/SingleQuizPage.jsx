@@ -190,6 +190,7 @@ function QuizPage() {
 
           <div>
             {/* Finish quiz */}
+            {afterSub&& 
             <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center ">
               <img src="src/assets/images/finito.svg" alt="" />
               <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex items-center justify-center ">
@@ -209,6 +210,7 @@ function QuizPage() {
                 </div>
               </div>
             </div>
+            }
           </div>
 
           <div className="border p-5 bg-profileBack rounded-lg max-sm:p-2">
@@ -262,14 +264,16 @@ function QuizPage() {
                   )
               )}
               {currentQuestion < quizObj.questions.length - 1 && (
-                <button onClick={() => setCurrentQuestion(currentQuestion + 1)} className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
+                <button onClick={() => setCurrentQuestion(currentQuestion + 1)} className="px-[45px] py-[13px] mr-[30px] max-w-full rounded-[16px] bg-blue text-white z-10">
                   Next
                 </button>
               )}
               {currentQuestion === quizObj.questions.length - 1 && !afterSub && (
-                <button type="submit" className="bg-black hover:bg-blue-700 text-white py-2 px-4 rounded">
+              <div className="flex justify-end">
+                <button type="submit" className="px-[45px] py-[13px] mr-[30px] max-w-full rounded-[16px] bg-blue text-white z-10">
                   Submit Answers
                 </button>
+                </div>
               )}
 
               {/* {erroras && <div className="text-red-500">Must answer all questions!</div>} */}
