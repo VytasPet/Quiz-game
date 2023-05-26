@@ -62,8 +62,8 @@ function LeaderBoard() {
                         <div className="relative flex items-end w-full justify-center">
                           <div className="absolute flex flex-col w-full max-w-full items-center">
                             <div className="absolute max-w-[60%] max-sm:top-[-30%]">
-                              <img className="absolute bottom-[-10%] left-[35%]" src="src/assets/images/thirdPl.svg" alt="" />
-                              <img className="" src="src/assets/images/happyWinner.svg" alt="" />
+                              <img className="absolute bottom-[-10%] left-[40%]" src="src/assets/images/Group 83placemedal.svg" alt="" />
+                              <img className="border-4 border-green rounded-[50%]" src="src/assets/images/happyWinner.svg" alt="" />
                             </div>
                             <img className="w-4/5 " src="src/assets/images/2-3Place.svg" w-full alt="lab" />
                           </div>
@@ -78,9 +78,9 @@ function LeaderBoard() {
                             <div className="absolute max-w-[70%] max-sm:top-[-30%] flex flex-col items-center">
                               <div>
                                 <img className="absolute top-[-40%] left-[30%] max-sm:top-[-40%]" src="src/assets/images/crownking.svg" alt="" />
-                                <img src="src/assets/images/happyWinner.svg" alt="" />
+                                <img className="border-4 border-green rounded-[50%]" src="src/assets/images/happyWinner.svg" alt="" />
                               </div>
-                              <img className="absolute bottom-[-10%] left-[35%]" src="src/assets/images/firstPL.svg" alt="" />
+                              <img className="absolute bottom-[-10%] left-[40%]" src="src/assets/images/Group 7firstplace.svg" alt="" />
                             </div>
                             <img className="w-full " src="src/assets/images/1stStep.svg" alt="lab" />
                           </div>
@@ -94,7 +94,7 @@ function LeaderBoard() {
                           <div className="absolute flex flex-col w-full max-w-full items-center">
                             <div className="absolute max-w-[60%] max-sm:top-[-30%]">
                               <img className="absolute bottom-[-10%] left-[40%]" src="src/assets/images/secPL.svg" alt="" />
-                              <img className="" src="src/assets/images/happyWinner.svg" alt="" />
+                              <img className="border-4 border-green rounded-[50%]" src="src/assets/images/happyWinner.svg" alt="" />
                             </div>
                             <img className="w-4/5 " src="src/assets/images/2-3Place.svg" w-full alt="lab" />
                           </div>

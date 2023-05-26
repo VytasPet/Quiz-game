@@ -89,63 +89,60 @@ function QuizForm({ addQuiz }) {
   return (
     <form onSubmit={formik.handleSubmit} className="bg-blue font-sans rounded-lg p-5 max-sm:p-2 pb-[30px]">
       <div className="flex justify-center mb-[50px]">
-      <div className="max-w-[300px] bg-lightBlue rounded-[16px] p-1 flex justify-between">
-        <Link to={"/login"} className="px-[45px] text-blue py-[13px] max-w-full rounded-[16px] z-10">
-          Public
-        </Link>
-        <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">
-          Private
-        </Link>
-      </div>
+        <div className="max-w-[300px] bg-lightBlue rounded-[16px] p-1 flex justify-between">
+          <Link to={"/login"} className="px-[45px] text-blue py-[13px] max-w-full rounded-[16px] z-10">
+            Public
+          </Link>
+          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">
+            Private
+          </Link>
+        </div>
       </div>
 
       <div className="flex flex-col items-center">
         <label htmlFor="name" className="block text-start mb-[10px] mr-[10px] font-light text-sm  text-white">
           Quiz name
         </label>
-        <input
-          id="name"
-          name="name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          type="text"
-          className="bg-white p-[12px] w-2/3 max-sm:w-full mb-[20px] rounded-[20px] flex "
-        />
+        <input id="name" name="name" value={formik.values.name} onChange={formik.handleChange} type="text" className="bg-white p-[12px] w-2/3 max-sm:w-full mb-[20px] rounded-[20px] flex " />
 
         <label htmlFor="category" className="block my-[10px] mr-[10px] font-light text-sm  text-white">
           Category
         </label>
-        <select
-          id="category"
-          value={formik.values.category}
-          onChange={formik.handleChange}
-          className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex "
-        >
-          <option className="text-center" value="history">History</option>
-          <option className="text-center" value="sports">Sports</option>
-          <option className="text-center" value="geography">Geography</option>
+        <select id="category" value={formik.values.category} onChange={formik.handleChange} className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex ">
+          <option className="text-center" value="history">
+            History
+          </option>
+          <option className="text-center" value="sports">
+            Sports
+          </option>
+          <option className="text-center" value="geography">
+            Geography
+          </option>
         </select>
       </div>
 
-      <div className="flex flex-col items-center">
-        <label htmlFor="num_questions" className="block text-start mb-[10px] mr-[10px] font-light text-sm  text-white">
+      <div className="flex flex-col items-center mb-[30px]">
+        <label htmlFor="num_questions" className="block text-start mt-[10px] mb-[10px] mr-[10px] font-light text-sm  text-white">
           Number of Questions
         </label>
-        <select
-          id="num_questions"
-          value={numQuestions}
-          onChange={handleNumQuestionsChange}
-          className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex justify-center"
-        >
-          <option className="text-center" value="5">5</option>
-          <option className="text-center" value="10">10</option>
-          <option className="text-center" value="15">15</option>
-          <option className="text-center" value="20">20</option>
+        <select id="num_questions" value={numQuestions} onChange={handleNumQuestionsChange} className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex justify-center">
+          <option className="text-center" value="5">
+            5
+          </option>
+          <option className="text-center" value="10">
+            10
+          </option>
+          <option className="text-center" value="15">
+            15
+          </option>
+          <option className="text-center" value="20">
+            20
+          </option>
         </select>
       </div>
 
       {formik.values.questions.map((q, questionIndex) => (
-        <div key={questionIndex} className="space-y-4 border p-5 bg-profileBack rounded-[20px] flex flex-col items-center text-blue ">
+        <div key={questionIndex} className="space-y-4 border p-5 mb-[20px] bg-profileBack rounded-[20px] flex flex-col items-center text-blue ">
           <label htmlFor={`question-${questionIndex}`} className="block text-start mb-[10px] mr-[10px] font-light text-sm ">
             Question {questionIndex + 1}
           </label>

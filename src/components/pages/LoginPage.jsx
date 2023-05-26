@@ -36,28 +36,32 @@ function LoginPage() {
   }, [user, error]);
 
   return (
-
     <div className="mt-20 box-border max-sm:mt-10">
-    {/* <h1 className="text-5xl mb-20 text-white max-sm:text-2xl max-sm:mb-10">Register</h1> */}
+      {/* <h1 className="text-5xl mb-20 text-white max-sm:text-2xl max-sm:mb-10">Register</h1> */}
 
-    <div className="flex flex-col items-center">
-      <div className="flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 bg-white text-grey rounded-[16px]">
-        <div className="font-cursive text-white underline pt-3 pb-3 px-5"></div>
-        <img className="absolute top-[120px] max-sm:top-[110px] z-0"  src="src/assets/images/reglog.svg" alt="" />        <div className="w-full bg-lightBlue rounded-[16px] p-1 flex justify-between">
-          <Link to={'/login'} className="px-[45px] text-white py-[13px] max-w-full bg-blue rounded-[16px] z-10">Login</Link>
-          <Link to={'/register'} className="px-[45px] py-[13px] max-w-full rounded-[16px] text-blue z-10">Register</Link>
+      <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 bg-white text-grey rounded-[16px]">
+          <div className="font-cursive text-white underline pt-3 pb-3 px-5"></div>
+          <img className="absolute top-[80px] max-sm:top-[50px] z-0" src="src/assets/images/reglog.svg" alt="" />{" "}
+          <div className="w-full bg-lightBlue rounded-[16px] p-1 flex justify-between">
+            <Link to={"/login"} className="px-[45px] text-white py-[13px] max-w-full bg-blue rounded-[16px] z-10">
+              Login
+            </Link>
+            <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] text-blue z-10">
+              Register
+            </Link>
+          </div>
+          <LoginForm onLog={loginWithFirebaseHook} />
         </div>
-        <LoginForm onLog={loginWithFirebaseHook} />
       </div>
     </div>
-  </div>
-
   );
 }
 
 export default LoginPage;
 
-{/* <div className="mt-20 box-border max-sm:mt-10">
+{
+  /* <div className="mt-20 box-border max-sm:mt-10">
 <h1 className="text-5xl mb-20 max-sm:text-2xl max-sm:mb-10">Login</h1>
 
 <div className="flex flex-col items-center">
@@ -68,4 +72,5 @@ export default LoginPage;
     <LoginForm onLog={loginWithFirebaseHook} />
   </div>
 </div>
-</div> */}
+</div> */
+}

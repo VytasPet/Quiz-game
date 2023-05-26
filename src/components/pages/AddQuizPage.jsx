@@ -67,8 +67,8 @@ function AddQuizPage() {
   // navigate('/posts');
 
   return (
-    <div className="mt-20 box-border max-sm:mt-10">
-      <h1 className="text-5xl mb-20 max-sm:text-3xl font-light max-sm:font-light max-sm:mb-10">Create a quiz</h1>
+    <div className="mt-10 box-border max-sm:mt-10">
+      <h1 className="text-5xl mb-10 max-sm:text-3xl font-light max-sm:font-light max-sm:mb-10">Create a quiz</h1>
 
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-center px-4 pt-2 pb-5 w-full mb-10 bg-blue text-white rounded-lg max-sm:mb-5 max-sm:px-1">
