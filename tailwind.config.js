@@ -17,10 +17,11 @@ export default {
         lightBlue: "#DCF8FF",
         lightGray: "#F6F6F6",
         grey: "#737373",
-        red: "#FF5341",
+        red: "#F8737F",
         transparent: "#f2f2f200",
         lightRed: "#FFDFDC",
         profileBack: "#F9F9F9",
+        green: "#6CD89E",
       },
       // Define the `.right-arrow` and `.left-arrow` classes
     },

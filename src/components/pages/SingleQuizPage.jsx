@@ -160,24 +160,75 @@ function QuizPage() {
           <div>
             {/* Finish quiz */}
             {afterSub && (
-              <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center ">
-                <img src="src/assets/images/finito.svg" alt="" />
-                <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex items-center justify-center ">
-                  <div className="flex flex-col ">
-                    <img src={finisas} alt="" />
-                    <h4 className="text-xl mb-[10px] text-grey">Congrats!</h4>
-                    <p className="font-light">
-                      Your results of <span className="font-bold">{quizObj.name}</span> quiz:
-                    </p>
-                    <p className="font-bold">{(countTrueValues(result) / result.length) * 100}%</p>
-                    <div className="flex flex-col gap-[20px] justify-center mt-[20px]">
-                      <button className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">See Results</button>
-                      <Link to={"/quiz"} className="px-[45px] py-[13px] max-w-full rounded-[16px] border-2 border-grey bg-white text-grey z-10">
-                        Back to Quiz page
-                      </Link>
-                    </div>
+              <div>
+                {showResults ? (
+                  // Result view
+
+                  <div className="pb-[30px] bg-blue rounded-lg max-sm:p-1 max-sm:space-y-3 max-sm:">
+                    {quizObj.questions.map(
+                      (q, questionIndex) =>
+                        questionIndex === currentResultQuestion && (
+                          <div key={questionIndex} className=" flex w-full flex-col justify-center items-center">
+                            <div className="">
+                              <div className="flex flex-col items-center">
+                                <div className=" text-white bg-blue font-light pt-[20px] flex flex-col items-center">
+                                  <p className=" text-white mb-[30px]">{quizObj.name}</p>
+                                  {/* <h2 className="text-2xl font-light text-grey mb-10">{quizObj.category}</h2> */}
+                                </div>
+                                <div className="bg-white p-[12px] mb-[40px] rounded-[20px] ">
+                                  <div className="flex justify-center">
+                                    <label htmlFor={`question-${questionIndex}`} className="block text-lg font-normal text-gray-700">
+                                      {q.question}
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className=" bg-blue flex justify-center w-full">
+                                <div className=" p-5 bg-profileBack rounded-[20px] mx-[20px] w-[700px] max-md:w-full flex flex-col items-center">
+                                  <div className="pr-1 p-[12px] w-2/3 mb-[20px] rounded-[20px] flex bg-white outline outline-grey">
+                                    <p className="block text-md font-medium w-full rounded-lg text-gray max-sm:text-xs max-sm:text-center">Correct Answer: {q.answers[corAnsArr[questionIndex]]}</p>
+                                  </div>
+                                  <div
+                                    className={`pr-1 p-[12px] w-2/3 mb-[20px] rounded-[20px] flex ${corAnsArr[questionIndex] === toWatchResults[questionIndex] ? "bg-green text-white" : "bg-red"} `}
+                                  >
+                                    <p className={`block text-md font-medium w-full rounded-lg text-gray max-sm:text-xs max-sm:text-center `}>
+                                      Your Answer: {q.answers[toWatchResults[questionIndex]]}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            {currentResultQuestion < quizObj.questions.length - 1 && (
+                              <button
+                                onClick={() => setCurrentResultQuestion(currentResultQuestion + 1)}
+                                className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-profileBack text-blue max-sm:mb-[30px] mt-[30px] outline hover:outline-grey z-10"
+                              >
+                                Next
+                              </button>
+                            )}
+                            {currentResultQuestion === quizObj.questions.length - 1 && (
+                              <div className="flex justify-center">
+                                <Link to="/quiz" className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-profileBack text-blue mt-[30px] outline hover:outline-grey z-10">
+                                  Back to Quizzes
+                                </Link>
+                              </div>
+                            )}
+                          </div>
+                        )
+                    )}
                   </div>
-                </div>
+                ) : (
+                  // Quiz submission confirmation
+                  <div>
+                    <h4>Congrats!</h4>
+                    <p>
+                      Your results of <span>{quizObj.name}</span> quiz:
+                    </p>
+                    <p>{(countTrueValues(result) / result.length) * 100}%</p>
+                    <button onClick={() => setshowResults(true)}>See Results</button>
+                    <Link to="/quiz">Back to Quiz page</Link>
+                  </div>
+                )}
               </div>
             )}
           </div>

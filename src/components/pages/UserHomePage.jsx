@@ -95,7 +95,7 @@ function UserHomePage() {
 
         {/* Public quiz list */}
         <div className="flex flex-col items-center">
-          <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
+          <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-2/3">
             <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
             <div className="flex flex-col w-full items-start justify-around">
               <h3 className="text-[15px]">Mathematics XI-2</h3>
@@ -111,7 +111,7 @@ function UserHomePage() {
               </div>
             </div>
           </div>
-          <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 cursor-pointer">
+          <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-2/3 cursor-pointer">
             <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
             <div className="flex flex-col w-full items-start justify-around">
               <h3 className="text-[15px]">Mathematics XI-2</h3>
