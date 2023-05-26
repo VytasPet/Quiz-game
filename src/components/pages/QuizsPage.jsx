@@ -15,7 +15,7 @@ function QuizsPage() {
   const [arrFiltered, setArrFilt] = useState([]);
   const [loadingToast, setloadingToast] = useState(null);
   const navigate = useNavigate();
-  const [areSure, setareSure] = useState(false)
+  const [areSure, setareSure] = useState(false);
 
   let arrK = arrToShow;
   useEffect(() => {
@@ -33,7 +33,7 @@ function QuizsPage() {
       arrK = arrK.map((doc) => ({ uid: doc.id, ...doc._document.data.value.mapValue.fields }));
       setArr(arrK);
       setArrFilt(arrK);
-      console.log('arrK ===', arrK);
+      console.log("arrK ===", arrK);
     }
   }, [value]);
 
@@ -56,61 +56,61 @@ function QuizsPage() {
 
   return (
     <>
-    <div className={`${areSure ? "blur-[5px]" : ""}`}>
-      <div className=" mt-[35px] px-[30px]">
-        <img className="cursor-pointer" onClick={()=>navigate('/userhome')} src="src/assets/images/arrow-leftback.svg" alt="" />
-        <h3 className="text-center mb-[30px]">Public quiz</h3>
-      </div>
-      <div className="flex justify-center">
-        <div className="max-w-full bg-lightBlue rounded-[16px] mb-[30px] p-1 flex justify-between max-md:text-[13px]">
-          <Link to={"/login"} className="px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black">
-            Show all
-          </Link>
-          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] bg-blue text-white z-10 hover:text-black">
-            Geography
-          </Link>
-          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
-            Sports
-          </Link>
-          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
-            History
-          </Link>
+      <div className={`${areSure ? "blur-[5px]" : ""}`}>
+        <div className=" mt-[35px] px-[30px]">
+          <img className="cursor-pointer" onClick={() => navigate("/userhome")} src="src/assets/images/arrow-leftback.svg" alt="" />
+          <h3 className="text-center mb-[30px]">Public quiz</h3>
         </div>
-      </div>
-      <div className="flex flex-col items-center">
-        <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
-          <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-          <div className="flex flex-col w-full items-start justify-around">
-            <h3 className="text-[15px]">Mathematics XI-2</h3>
-            <p className="text-[12px]">Mathematic</p>
-            <div className="flex w-full justify-between">
-              <h5 className="text-[10px] text-grey">THG89X</h5>
-              <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                <span>
-                  <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                </span>{" "}
-                77.5%
-              </p>
+        <div className="flex justify-center">
+          <div className="max-w-full bg-lightBlue rounded-[16px] mb-[30px] p-1 flex justify-between items-center max-[380px]:text-[9px] max-md:text-[13px] min-[780px]:w-2/3">
+            <Link to={"/login"} className="px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black">
+              Show all
+            </Link>
+            <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] bg-blue text-white z-10 hover:text-black">
+              Geography
+            </Link>
+            <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
+              Sports
+            </Link>
+            <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
+              History
+            </Link>
+          </div>
+        </div>
+        <div className="flex flex-col items-center ">
+          <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-full">
+            <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+            <div className="flex flex-col w-full items-start justify-around">
+              <h3 className="text-[15px]">Mathematics XI-2</h3>
+              <p className="text-[12px]">Mathematic</p>
+              <div className="flex w-full justify-between">
+                <h5 className="text-[10px] text-grey">THG89X</h5>
+                <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                  <span>
+                    <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                  </span>{" "}
+                  77.5%
+                </p>
+              </div>
+            </div>
+          </div>
+          <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
+            <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+            <div className="flex flex-col w-full items-start justify-around">
+              <h3 className="text-[15px]">Mathematics XI-2</h3>
+              <p className="text-[12px]">Mathematic </p>
+              <div className="flex w-full justify-between">
+                <h5 className="text-[10px] text-grey">THG89X</h5>
+                <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                  <span>
+                    <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                  </span>{" "}
+                  77.5%
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div onClick={()=>setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
-          <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-          <div className="flex flex-col w-full items-start justify-around">
-            <h3 className="text-[15px]">Mathematics XI-2</h3>
-            <p className="text-[12px]">Mathematic </p>
-            <div className="flex w-full justify-between">
-              <h5 className="text-[10px] text-grey">THG89X</h5>
-              <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                <span>
-                  <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                </span>{" "}
-                77.5%
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
       </div>
       {areSure && (
         <div className="statsMid">
@@ -118,7 +118,10 @@ function QuizsPage() {
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Quiz Name</h2>
           <form onSubmit={() => console.log("laba diena")}>
-            <button onClick={()=>navigate('/quiz/7Hgonr6p2B6ndU1onqoC')} className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white ">
+            <button
+              onClick={() => navigate("/quiz/7Hgonr6p2B6ndU1onqoC")}
+              className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
+            >
               Start
             </button>
           </form>

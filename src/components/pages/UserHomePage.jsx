@@ -89,7 +89,7 @@ function UserHomePage() {
           </div>
         </div>
         <div className="flex items-center justify-between mt-[35px] px-[30px] min-[700px]:px-[100px]   ">
-          <h3 className="text-left">Public quiz</h3>
+          <h3 className="text-left text-[20px]">Public quiz</h3>
           <img className="cursor-pointer" onClick={() => navigate("/quiz")} src="src/assets/images/arrow-leftarrow.svg" alt="" />
         </div>
 
@@ -131,7 +131,7 @@ function UserHomePage() {
       </div>
 
       {areSure && (
-        <div className="statsMid">
+        <div className="statsMid max-sm:w-2/3 flex flex-col justify-center">
           <img src="src/assets/images/Group 13start.svg" alt="" />
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Quiz Name</h2>
