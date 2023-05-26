@@ -88,14 +88,14 @@ function UserHomePage() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-between mt-[35px] px-[30px]">
+        <div className="flex items-center justify-between mt-[35px] px-[30px] min-[700px]:px-[100px]   ">
           <h3 className="text-left">Public quiz</h3>
           <img className="cursor-pointer" onClick={() => navigate("/quiz")} src="src/assets/images/arrow-leftarrow.svg" alt="" />
         </div>
 
         {/* Public quiz list */}
         <div className="flex flex-col items-center">
-          <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-2/3">
+          <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2  max-sm:w-full">
             <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
             <div className="flex flex-col w-full items-start justify-around">
               <h3 className="text-[15px]">Mathematics XI-2</h3>

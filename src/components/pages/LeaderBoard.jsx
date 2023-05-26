@@ -41,15 +41,15 @@ function LeaderBoard() {
     <div className="flex flex-col items-center justify-center bg-blue">
       <div className="container flex flex-col mx-auto mt-10 max-w-5xl justify-center items-center max-sm:flex-col max-sm:mt-[35px]">
         {sortArr && (
-          <div className="w-1/2 right items-center border-none rounded-lg font-bold text-white max-sm:w-full">
+          <div className="w-2/3 right items-center border-none rounded-lg font-bold text-white max-[730px]:w-full max-[930px]:w-4/5">
             <p className="mb-[35px] max-sm:text-[16px] font-normal">Leaderboard</p>
             {/* <div className="flex justify-between mb-5 p-1 bg-white text-white gap-5 bg-yellow w-full rounded-[13px] ">
               <p className="py-3 w-1/3 text-grey rounded-[13px]">All Time</p>
               <p className="py-3 w-1/3 bg-blue rounded-[13px]">Week</p>
               <p className="py-3 w-1/3 text-grey rounded-[13px]">Month</p>
             </div> */}
-            <div className="flex justify-around  gap-5 bg-yellow text-black w-full rounded-lg ">
-              <ul className="flex items-end max-w-full max-h-full justify-end max-md: text-xs">
+            <div className="flex justify-around gap-5 bg-yellow text-black w-full mt-[170px] max-[520px]:mt-[100px] max-[440px]:mt-[50px]  rounded-lg  ">
+              <ul className="flex items-end max-w-full w-full justify-end ">
                 {value &&
                   sortArr.slice(0, 3).map((obj, index) => (
                     <li
@@ -65,7 +65,7 @@ function LeaderBoard() {
                               <img className="absolute bottom-[-10%] left-[35%]" src="src/assets/images/thirdPl.svg" alt="" />
                               <img className="" src="src/assets/images/happyWinner.svg" alt="" />
                             </div>
-                            <img className="w-4/5 max-ms:w-2/3" src="src/assets/images/2-3Place.svg" w-full alt="lab" />
+                            <img className="w-4/5 " src="src/assets/images/2-3Place.svg" w-full alt="lab" />
                           </div>
                           <div>
                             {obj.email}
@@ -82,7 +82,7 @@ function LeaderBoard() {
                               </div>
                               <img className="absolute bottom-[-10%] left-[35%]" src="src/assets/images/firstPL.svg" alt="" />
                             </div>
-                            <img className="w-full max-ms:w-4/5" src="src/assets/images/1stStep.svg" alt="lab" />
+                            <img className="w-full " src="src/assets/images/1stStep.svg" alt="lab" />
                           </div>
                           <div>
                             <p>{obj.email}</p>
@@ -96,7 +96,7 @@ function LeaderBoard() {
                               <img className="absolute bottom-[-10%] left-[40%]" src="src/assets/images/secPL.svg" alt="" />
                               <img className="" src="src/assets/images/happyWinner.svg" alt="" />
                             </div>
-                            <img className="w-4/5 max-ms:w-2/3" src="src/assets/images/2-3Place.svg" w-full alt="lab" />
+                            <img className="w-4/5 " src="src/assets/images/2-3Place.svg" w-full alt="lab" />
                           </div>
                           <div>
                             {obj.email}
@@ -112,19 +112,19 @@ function LeaderBoard() {
             </div>
           </div>
         )}
-        <div className="w-1/2">
+        <div className="w-2/3 max-md:w-full ">
           <div className=" space-y-4 border p-5 mt-[35px] bg-profileBack rounded-[20px] flex items-center justify-center text-blue ">
             <div className="flex flex-wrap max-sm:flex-col">
-              <div className="w-full max-sm:w-full pr-2 ">
+              <div className="w-full pr-2 max-[530px]:pr-0 ">
                 {/* Sigle place */}
-                <div className="flex items-center gap-[30px] max-sm:gap-[10px]">
-                  <p className="">4</p>
-                  <div className="bg-white p-[12px] font-light mb-[10px] w-full rounded-[20px] flex justify-between ">
-                    <div className="flex items-center w-full justify-between ">
+                <div className="flex items-center gap-[30px]">
+                  <p className=" max-sm:ml-[-20px]">4</p>
+                  <div className="bg-white p-[12px] font-light mb-[10px] w-full min-[550px]:w-[300px] min-[900px]:w-[500px] rounded-[20px] flex justify-between ">
+                    <div className="flex items-center w-full justify-between max-[530px]:justify-center ">
                       <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/usersstatpeopl (1).svg" alt="" />
-                      <div className="w-full flex justify-center items-center ">
-                        <p className="text-black font-normal mr-[30px] max-sm:mr-[15px] max-sm:text-[12px]">Zaidejo nickas</p>
-                        <p className="text-red max-sm:text-[12px]">87.5%</p>
+                      <div className="w-full max-[530px]:w-auto flex justify-center items-center ">
+                        <p className="text-black font-normal mr-[30px] max-sm:mr-[15px] max-[530px]:mr-[5px] max-sm:text-[12px] min-[900px]:[text-16px]">Zaidejo nickas</p>
+                        <p className="text-red max-sm:text-[12px] min-[900px]:text-[16px]">87.5%</p>
                       </div>
                     </div>
                   </div>
