@@ -219,14 +219,27 @@ function QuizPage() {
                   </div>
                 ) : (
                   // Quiz submission confirmation
-                  <div>
-                    <h4>Congrats!</h4>
-                    <p>
-                      Your results of <span>{quizObj.name}</span> quiz:
-                    </p>
-                    <p>{(countTrueValues(result) / result.length) * 100}%</p>
-                    <button onClick={() => setshowResults(true)}>See Results</button>
-                    <Link to="/quiz">Back to Quiz page</Link>
+
+                  <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center ">
+                    <img src="src/assets/images/finito.svg" alt="" />
+                    <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex items-center justify-center ">
+                      <div className="flex flex-col ">
+                        <img src={finisas} alt="" />
+                        <h4 className="text-xl mb-[10px] text-grey">Congrats!</h4>
+                        <p className="font-light">
+                          Your results of <span className="font-bold">{quizObj.name}</span> quiz:
+                        </p>
+                        <p className="font-bold">{(countTrueValues(result) / result.length) * 100}%</p>
+                        <div className="flex flex-col gap-[20px] justify-center mt-[20px]">
+                          <button onClick={() => setshowResults(true)} className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">
+                            See Results
+                          </button>
+                          <Link to={"/quiz"} className="px-[45px] py-[13px] max-w-full rounded-[16px] border-2 border-grey bg-white text-grey z-10">
+                            Back to Quiz page
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
