@@ -21,6 +21,7 @@ function QuizsPage() {
   const [areSure, setareSure] = useState(false);
   const navigate = useNavigate();
   const [userUserName, setuserUserName] = useState("");
+  const [activeFilter, setactiveFilter] = useState("show all");
   console.log("user ===", user);
 
   let arrK = arrToShow;
@@ -57,6 +58,7 @@ function QuizsPage() {
   // console.log("arrK ===", arrK);
 
   function filterWord(word) {
+    setactiveFilter(word);
     console.log("word ===", word);
     // console.log("bum ===", bum);
     if (word === "show all") {
@@ -81,16 +83,29 @@ function QuizsPage() {
         </div>
         <div className="flex justify-center">
           <div className="max-w-full bg-lightBlue rounded-[16px] mb-[30px] p-1 flex justify-between items-center max-[380px]:text-[9px] max-md:text-[13px] min-[780px]:w-2/3">
-            <button onClick={() => filterWord("show all")} to={"/login"} className="px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black">
+            <button
+              onClick={() => filterWord("show all")}
+              to={"/login"}
+              className={`${activeFilter === "show all" ? "bg-blue text-white z-10" : ""} px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black`}
+            >
               Show all
             </button>
-            <button onClick={() => filterWord("geography")} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] bg-blue text-white z-10 hover:text-black">
+            <button
+              onClick={() => filterWord("geography")}
+              className={`${activeFilter === "geography" ? "bg-blue text-white z-10" : ""} px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black`}
+            >
               Geography
             </button>
-            <button onClick={() => filterWord("sports")} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
+            <button
+              onClick={() => filterWord("sports")}
+              className={`${activeFilter === "sports" ? "bg-blue text-white z-10" : ""} px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black`}
+            >
               Sports
             </button>
-            <button onClick={() => filterWord("history")} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
+            <button
+              onClick={() => filterWord("history")}
+              className={`${activeFilter === "history" ? "bg-blue text-white z-10" : ""} px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black`}
+            >
               History
             </button>
           </div>
