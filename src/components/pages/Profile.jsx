@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, deleteDoc, doc } from "firebase/firestore";
+import { collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { useEffect } from "react";
 import { useSignOut } from "react-firebase-hooks/auth";
 import { Navigate, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { getAuth, updatePassword } from "firebase/auth";
 
 function Profile() {
   const { user } = useAuthCtx();
@@ -18,6 +20,8 @@ function Profile() {
   const [editProf, seteditProf] = useState(false);
   const [changePass, setchangePass] = useState(false);
   const [editImage, seteditImage] = useState(false);
+  const [userDocId, setuserDocId] = useState("");
+  const [avatarChoose, setavatarChoose] = useState("");
   const [signOut] = useSignOut(auth);
   const navigate = useNavigate();
 
@@ -38,6 +42,7 @@ function Profile() {
     if (value) {
       const bendras = value.docs;
       const valuesUsers = bendras.map((quiz) => quiz.data());
+      console.log("user ===", user);
 
       // Calculate averages and add to valuesUsers
       valuesUsers.forEach((userObj) => {
@@ -55,6 +60,79 @@ function Profile() {
 
   function findUserIndex(userUid, sortedArray) {
     return sortedArray.findIndex((obj) => obj.userUid === userUid);
+  }
+  function changeUsername(e) {
+    e.preventDefault();
+    const newUserName = e.target[0].value;
+    const userDocId = user.uid;
+    const docRef = doc(db, "users", userDocId);
+    try {
+      updateDoc(docRef, { username: newUserName });
+      toast.success("Username change completed!");
+      seteditProf(false);
+    } catch (error) {
+      console.error("Error updating document: ", error);
+      toast.error("Unable to change username!");
+    }
+  }
+
+  function changePassword(e) {
+    e.preventDefault();
+    const newPass = e.target[0].value;
+    console.log("newPass ===", newPass);
+    const newPass2 = e.target[1].value;
+    console.log("newPass2 ===", newPass2);
+    console.log("auth.currentUser ===", auth.currentUser);
+
+    if (newPass !== newPass2) {
+      toast.error("Password not match!");
+      e.target[0].value = "";
+      e.target[1].value = "";
+      return;
+    }
+
+    const updatePasswordHook = async (newPass) => {
+      if (newPass.length < 6) {
+        toast.error("At least 6 characters!");
+        return;
+      }
+
+      try {
+        if (auth.currentUser) {
+          await updatePassword(auth.currentUser, newPass);
+          console.log("Password updated successfully");
+          toast.success("Password change completed!");
+        }
+      } catch (error) {
+        console.error("Error updating password: ", error);
+        toast.error("Unable to change password!");
+      }
+    };
+
+    updatePasswordHook(newPass);
+
+    // try {
+    //   {
+    //     updatePassword(auth.currentUser, newPass);
+    //     console.log("Password updated successfully");
+    //     toast.success("Password change completed!");
+    //     //   setchangePass(false);
+    //   }
+    // } catch (error) {
+    //   console.error("Error updating password: ", error);
+    //   toast.error("Unable to change password!");
+    // }
+
+    // const userDocId = user.uid;
+    // const docRef = doc(db, "users", userDocId);
+    // try {
+    //   updateDoc(docRef, { username: newPass });
+    //   toast.success("Password change completed!");
+    //   setchangePass(false);
+    // } catch (error) {
+    //   console.error("Error updating document: ", error);
+    //   toast.error("Unable to change password!");
+    // }
   }
 
   useEffect(() => {
@@ -85,7 +163,7 @@ function Profile() {
           <img className="" src="src/assets/images/happywinner.svg" alt="" />
           <img className="absolute top-[50%]" src="src/assets/images/addpic.svg" alt="" />
         </div>
-        <h1 className="text-[26px] font-bold text-black mb-2">Your username</h1>
+        <h1 className="text-[26px] font-bold text-black mb-2">{useris.username}</h1>
         <h2 className="text-[16px] text-blue bg-lightBlue py-[14px] px-[30px] mb-[45px] rounded-[20px]">{useris.email}</h2>
         <div className="bg-white p-[12px]  mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between max-sm:w-full" onClick={() => seteditProf(!editProf)}>
           <div className="flex flex-row items-center">
@@ -168,18 +246,23 @@ function Profile() {
       {editImage && (
         <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
           <div className="flex justify-center flex-wrap gap-2 mb-[20px]">
-            <img className=" w-1/4" src="src/assets/images/man.png" alt="" />
-            <img className="w-1/4" src="src/assets/images/businessman.png" alt="" />
-            <img className="border-4 border-green rounded-[50%] w-1/4" src="src/assets/images/user.png" alt="" />
-            <img className="w-1/4" src="src/assets/images/woman2.png" alt="" />
-            <img className="w-1/4" src="src/assets/images/profile (1).png" alt="" />
+            <img onClick={() => setavatarChoose(1)} className="w-1/4" src="src/assets/images/man.png" alt="" />
+            <img onClick={() => setavatarChoose(2)} className="w-1/4" src="src/assets/images/businessman.png" alt="" />
+            <img onClick={() => setavatarChoose(3)} className="w-1/4" src="src/assets/images/user.png" alt="" />
+            <img onClick={() => setavatarChoose(4)} className="w-1/4" src="src/assets/images/woman2.png" alt="" />
+            <img onClick={() => setavatarChoose(5)} className="w-1/4" src="src/assets/images/profile (1).png" alt="" />
           </div>
           <h2 className="text-black font-light mb-[20px]">Choose your profile picture</h2>
           <h2 className="text-black font-light mb-[20px]">Or upload your picture:</h2>
-          <input placeholder="Picture URL" className="bg-#F6F6F6  p-[12px] text-center mb-[30px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
-
-          <button className="bg-blue p-[6px] cursor-pointer mt-[10px] text-white w-full rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">Change</button>
+          <form>
+            <input placeholder="Picture URL" className="bg-#F6F6F6  p-[12px] text-center mb-[30px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
+            <button type="submit" className="bg-blue p-[6px] cursor-pointer mt-[10px] text-white w-full rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
+              Change
+            </button>
+          </form>
           {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
+
+          </form>
 <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
 <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
 <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
@@ -199,7 +282,7 @@ function Profile() {
         <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
           <img className="p-0 m-0" src="src/assets/images/emojircok.svg" alt="" />
           <h2 className="text-black font-light mb-[20px]">Change your username</h2>
-          <form className="w-full flex flex-col items-center" onSubmit={() => console.log("laba diena")}>
+          <form className="w-full flex flex-col items-center" onSubmit={changeUsername}>
             <input placeholder="labas" className="bg-#F6F6F6 p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
             <button type="submit" className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
               Change
@@ -225,7 +308,7 @@ function Profile() {
         <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
           <img className="p-0 m-0" src="src/assets/images/emojircok.svg" alt="" />
           <h2 className="text-black font-light mb-[20px]">Change your password</h2>
-          <form className="w-full flex flex-col items-center" onSubmit={() => console.log("laba diena")}>
+          <form className="w-full flex flex-col items-center" onSubmit={changePassword}>
             <input placeholder="Password" className="bg-#F6F6F6  p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
             <input placeholder="Repeat password" className="bg-#F6F6F6 p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
             <button type="submit" className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">

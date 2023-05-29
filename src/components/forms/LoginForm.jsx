@@ -61,55 +61,50 @@ function LoginForm({ onLog }) {
   // }
 
   return (
-
-
     <form onSubmit={formik.handleSubmit} className="bg-yellow last:mt-[25px] w-64 rounded-lg py-5">
-<label htmlFor="username" className="block text-left text-grey text-[13px] mb-3 font-medium">Email</label>
+      <label htmlFor="username" className="block text-left text-grey text-[13px] mb-3 font-medium">
+        Email
+      </label>
 
-<div className="relative mb-7">
-  <img src="src/assets/images/personusername.svg" alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
-  <input
- id="email"
- name="email"
- onChange={formik.handleChange}
- onBlur={formik.handleBlur}
- value={formik.values.email}
- placeholder="Your email"
- type="text"
-    className="mt-1 pl-[50px] w-full py-4 px-3 text-[14px] text-black bg-lightGray rounded-[20px] shadow-sm focus:outline-none sm:text-sm"
-  />
-</div>
-{formik.errors.email && formik.touched.email && <p className="text-red text-sm">{formik.errors.email}</p>}
+      <div className="relative mb-7">
+        <img src="src/assets/images/personusername.svg" alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
+        <input
+          id="email"
+          name="email"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.email}
+          placeholder="Your email"
+          type="text"
+          className="mt-1 pl-[50px] w-full py-4 px-3 text-[14px] text-black bg-lightGray rounded-[20px] shadow-sm focus:outline-none sm:text-sm"
+        />
+      </div>
+      {formik.errors.email && formik.touched.email && <p className="text-red text-sm mb-[15px]">{formik.errors.email}</p>}
 
-<label htmlFor="email" className="block text-left text-grey text-[13px] mb-3 font-medium">Password</label>
+      <label htmlFor="email" className="block text-left text-grey text-[13px] mb-3 font-medium">
+        Password
+      </label>
 
-<div className="relative mb-7">
-  <img src="src/assets/images/mailemail.svg" alt="" className="absolute left-4 w-[21px] top-[54%] transform -translate-y-1/2" />
-  <input
-   id="password"
-   name="password"
-   onChange={formik.handleChange}
-   onBlur={formik.handleBlur}
-   value={formik.values.password}
-   placeholder="Your password"
-   type="password"
-    className="mt-1 pl-[50px] w-full py-4 px-3 text-[14px] text-black bg-lightGray rounded-[20px] shadow-sm focus:outline-none sm:text-sm"
-  />
-</div>
+      <div className="relative mb-7">
+        <img src="src/assets/images/mailemail.svg" alt="" className="absolute left-4 w-[21px] top-[54%] transform -translate-y-1/2" />
+        <input
+          id="password"
+          name="password"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password}
+          placeholder="Your password"
+          type="password"
+          className="mt-1 pl-[50px] w-full py-4 px-3 text-[14px] text-black bg-lightGray rounded-[20px] shadow-sm focus:outline-none sm:text-sm"
+        />
+      </div>
 
-
-
-      {formik.errors.password && formik.touched.password && <p className="text-red text-sm">{formik.errors.password}</p>}
-
+      {formik.errors.password && formik.touched.password && <p className="text-red text-sm mb-[15px]">{formik.errors.password}</p>}
 
       <button type="submit" className="text-white only:mt-[55px] w-full text-[18px] py-[16px] font-medium px-4 bg-blue rounded-[16px]  hover:text-grey ">
         Login
       </button>
     </form>
-
-
-
-  
   );
 }
 
