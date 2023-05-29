@@ -57,7 +57,6 @@ function LeaderBoard() {
                       className={`max-sm:text-sm  flex flex-col text-white font-medium w-1/3 w-max-full text-lg justify-end bg-cover rounded-t-3xl ${index === 0 ? "h-52" : "h-40"}`}
                       style={{ order: index === 1 ? -1 : index }}
                     >
-                      {index + 1}.{" "}
                       {index + 1 === 3 ? (
                         <div className="relative flex items-end w-full justify-center">
                           <div className="absolute flex flex-col w-full max-w-full items-center">
@@ -68,8 +67,11 @@ function LeaderBoard() {
                             <img className="w-4/5 " src="src/assets/images/2-3Place.svg" w-full alt="lab" />
                           </div>
                           <div>
-                            {obj.email}
-                            <p>trecias</p>
+                            <p className="mb-[20px]">{obj.username}</p>
+                            <p className="mb-[10px] font-light">
+                              {obj.result ? obj.result : "0"}
+                              <span className="text-red "> pts</span>
+                            </p>
                           </div>
                         </div>
                       ) : index + 1 === 1 ? (
@@ -85,8 +87,11 @@ function LeaderBoard() {
                             <img className="w-full " src="src/assets/images/1stStep.svg" alt="lab" />
                           </div>
                           <div>
-                            <p>{obj.email}</p>
-                            <p>pirmas</p>
+                            <p className="mb-[20px]">{obj.username}</p>
+                            <p className="mb-[10px] font-light">
+                              {obj.result ? obj.result : "0"}
+                              <span className="text-red"> pts</span>
+                            </p>
                           </div>
                         </div>
                       ) : (
@@ -99,8 +104,10 @@ function LeaderBoard() {
                             <img className="w-4/5 " src="src/assets/images/2-3Place.svg" w-full alt="lab" />
                           </div>
                           <div>
-                            {obj.email}
-                            <p>antras</p>
+                            <p className="mb-[20px]">{obj.username}</p>
+                            <p className="mb-[10px] font-light">
+                              {obj.result ? obj.result : "0"} <span className="text-red">pts</span>
+                            </p>
                           </div>
                         </div>
                       )}
@@ -117,6 +124,7 @@ function LeaderBoard() {
             <div className="flex flex-wrap max-sm:flex-col">
               <div className="w-full pr-2 max-[530px]:pr-0 ">
                 {/* Sigle place */}
+
                 <div className="flex items-center gap-[30px]">
                   <p className=" max-sm:ml-[-20px]">4</p>
                   <div className="bg-white p-[12px] font-light mb-[10px] w-full min-[550px]:w-[300px] min-[900px]:w-[500px] rounded-[20px] flex justify-between ">

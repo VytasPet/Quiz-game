@@ -24,10 +24,10 @@ function Header() {
   }
 
   function signOutHandle() {
-    toast.success("You just logged out!");
     signOut();
     setmenuOn(false);
     navigate("/");
+    toast.success("You just logged out!");
   }
 
   return (

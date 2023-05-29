@@ -22,7 +22,7 @@ function RegisterPage() {
         const info = {
           completed: 0,
           created: 0,
-          result: [],
+          result: 0,
           email: user.email,
           userUid: user.uid,
           username: useris,
