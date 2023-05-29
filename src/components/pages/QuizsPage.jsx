@@ -7,15 +7,21 @@ import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthCtx } from "../../store/AuthProvider";
 
 function QuizsPage() {
+  const { user, isLoggedIn } = useAuthCtx();
   const quizCollRef = collection(db, "quiz");
+  const usersCollRef = collection(db, "users");
   const [value, loading, error] = useCollection(quizCollRef);
+  const [valueInfo, loadingInfo, errorInfo] = useCollection(usersCollRef);
   const [arrToShow, setArr] = useState([]);
   const [arrFiltered, setArrFilt] = useState([]);
   const [loadingToast, setloadingToast] = useState(null);
-  const navigate = useNavigate();
   const [areSure, setareSure] = useState(false);
+  const navigate = useNavigate();
+  const [userUserName, setuserUserName] = useState("");
+  console.log("user ===", user);
 
   let arrK = arrToShow;
   useEffect(() => {
@@ -37,17 +43,29 @@ function QuizsPage() {
     }
   }, [value]);
 
+  useEffect(() => {
+    if (valueInfo) {
+      let searchIt = valueInfo.docs;
+      console.log("searchIt ===", searchIt);
+      searchIt = searchIt.find((doc) => doc._document.data.value.mapValue.fields.userUid.stringValue == user.uid);
+      //console.log("value.docs.data ===", value.docs[0]._document.data.value.mapValue.fields);
+      console.log("searchIt ===", searchIt._document.data.value.mapValue.fields.username);
+      setuserUserName(searchIt._document.data.value.mapValue.fields.username.stringValue);
+    }
+  }, [valueInfo]);
+
   // console.log("arrK ===", arrK);
 
   function filterWord(word) {
-    const bum = word.target.innerHTML.toLowerCase();
+    console.log("word ===", word);
     // console.log("bum ===", bum);
-    if (bum === "show all") {
+    if (word === "show all") {
       // console.log("bum ===", bum);
       setArrFilt(arrToShow);
     } else {
-      setArrFilt(arrToShow.filter((quiz) => quiz.category.stringValue === bum));
+      setArrFilt(arrToShow.filter((quiz) => quiz.category.stringValue === word));
     }
+    console.log("arrFiltered ===", arrFiltered);
   }
 
   //   useEffect(() => {}, [third]);
@@ -63,53 +81,46 @@ function QuizsPage() {
         </div>
         <div className="flex justify-center">
           <div className="max-w-full bg-lightBlue rounded-[16px] mb-[30px] p-1 flex justify-between items-center max-[380px]:text-[9px] max-md:text-[13px] min-[780px]:w-2/3">
-            <Link to={"/login"} className="px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black">
+            <button onClick={() => filterWord("show all")} to={"/login"} className="px-[45px] text-grey py-[13px] max-md:px-[20px] max-w-full rounded-[16px] z-10 hover:text-black">
               Show all
-            </Link>
-            <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] bg-blue text-white z-10 hover:text-black">
+            </button>
+            <button onClick={() => filterWord("geography")} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] bg-blue text-white z-10 hover:text-black">
               Geography
-            </Link>
-            <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
+            </button>
+            <button onClick={() => filterWord("sports")} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
               Sports
-            </Link>
-            <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
+            </button>
+            <button onClick={() => filterWord("history")} className="px-[45px] py-[13px] max-w-full rounded-[16px] max-md:px-[20px] text-grey z-10 hover:text-black">
               History
-            </Link>
+            </button>
           </div>
         </div>
         <div className="flex flex-col items-center ">
-          <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-full">
-            <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-            <div className="flex flex-col w-full items-start justify-around">
-              <h3 className="text-[15px]">Mathematics XI-2</h3>
-              <p className="text-[12px]">Mathematic</p>
-              <div className="flex w-full justify-between">
-                <h5 className="text-[10px] text-grey">THG89X</h5>
-                <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                  <span>
-                    <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                  </span>{" "}
-                  77.5%
-                </p>
-              </div>
+          {/* One card */}
+
+          {value && (
+            <div className="w-full flex flex-col items-center">
+              {arrFiltered.map((obj) => (
+                <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
+                  <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+                  <div className="flex flex-col w-full items-start justify-around">
+                    <h3 className="text-[15px]">{obj.name.stringValue}</h3>
+                    <p className="text-[12px]">{obj.category.stringValue}</p>
+                    <div className="flex w-full justify-between">
+                      <h5 className="text-[10px] text-grey">THG89X</h5>
+                      <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                        <span>
+                          <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                        </span>{" "}
+                        {obj.results.integerValue / obj.completed.integerValue}%
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-          <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
-            <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-            <div className="flex flex-col w-full items-start justify-around">
-              <h3 className="text-[15px]">Mathematics XI-2</h3>
-              <p className="text-[12px]">Mathematic </p>
-              <div className="flex w-full justify-between">
-                <h5 className="text-[10px] text-grey">THG89X</h5>
-                <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                  <span>
-                    <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                  </span>{" "}
-                  77.5%
-                </p>
-              </div>
-            </div>
-          </div>
+          )}
+          {/* One card End */}
         </div>
       </div>
       {areSure && (

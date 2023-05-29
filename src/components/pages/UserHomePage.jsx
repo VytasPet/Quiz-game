@@ -10,14 +10,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthProvider";
 
 function UserHomePage() {
+  const { user, isLoggedIn } = useAuthCtx();
   const quizCollRef = collection(db, "quiz");
+  const usersCollRef = collection(db, "users");
   const [value, loading, error] = useCollection(quizCollRef);
+  const [valueInfo, loadingInfo, errorInfo] = useCollection(usersCollRef);
   const [arrToShow, setArr] = useState([]);
   const [arrFiltered, setArrFilt] = useState([]);
   const [loadingToast, setloadingToast] = useState(null);
   const [areSure, setareSure] = useState(false);
   const navigate = useNavigate();
-  const { user, isLoggedIn } = useAuthCtx();
+  const [userUserName, setuserUserName] = useState("");
+  console.log("user ===", user);
 
   let arrK = arrToShow;
   useEffect(() => {
@@ -35,8 +39,20 @@ function UserHomePage() {
       arrK = arrK.map((doc) => ({ uid: doc.id, ...doc._document.data.value.mapValue.fields }));
       setArr(arrK);
       setArrFilt(arrK);
+      console.log("arrK ===", arrK);
     }
   }, [value]);
+
+  useEffect(() => {
+    if (valueInfo) {
+      let searchIt = valueInfo.docs;
+      console.log("searchIt ===", searchIt);
+      searchIt = searchIt.find((doc) => doc._document.data.value.mapValue.fields.userUid.stringValue == user.uid);
+      //console.log("value.docs.data ===", value.docs[0]._document.data.value.mapValue.fields);
+      console.log("searchIt ===", searchIt._document.data.value.mapValue.fields.username);
+      setuserUserName(searchIt._document.data.value.mapValue.fields.username.stringValue);
+    }
+  }, [valueInfo]);
 
   // console.log("arrK ===", arrK);
 
@@ -58,17 +74,18 @@ function UserHomePage() {
   return (
     <>
       <div className={`mx-auto box-border mt-5 max-sm:mt-10 bg-profileBack ${areSure ? "blur-[5px]" : ""}`}>
-        <div className={`flex justify-center mr-10 ${isLoggedIn ? "" : "hidden"}`}>
-          <div className="bg-white p-[12px]  mb-[20px] max-w-[300px] rounded-[20px] flex ">
-            <div className="flex flex-row items-center">
-              <img className="inline p-[8px] mr-[5px]  rounded-[16px]" src="src/assets/images/hello.svg" alt="" />
-              <p className="text-grey">
-                Hello, <span className="text-black font-bold">username</span>
-              </p>
+        {value && (
+          <div className={`flex justify-center mr-10 ${isLoggedIn ? "" : "hidden"}`}>
+            <div className="bg-white p-[12px]  mb-[20px] max-w-[300px] rounded-[20px] flex ">
+              <div className="flex flex-row items-center">
+                <img className="inline p-[8px] mr-[5px]  rounded-[16px]" src="src/assets/images/hello.svg" alt="" />
+                <p className="text-grey">
+                  Hello, <span className="text-black font-bold">{userUserName}</span>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-
+        )}
         <div className="flex items-center justify-center">
           <div className="bg-blue p-[25px] text-white rounded-[20px] mt-[30px] mb-[35px] max-w-[500px] flex flex-col ">
             <h3 className="text-left mb-[15px]">Find Quiz Code</h3>
@@ -96,40 +113,31 @@ function UserHomePage() {
         </div>
 
         {/* Public quiz list */}
-        <div className="flex flex-col items-center">
-          <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2  max-sm:w-full">
-            <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-            <div className="flex flex-col w-full items-start justify-around">
-              <h3 className="text-[15px]">Mathematics XI-2</h3>
-              <p className="text-[12px]">Mathematic</p>
-              <div className="flex w-full justify-between">
-                <h5 className="text-[10px] text-grey">THG89X</h5>
-                <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                  <span>
-                    <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                  </span>{" "}
-                  77.5%
-                </p>
+        {value && (
+          <div>
+            {arrK.map((obj) => (
+              <div key={Math.random()} className="flex flex-col items-center">
+                <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2  max-sm:w-full">
+                  <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+                  <div className="flex flex-col w-full items-start justify-around">
+                    <h3 className="text-[15px]">{obj.name.stringValue}</h3>
+                    <p className="text-[12px]">{obj.category.stringValue}</p>
+                    <div className="flex w-full justify-between">
+                      <h5 className="text-[10px] text-grey">THG89X</h5>
+                      <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                        <span>
+                          <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                        </span>{" "}
+                        {obj.results.integerValue / obj.completed.integerValue}%
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-          <div className="bg-white p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-2/3 cursor-pointer">
-            <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-            <div className="flex flex-col w-full items-start justify-around">
-              <h3 className="text-[15px]">Mathematics XI-2</h3>
-              <p className="text-[12px]">Mathematic </p>
-              <div className="flex w-full justify-between">
-                <h5 className="text-[10px] text-grey">THG89X</h5>
-                <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                  <span>
-                    <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                  </span>{" "}
-                  77.5%
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        )}
+        {/* Public Quiz END */}
       </div>
 
       {areSure && (
