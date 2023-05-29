@@ -76,6 +76,54 @@ function Profile() {
     }
   }
 
+  function changePicture(e) {
+    e.preventDefault();
+    const newPictureUrl = e.target[0].value;
+    const userDocId = user.uid;
+    const docRef = doc(db, "users", userDocId);
+
+    if (newPictureUrl) {
+      try {
+        updateDoc(docRef, { profilePic: newPictureUrl });
+        toast.success("Profile picture change completed!");
+        seteditProf(false);
+      } catch (error) {
+        console.error("Error updating document: ", error);
+        toast.error("Unable to change profile picture!");
+      }
+      return;
+    } else if (!newPictureUrl && avatarChoose) {
+      const newPic = "";
+      switch (avatarChoose) {
+        case 1:
+          newPic = "src/assets/images/user.png";
+          break;
+        case 2:
+          newPic = "src/assets/images/man.png";
+          break;
+        case 3:
+          newPic = "src/assets/images/businessman.png";
+          break;
+        case 4:
+          newPic = "src/assets/images/user.png";
+          break;
+        case 5:
+          newPic = "src/assets/images/woman2.png";
+      }
+
+      try {
+        updateDoc(docRef, { profilePic: newPic });
+        toast.success("Avatar change completed!");
+        seteditProf(false);
+      } catch (error) {
+        console.error("Error updating document: ", error);
+        toast.error("Unable to change avatar!");
+      }
+    } else {
+      toast.error("Please choose avatar");
+    }
+  }
+
   function changePassword(e) {
     e.preventDefault();
     const newPass = e.target[0].value;
@@ -246,15 +294,15 @@ function Profile() {
       {editImage && (
         <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
           <div className="flex justify-center flex-wrap gap-2 mb-[20px]">
-            <img onClick={() => setavatarChoose(1)} className="w-1/4" src="src/assets/images/man.png" alt="" />
-            <img onClick={() => setavatarChoose(2)} className="w-1/4" src="src/assets/images/businessman.png" alt="" />
-            <img onClick={() => setavatarChoose(3)} className="w-1/4" src="src/assets/images/user.png" alt="" />
-            <img onClick={() => setavatarChoose(4)} className="w-1/4" src="src/assets/images/woman2.png" alt="" />
-            <img onClick={() => setavatarChoose(5)} className="w-1/4" src="src/assets/images/profile (1).png" alt="" />
+            <img onClick={() => setavatarChoose(1)} className={`${avatarChoose === 1 ? "border-4 border-green rounded-[50px]" : ""} w-1/4`} src="src/assets/images/man.png" alt="" />
+            <img onClick={() => setavatarChoose(2)} className={`${avatarChoose === 2 ? "border-4 border-green rounded-[50px]" : ""} w-1/4`} src="src/assets/images/businessman.png" alt="" />
+            <img onClick={() => setavatarChoose(3)} className={`${avatarChoose === 3 ? "border-4 border-green rounded-[50px]" : ""} w-1/4`} src="src/assets/images/user.png" alt="" />
+            <img onClick={() => setavatarChoose(4)} className={`${avatarChoose === 4 ? "border-4 border-green rounded-[50px]" : ""} w-1/4`} src="src/assets/images/woman2.png" alt="" />
+            <img onClick={() => setavatarChoose(5)} className={`${avatarChoose === 5 ? "border-4 border-green rounded-[50px]" : ""} w-1/4`} src="src/assets/images/profile (1).png" alt="" />
           </div>
           <h2 className="text-black font-light mb-[20px]">Choose your profile picture</h2>
           <h2 className="text-black font-light mb-[20px]">Or upload your picture:</h2>
-          <form>
+          <form onSubmit={changePicture}>
             <input placeholder="Picture URL" className="bg-#F6F6F6  p-[12px] text-center mb-[30px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
             <button type="submit" className="bg-blue p-[6px] cursor-pointer mt-[10px] text-white w-full rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
               Change
