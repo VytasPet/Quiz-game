@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthCtx } from "../../store/AuthProvider";
 
 function UserHomePage() {
   const quizCollRef = collection(db, "quiz");
@@ -16,6 +17,7 @@ function UserHomePage() {
   const [loadingToast, setloadingToast] = useState(null);
   const [areSure, setareSure] = useState(false);
   const navigate = useNavigate();
+  const { user, isLoggedIn } = useAuthCtx();
 
   let arrK = arrToShow;
   useEffect(() => {
@@ -56,7 +58,7 @@ function UserHomePage() {
   return (
     <>
       <div className={`mx-auto box-border mt-5 max-sm:mt-10 bg-profileBack ${areSure ? "blur-[5px]" : ""}`}>
-        <div className="flex justify-center mr-10">
+        <div className={`flex justify-center mr-10 ${isLoggedIn ? "" : "hidden"}`}>
           <div className="bg-white p-[12px]  mb-[20px] max-w-[300px] rounded-[20px] flex ">
             <div className="flex flex-row items-center">
               <img className="inline p-[8px] mr-[5px]  rounded-[16px]" src="src/assets/images/hello.svg" alt="" />
@@ -90,7 +92,7 @@ function UserHomePage() {
         </div>
         <div className="flex items-center justify-between mt-[35px] px-[30px] min-[700px]:px-[100px]   ">
           <h3 className="text-left text-[20px]">Public quiz</h3>
-          <img className="cursor-pointer" onClick={() => navigate("/quiz")} src="src/assets/images/arrow-leftarrow.svg" alt="" />
+          <img className="cursor-pointer" onClick={() => navigate(isLoggedIn ? "/quiz" : "/register")} src="src/assets/images/arrow-leftarrow.svg" alt="" />
         </div>
 
         {/* Public quiz list */}

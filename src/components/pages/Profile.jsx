@@ -17,6 +17,7 @@ function Profile() {
   const [showStats, setshowStats] = useState(false);
   const [editProf, seteditProf] = useState(false);
   const [changePass, setchangePass] = useState(false);
+  const [editImage, seteditImage] = useState(false);
   const [signOut] = useSignOut(auth);
   const navigate = useNavigate();
 
@@ -75,8 +76,12 @@ function Profile() {
 
   return (
     <div>
-      <div className={`relative flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px] ${showStats || editProf || changePass ? "blur-[5px]" : ""}`}>
-        <div className="relative mb-6">
+      <div
+        className={`relative flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px] ${
+          showStats || editProf || changePass || editImage ? "blur-[5px]" : ""
+        }`}
+      >
+        <div onClick={() => seteditImage(!editImage)} className="relative mb-6 cursor-pointer">
           <img className="" src="src/assets/images/happywinner.svg" alt="" />
           <img className="absolute top-[50%]" src="src/assets/images/addpic.svg" alt="" />
         </div>
@@ -85,7 +90,7 @@ function Profile() {
         <div className="bg-white p-[12px]  mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between max-sm:w-full" onClick={() => seteditProf(!editProf)}>
           <div className="flex flex-row items-center">
             <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
-            <p>Edit profile</p>
+            <p>Edit username</p>
           </div>
           <img src="src/assets/images/chevron-downgoin.svg" alt="" />
         </div>
@@ -120,6 +125,7 @@ function Profile() {
       {/* VIEW STATS */}
       {showStats && (
         <div className="statsMid w-2/3 max-w-[600px] max-sm:w-2/3 max-lg:2/3 flex flex-col items-center justify-center">
+          <img className="p-0 m-0 max-h-[235px] max-w-[239px] " src="src/assets/images/Group 25stats.svg" alt="" />
           <div className="bg-white p-[12px] font-light mb-[10px] max-w-[400px] w-full min-sm:w-2/3 rounded-[20px] flex justify-between ">
             <div className="flex flex-row items-center">
               <img className="inline p-[8px] mr-[15px] bg-lightBlue  rounded-[16px]" src="src/assets/images/usersstatpeopl (1).svg" alt="" />
@@ -158,6 +164,36 @@ function Profile() {
         </div>
       )}
 
+      {/* EDIT IMAGE */}
+      {editImage && (
+        <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
+          <div className="flex justify-center flex-wrap gap-2 mb-[20px]">
+            <img className=" w-1/4" src="src/assets/images/man.png" alt="" />
+            <img className="w-1/4" src="src/assets/images/businessman.png" alt="" />
+            <img className="border-4 border-green rounded-[50%] w-1/4" src="src/assets/images/user.png" alt="" />
+            <img className="w-1/4" src="src/assets/images/woman2.png" alt="" />
+            <img className="w-1/4" src="src/assets/images/profile (1).png" alt="" />
+          </div>
+          <h2 className="text-black font-light mb-[20px]">Choose your profile picture</h2>
+          <h2 className="text-black font-light mb-[20px]">Or upload your picture:</h2>
+          <input placeholder="Picture URL" className="bg-#F6F6F6  p-[12px] text-center mb-[30px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
+
+          <button className="bg-blue p-[6px] cursor-pointer mt-[10px] text-white w-full rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">Change</button>
+          {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
+<p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
+<p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
+<p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
+*/}
+
+          <div
+            onClick={() => seteditImage(!editImage)}
+            className="bg-white p-[6px] border-2 cursor-pointer border-lightGray mt-[10px] text-black w-full max-w-[400px] rounded-[20px] flex justify-center hover:outline-4 hover:border-blue "
+          >
+            <p>Back</p>
+          </div>
+        </div>
+      )}
+
       {/* EDIT PROFILE */}
       {editProf && (
         <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
@@ -170,10 +206,10 @@ function Profile() {
             </button>
           </form>
           {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
-      <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
-      <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
-      <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
-       */}
+    <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
+    <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
+    <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
+     */}
 
           <div
             onClick={() => seteditProf(!editProf)}
@@ -187,6 +223,7 @@ function Profile() {
       {/* CHANGE PASSWORD */}
       {changePass && (
         <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
+          <img className="p-0 m-0" src="src/assets/images/emojircok.svg" alt="" />
           <h2 className="text-black font-light mb-[20px]">Change your password</h2>
           <form className="w-full flex flex-col items-center" onSubmit={() => console.log("laba diena")}>
             <input placeholder="Password" className="bg-#F6F6F6  p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>

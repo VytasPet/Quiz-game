@@ -29,7 +29,7 @@ function RegisterPage() {
         setDoc(userDocRef, info);
         toast.dismiss(loadingToastId);
         toast.success("register completed!");
-        navigate("/quiz");
+        navigate("/profile");
       })
       .catch((error) => {
         const errorCode = error.code;

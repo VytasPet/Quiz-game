@@ -39,10 +39,10 @@ function HomePage() {
   }, [value]);
 
   return (
-    <div className="flex flex-col h-[60vh] gap-[30px] justify-center items-center">
-      <img src="src/assets/images/Group 7logo center.svg" alt="" />
+    <div className="flex flex-col absolute left-[50%] top-[60%] translate-x-[-50%] translate-y-[-60%] h-[60vh] gap-[30px] justify-center items-center">
       <h1 className="text-[24px] font-bold">Interactive Quiz</h1>
-      <h3 className="font-light w-1/2 text-[12px]">Create, solve quizzes publicly or privately, and enhance your ratings on our Quiz Page!</h3>
+      <img src="src/assets/images/boxlogoMel.svg" alt="" />
+      <h3 className="font-light w-2/3 text-[20px] max-sm:text-[14px]">Create, solve quizzes publicly or privately, and enhance your ratings on our Quiz Page!</h3>
       <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">
         Start here!
       </Link>

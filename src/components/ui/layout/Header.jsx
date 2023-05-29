@@ -44,8 +44,8 @@ function Header() {
               <img src="src/assets/images/Unionreward.svg" alt="" />{" "}
             </Link>
           )}
-          <Link to="/quiz">
-            <img className="w-[90px]" src="src/assets/images/button-explorequizes.svg" alt="Logo" />
+          <Link to="/userhome">
+            <img className="w-[90px] max-sm:w-[60px]" src="src/assets/images/button-explorequizes.svg" alt="Logo" />
           </Link>
 
           {isLoggedIn && (

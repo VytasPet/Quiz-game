@@ -28,7 +28,7 @@ function LoginPage() {
   useEffect(() => {
     if (user) {
       // console.log("isLoggedIn ===", isLoggedIn);
-      navigate("/");
+      navigate("/profile");
       toast.success("Signed in successfully!");
     } else if (error) {
       toast.error(`Failed to sign in: ${error.message}`);
