@@ -96,7 +96,7 @@ function UserHomePage() {
     <div className="full">
       <div className={`mx-auto box-border mt-5 max-sm:mt-10 bg-profileBack ${areSure || searchRez ? "blur-[5px]" : ""}`}>
         {value && (
-          <div className={`flex justify-center mr-10 ${isLoggedIn ? "" : "hidden"}`}>
+          <div className={`flex justify-center ${isLoggedIn ? "" : "hidden"}`}>
             <div className="bg-white p-[12px]  mb-[20px] max-w-[300px] rounded-[20px] flex ">
               <div className="flex flex-row items-center">
                 <img className="inline p-[8px] mr-[5px]  rounded-[16px]" src="src/assets/images/hello.svg" alt="" />
@@ -135,7 +135,7 @@ function UserHomePage() {
 
         {/* Public quiz list */}
         {value && (
-          <div>
+          <div className="mb-[30px]">
             {arrK.slice(0, 2).map((obj) => {
               if (obj.public.booleanValue) {
                 return (
