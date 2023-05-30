@@ -120,7 +120,7 @@ function LeaderBoard() {
                                   alt=""
                                 />
                               </div>
-                              <img className="w-4/5 " src="src/assets/images/2-3Place.svg" alt="lab" />
+                              <img className="w-4/5 " src={Splace} w-full alt="lab" />
                             </div>
                             <div>
                               <p className="mb-[20px]">{obj.username}</p>
