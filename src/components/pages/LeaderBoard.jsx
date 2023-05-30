@@ -113,14 +113,14 @@ function LeaderBoard() {
                           <div className="relative flex items-end w-full justify-center">
                             <div className="absolute flex flex-col w-full max-w-full items-center">
                               <div className="absolute max-w-[60%] max-sm:top-[-30%]">
-                                <img className="absolute bottom-[-10%] left-[40%] max-sm:left-[38%]" src={twoPlace} alt="" />
+                                <img className="absolute bottom-[-10%] left-[40%] max-sm:left-[38%]" src={medal} alt="" />
                                 <img
                                   className="border-4 border-green rounded-[50%] h-[88px] w-[88px] max-sm:h-[68px] max-sm:w-[68px]"
                                   src={`${obj.profilePic ? obj.profilePic : "src/assets/images/happyWinner.svg"}`}
                                   alt=""
                                 />
                               </div>
-                              <img className="w-4/5 " src="src/assets/images/2-3Place.svg" w-full alt="lab" />
+                              <img className="w-4/5 " src="src/assets/images/2-3Place.svg" alt="lab" />
                             </div>
                             <div>
                               <p className="mb-[20px]">{obj.username}</p>
