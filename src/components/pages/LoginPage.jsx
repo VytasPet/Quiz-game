@@ -7,6 +7,7 @@ import LoginForm from "../forms/LoginForm";
 import { auth } from "../../firebase/firebaseConfig";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { useEffect } from "react";
+import reglog from "/src/assets/images/reglog.svg";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ function LoginPage() {
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 bg-white text-grey rounded-[16px]">
           <div className="font-cursive text-white underline pt-3 pb-3 px-5"></div>
-          <img className="absolute top-[80px] max-sm:top-[30px] z-0" src="src/assets/images/reglog.svg" alt="" />{" "}
+          <img className="absolute top-[80px] max-sm:top-[30px] z-0" src={reglog} alt="" />{" "}
           <div className="w-full bg-lightBlue rounded-[16px] p-1 flex justify-between">
             <Link to={"/login"} className="px-[45px] text-white py-[13px] max-w-full bg-blue rounded-[16px] z-10">
               Login

@@ -9,6 +9,24 @@ import { Navigate, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getAuth, updatePassword } from "firebase/auth";
 import defaultPic from "/src/assets/images/user.png";
+import addPic from "/src/assets/images/addpic.svg";
+import star from "/src/assets/images/VectorstartQuiz.svg";
+import profileEd from "/src/assets/images/personprofileEd.svg";
+import award from "/src/assets/images/awardstats.svg";
+import union from "/src/assets/images/Unionpass.svg";
+import logout from "/src/assets/images/exitlogout.svg";
+import statsas from "/src/assets/images/Group 25stats.svg";
+import people from "/src/assets/images/usersstatpeopl (1).svg";
+import edit2 from "/src/assets/images/edit-2created.svg";
+import boxbox from "/src/assets/images/boxbox.svg";
+import slider from "/src/assets/images/sliderssta.svg";
+import man from "/src/assets/images/man.png";
+import userauskas from "/src/assets/images/user.png";
+import businessman from "/src/assets/images/businessman.png";
+import woman2 from "/src/assets/images/woman2.png";
+import profile1 from "/src/assets/images/profile (1).png";
+import emoji from "/src/assets/images/emojircok.svg";
+import chevron from "/src/assets/images/chevron-downgoin.svg";
 
 function Profile() {
   const { user } = useAuthCtx();
@@ -98,19 +116,19 @@ function Profile() {
       let newPic = "";
       switch (avatarChoose) {
         case 1:
-          newPic = "src/assets/images/man.png";
+          newPic = "/src/assets/images/man.png";
           break;
         case 2:
-          newPic = "src/assets/images/businessman.png";
+          newPic = "/src/assets/images/businessman.png";
           break;
         case 3:
-          newPic = "src/assets/images/user.png";
+          newPic = "/src/assets/images/user.png";
           break;
         case 4:
-          newPic = "src/assets/images/woman2.png";
+          newPic = "/src/assets/images/woman2.png";
           break;
         case 5:
-          newPic = "src/assets/images/profile (1).png";
+          newPic = "/src/assets/images/profile (1).png";
       }
 
       try {
@@ -215,46 +233,46 @@ function Profile() {
           >
             <div onClick={() => seteditImage(!editImage)} className="relative mb-6 cursor-pointer">
               <img className="w-[88px] h-[88px] rounded-[50px]" src={`${useris.profilePic ? useris.profilePic : defaultPic}`} alt="" />
-              <img className="absolute top-[50%]" src="src/assets/images/addpic.svg" alt="" />
+              <img className="absolute top-[50%]" src={addPic} alt="" />
             </div>
             <h1 className="text-[26px] font-bold text-black mb-2">{useris.username}</h1>
             <h2 className="text-[16px] text-blue bg-lightBlue py-[14px] px-[30px] mb-[45px] rounded-[20px]">{useris.email}</h2>
             <div className="bg-white p-[12px] cursor-pointer mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between max-sm:w-full" onClick={() => navigate("/myquiz")}>
               <div className="flex flex-row items-center">
-                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/VectorstartQuiz.svg" alt="" />
+                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src={star} alt="" />
                 <p>My quiz</p>
               </div>
-              <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+              <img src={chevron} alt="" />
             </div>
             <div className="bg-white p-[12px]  mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between max-sm:w-full" onClick={() => seteditProf(!editProf)}>
               <div className="flex flex-row items-center">
-                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
+                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src={profileEd} alt="" />
                 <p>Edit username</p>
               </div>
-              <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+              <img src={chevron} alt="" />
             </div>
 
             <div className="bg-white p-[12px] cursor-pointer mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between max-sm:w-full" onClick={() => setshowStats(!showStats)}>
               <div className="flex flex-row items-center">
-                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/awardstats.svg" alt="" />
+                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src={award} alt="" />
                 <p>My stats</p>
               </div>
-              <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+              <img src={chevron} alt="" />
             </div>
             <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] cursor-pointer rounded-[20px] flex justify-between max-sm:w-full" onClick={() => setchangePass(!changePass)}>
               <div className="flex flex-row items-center">
-                <img className="inline p-[12px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/Unionpass.svg" alt="" />
+                <img className="inline p-[12px] mr-[15px] bg-lightBlue rounded-[16px]" src={union} alt="" />
                 <p>Change password</p>
               </div>
-              <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+              <img src={chevron} alt="" />
             </div>
 
             <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] cursor-pointer rounded-[20px] flex justify-between max-sm:w-full" onClick={logoutinimas}>
               <div className="flex flex-row items-center">
-                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/exitlogout.svg" alt="" />
+                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src={logout} alt="" />
                 <p>Log out</p>
               </div>
-              <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+              <img src={chevron} alt="" />
             </div>
             {/* <p className="border-y py-2 w-1/2">Your ranking: {position}</p>
       <p className="border-y py-2 w-1/2">Created Quiz: {useris.created}</p>
@@ -266,28 +284,28 @@ function Profile() {
           {/* VIEW STATS */}
           {showStats && (
             <div className="statsMid w-2/3 max-w-[600px] max-sm:w-2/3 max-lg:2/3 flex flex-col items-center justify-center">
-              <img className="p-0 m-0 max-h-[235px] max-w-[239px] " src="src/assets/images/Group 25stats.svg" alt="" />
+              <img className="p-0 m-0 max-h-[235px] max-w-[239px] " src={statsas} alt="" />
               <div className="bg-white p-[12px] font-light mb-[10px] max-w-[400px] w-full min-sm:w-2/3 rounded-[20px] flex justify-between ">
                 <div className="flex flex-row items-center">
-                  <img className="inline p-[8px] mr-[15px] bg-lightBlue  rounded-[16px]" src="src/assets/images/usersstatpeopl (1).svg" alt="" />
+                  <img className="inline p-[8px] mr-[15px] bg-lightBlue  rounded-[16px]" src={people} alt="" />
                   <p>Your ranking: {position}</p>
                 </div>
               </div>
               <div className="bg-white p-[12px] font-light mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
                 <div className="flex flex-row items-center">
-                  <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/edit-2created.svg" alt="" />
+                  <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src={edit2} alt="" />
                   <p>Created Quiz: {useris.created}</p>
                 </div>
               </div>
               <div className="bg-white p-[12px] font-light mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
                 <div className="flex flex-row items-center">
-                  <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/boxbox.svg" alt="" />
+                  <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src={boxbox} alt="" />
                   <p>Quiz Completed: {useris.completed}</p>
                 </div>
               </div>
               <div className="bg-white p-[12px] font-light mb-[10px] w-full max-w-[400px] rounded-[20px] flex justify-between ">
                 <div className="flex flex-row items-center">
-                  <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/sliderssta.svg" alt="" />
+                  <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src={slider} alt="" />
                   <p>Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
                 </div>
               </div>
@@ -309,26 +327,11 @@ function Profile() {
           {editImage && (
             <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
               <div className="flex justify-center flex-wrap gap-2 mb-[20px]">
-                <img onClick={() => setavatarChoose(1)} className={`${avatarChoose === 1 ? "border-4 border-green " : "rounded-[50px]"} w-1/4 rounded-[50px]`} src="src/assets/images/man.png" alt="" />
-                <img
-                  onClick={() => setavatarChoose(2)}
-                  className={`${avatarChoose === 2 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`}
-                  src="src/assets/images/businessman.png"
-                  alt=""
-                />
-                <img onClick={() => setavatarChoose(3)} className={`${avatarChoose === 3 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`} src="src/assets/images/user.png" alt="" />
-                <img
-                  onClick={() => setavatarChoose(4)}
-                  className={`${avatarChoose === 4 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`}
-                  src="src/assets/images/woman2.png"
-                  alt=""
-                />
-                <img
-                  onClick={() => setavatarChoose(5)}
-                  className={`${avatarChoose === 5 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`}
-                  src="src/assets/images/profile (1).png"
-                  alt=""
-                />
+                <img onClick={() => setavatarChoose(1)} className={`${avatarChoose === 1 ? "border-4 border-green " : "rounded-[50px]"} w-1/4 rounded-[50px]`} src={man} alt="" />
+                <img onClick={() => setavatarChoose(2)} className={`${avatarChoose === 2 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`} src={businessman} alt="" />
+                <img onClick={() => setavatarChoose(3)} className={`${avatarChoose === 3 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`} src={userauskas} alt="" />
+                <img onClick={() => setavatarChoose(4)} className={`${avatarChoose === 4 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`} src={woman2} alt="" />
+                <img onClick={() => setavatarChoose(5)} className={`${avatarChoose === 5 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`} src={profile1} alt="" />
               </div>
               <h2 className="text-black font-light mb-[20px]">Choose your profile picture</h2>
               <h2 className="text-black font-light mb-[20px]">Or upload your picture:</h2>
@@ -358,7 +361,7 @@ function Profile() {
           {/* EDIT PROFILE */}
           {editProf && (
             <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
-              <img className="p-0 m-0" src="src/assets/images/emojircok.svg" alt="" />
+              <img className="p-0 m-0" src={emoji} alt="" />
               <h2 className="text-black font-medium mb-[20px]">Change your username</h2>
               <form className="w-full flex flex-col items-center" onSubmit={changeUsername}>
                 <input
@@ -387,7 +390,7 @@ function Profile() {
           {/* CHANGE PASSWORD */}
           {changePass && (
             <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
-              <img className="p-0 m-0" src="src/assets/images/emojircok.svg" alt="" />
+              <img className="p-0 m-0" src={emoji} alt="" />
               <h2 className="text-black font-medium mb-[20px]">Change your password</h2>
               <form className="w-full flex flex-col items-center" onSubmit={changePassword}>
                 <input placeholder="Password" className="bg-#F6F6F6  p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>

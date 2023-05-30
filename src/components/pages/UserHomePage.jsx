@@ -8,6 +8,14 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthProvider";
+import wave from "/src/assets/images/hello.svg";
+import searchTh from "/src/assets/images/searchsearch.svg";
+import arrL from "/src/assets/images/arrow-leftarrow.svg";
+import cate from "/src/assets/images/Group 14cate.svg";
+import awardM from "/src/assets/images/awardmedalblue.svg";
+import sad from "/src/assets/images/Group 13start.svg";
+import notF from "/src/assets/images/Group 34notfoung.svg";
+import rocket from "/src/assets/images/Group 13start.svg";
 
 function UserHomePage() {
   const { user, isLoggedIn } = useAuthCtx();
@@ -99,7 +107,7 @@ function UserHomePage() {
           <div className={`flex justify-center ${isLoggedIn ? "" : "hidden"}`}>
             <div className="bg-white p-[12px]  mb-[20px] max-w-[300px] rounded-[20px] flex ">
               <div className="flex flex-row items-center">
-                <img className="inline p-[8px] mr-[5px]  rounded-[16px]" src="src/assets/images/hello.svg" alt="" />
+                <img className="inline p-[8px] mr-[5px]  rounded-[16px]" src={wave} alt="" />
                 <p className="text-grey">
                   Hello, <span className="text-black font-bold">{userUserName}</span>
                 </p>
@@ -113,7 +121,7 @@ function UserHomePage() {
             <p className="text-[16px] font-light text-left">Enter quiz code that given by teacher, and you can start gathering points!</p>
             <div className="flex items-center justify-center mt-[30px]">
               <form onSubmit={searchQuiz} className="relative w-1/2">
-                <img src="src/assets/images/searchsearch.svg" alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
+                <img src={searchTh} alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
                 <input
                   id="search"
                   name="search"
@@ -130,7 +138,7 @@ function UserHomePage() {
         </div>
         <div className="flex items-center justify-between mt-[35px] px-[30px] min-[700px]:px-[100px]   ">
           <h3 className="text-left text-[20px]">Public quiz</h3>
-          <img className="cursor-pointer" onClick={() => navigate(isLoggedIn ? "/quiz" : "/register")} src="src/assets/images/arrow-leftarrow.svg" alt="" />
+          <img className="cursor-pointer" onClick={() => navigate(isLoggedIn ? "/quiz" : "/register")} src={arrL} alt="" />
         </div>
 
         {/* Public quiz list */}
@@ -141,7 +149,7 @@ function UserHomePage() {
                 return (
                   <div key={Math.random()} className="flex flex-col items-center">
                     <div onClick={() => openQuiz(obj)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2  max-sm:w-full">
-                      <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+                      <img className="bg-lightBlue p-[15px] rounded-[20px]" src={cate} alt="" />
                       <div className="flex flex-col w-full items-start justify-around">
                         <h3 className="text-[15px]">{obj.name.stringValue}</h3>
                         <p className="text-[12px]">{obj.category.stringValue.charAt(0).toUpperCase() + obj.category.stringValue.slice(1)}</p>
@@ -149,7 +157,7 @@ function UserHomePage() {
                           <h5 className="text-[10px] text-grey">{obj.uid.slice(0, 5)}</h5>
                           <p className=" text-[10px] text-grey font-bold pr-[20px]">
                             <span>
-                              <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                              <img className="inline " src={awardM} alt="" />
                             </span>{" "}
                             {obj.completed.integerValue == 0 && "New"}
                             {obj.completed.integerValue > 0 && (obj.results.integerValue / obj.completed.integerValue).toFixed(2) + "%"}
@@ -169,7 +177,7 @@ function UserHomePage() {
 
       {areSure && (
         <div className="statsMid">
-          <img src="src/assets/images/Group 13start.svg" alt="" />
+          <img src={rocket} alt="" />
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
           <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl.name.stringValue}</h2>
           <form onSubmit={() => console.log("laba diena")}>
@@ -198,7 +206,7 @@ function UserHomePage() {
         <div className="statsMid">
           {searchRez == "Quiz was not found!" && (
             <>
-              <img src="src/assets/images/Group 34notfoung.svg" alt="" />
+              <img src={notF} alt="" />
               <h2 className="text-red text-[20px] mb-[20px] font-normal">Quiz was not found!</h2>
               <div
                 onClick={() => setsearchRez("")}
@@ -210,7 +218,7 @@ function UserHomePage() {
           )}
           {searchRez !== "Quiz was not found!" && (
             <>
-              <img src="src/assets/images/Group 13start.svg" alt="" />
+              <img src={sad} alt="" />
               <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
               <h2 className="text-blue text-[24px] mb-[20px] font-light">{searchRez.name.stringValue}</h2>
               <form onSubmit={() => console.log("laba diena")}>

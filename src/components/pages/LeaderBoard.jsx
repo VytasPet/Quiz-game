@@ -5,6 +5,12 @@ import hero from "/src/assets/images/bighero.svg";
 import quiz from "/src/assets/images/totalApl.svg";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc } from "firebase/firestore";
+import medal from "/src/assets/images/Group 83placemedal.svg";
+import Splace from "/src/assets/images/2-3Place.svg";
+import crown from "/src/assets/images/2-3Place.svg";
+import oneStep from "/src/assets/images/1stStep.svg";
+import onePlace from "/src/assets/images/Group 7firstplace.svg";
+import twoPlace from "/src/assets/images/secPL.svg";
 
 function LeaderBoard() {
   const [sortArr, setsortArr] = useState([]);
@@ -62,14 +68,14 @@ function LeaderBoard() {
                           <div className="relative flex items-end w-full justify-center">
                             <div className="absolute flex flex-col w-full max-w-full items-center">
                               <div className="absolute max-w-[60%] max-sm:top-[-30%]">
-                                <img className="absolute bottom-[-10%] left-[40%]" src="src/assets/images/Group 83placemedal.svg" alt="" />
+                                <img className="absolute bottom-[-10%] left-[40%]" src={medal} alt="" />
                                 <img
                                   className="border-4 border-green rounded-[50%] h-[88px] w-[88px] max-sm:h-[68px] max-sm:w-[68px]"
-                                  src={`${obj.profilePic ? obj.profilePic : "src/assets/images/happyWinner.svg"}`}
+                                  src={`${obj.profilePic ? obj.profilePic : "/src/assets/images/happyWinner.svg"}`}
                                   alt=""
                                 />
                               </div>
-                              <img className="w-4/5 " src="src/assets/images/2-3Place.svg" w-full alt="lab" />
+                              <img className="w-4/5 " src={Splace} w-full alt="lab" />
                             </div>
                             <div>
                               <p className="mb-[20px]">{obj.username}</p>
@@ -84,16 +90,16 @@ function LeaderBoard() {
                             <div className="absolute flex flex-col w-full items-center ">
                               <div className="absolute max-w-[70%] max-sm:top-[-30%] flex flex-col items-center">
                                 <div>
-                                  <img className="absolute top-[-40%] left-[32%] max-sm:left-[25%]" src="src/assets/images/crownking.svg" alt="" />
+                                  <img className="absolute top-[-40%] left-[32%] max-sm:left-[25%]" src={crown} alt="" />
                                   <img
                                     className="border-4 border-green rounded-[50%] h-[88px] w-[88px] max-sm:h-[68px] max-sm:w-[68px]"
                                     src={`${obj.profilePic ? obj.profilePic : "src/assets/images/happyWinner.svg"}`}
                                     alt=""
                                   />
                                 </div>
-                                <img className="absolute bottom-[-10%] left-[40%] max-sm:left-[38%]" src="src/assets/images/Group 7firstplace.svg" alt="" />
+                                <img className="absolute bottom-[-10%] left-[40%] max-sm:left-[38%]" src={onePlace} alt="" />
                               </div>
-                              <img className="w-full " src="src/assets/images/1stStep.svg" alt="lab" />
+                              <img className="w-full " src={oneStep} alt="lab" />
                             </div>
                             <div>
                               <p className="mb-[20px]">{obj.username}</p>
@@ -107,7 +113,7 @@ function LeaderBoard() {
                           <div className="relative flex items-end w-full justify-center">
                             <div className="absolute flex flex-col w-full max-w-full items-center">
                               <div className="absolute max-w-[60%] max-sm:top-[-30%]">
-                                <img className="absolute bottom-[-10%] left-[40%] max-sm:left-[38%]" src="src/assets/images/secPL.svg" alt="" />
+                                <img className="absolute bottom-[-10%] left-[40%] max-sm:left-[38%]" src={twoPlace} alt="" />
                                 <img
                                   className="border-4 border-green rounded-[50%] h-[88px] w-[88px] max-sm:h-[68px] max-sm:w-[68px]"
                                   src={`${obj.profilePic ? obj.profilePic : "src/assets/images/happyWinner.svg"}`}

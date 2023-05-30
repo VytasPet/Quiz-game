@@ -9,6 +9,10 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import arrL from "/src/assets/images/arrow-leftback.svg";
+import cate from "/src/assets/images/arrow-leftback.svg";
+import awardM from "/src/assets/images/awardmedalblue.svg";
+import notF from "/src/assets/images/Group 34notfoung.svg";
 
 function MyQuizPage() {
   const { user, isLoggedIn } = useAuthCtx();
@@ -103,7 +107,7 @@ function MyQuizPage() {
     <div className="full">
       <div className={`${areSure ? "blur-[5px]" : ""}`}>
         <div className=" mt-[35px] px-[30px]">
-          <img className="cursor-pointer" onClick={() => window.history.back()} src="src/assets/images/arrow-leftback.svg" alt="" />
+          <img className="cursor-pointer" onClick={() => window.history.back()} src={arrL} alt="" />
           <h3 className="text-center mb-[30px]">My quiz</h3>
         </div>
         <div className="flex justify-center">
@@ -143,7 +147,7 @@ function MyQuizPage() {
               {arrFiltered.map((obj, i) => (
                 <CSSTransition key={i} timeout={500} classNames="fade">
                   <div onClick={() => openQuiz(obj)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-full`}>
-                    <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+                    <img className="bg-lightBlue p-[15px] rounded-[20px]" src={cate} alt="" />
                     <div className="flex flex-col w-full">
                       <h3 className="text-[20px] mb-[20px] font-light text-center">{obj.name.stringValue}</h3>
                       <div className="flex flex-col w-full gap-2 items-start justify-around">
@@ -167,7 +171,7 @@ function MyQuizPage() {
                             </button>
                             <p className=" text-[10px] text-grey font-bold pr-[20px]">
                               <span>
-                                <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                                <img className="inline " src={awardM} alt="" />
                               </span>{" "}
                               {obj.completed.integerValue == 0 && "New"}
                               {obj.completed.integerValue > 0 && (obj.results.integerValue / obj.completed.integerValue).toFixed(2) + "%"}
@@ -214,7 +218,7 @@ function MyQuizPage() {
       )}
       {areSureDel && (
         <div className="statsMid flex flex-col items-center">
-          <img src="src/assets/images/Group 34notfoung.svg" alt="" />
+          <img src={notF} alt="" />
           <h2 className="text-[20px] text-red mb-[20px] font-normal">Are you sure want delete quiz:</h2>
           <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl?.name?.stringValue}</h2>
 

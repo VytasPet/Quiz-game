@@ -9,6 +9,7 @@ import { query, where, getDocs } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import finisas from "/src/assets/images/finito.svg";
+import finito from "/src/assets/images/finito.svg";
 
 function QuizPage() {
   const navigate = useNavigate();
@@ -221,7 +222,7 @@ function QuizPage() {
                   // Quiz submission confirmation
 
                   <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center ">
-                    <img src="src/assets/images/finito.svg" alt="" />
+                    <img src={finito} alt="" />
                     <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex items-center justify-center ">
                       <div className="flex flex-col ">
                         <img src={finisas} alt="" />
