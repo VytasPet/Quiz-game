@@ -23,6 +23,8 @@ function MyQuizPage() {
   const navigate = useNavigate();
   const [userUserName, setuserUserName] = useState("");
   const [activeFilter, setactiveFilter] = useState("show all");
+  const [QuizUrl, setQuizUrl] = useState({});
+  const [areSureDel, setareSureDel] = useState(false);
 
   console.log("user ===", user);
 
@@ -60,6 +62,23 @@ function MyQuizPage() {
       setuserUserName(searchIt._document.data.value.mapValue.fields.username.stringValue);
     }
   }, [valueInfo]);
+  function openQuiz(uid) {
+    setareSure(!areSure);
+    setQuizUrl(uid);
+  }
+
+  async function deleteQuiz(quizId) {
+    // console.log("quizId ===", quizId);
+    try {
+      const itemRef = doc(db, "quiz", quizId);
+      await deleteDoc(itemRef);
+      // console.log("Item deleted successfully");
+      toast.success("Successfully deleted Quiz!");
+    } catch (error) {
+      // console.error("Error deleting item:", error);
+      toast.error("Error to delet Quiz!");
+    }
+  }
 
   // console.log("arrK ===", arrK);
 
@@ -123,19 +142,31 @@ function MyQuizPage() {
             <TransitionGroup className="w-full flex flex-col items-center">
               {arrFiltered.map((obj, i) => (
                 <CSSTransition key={i} timeout={500} classNames="fade">
-                  <div onClick={() => setareSure(!areSure)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-[650px]:w-full`}>
+                  <div onClick={() => openQuiz(obj)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-full`}>
                     <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
                     <div className="flex flex-col w-full items-start justify-around">
                       <h3 className="text-[15px]">{obj.name.stringValue}</h3>
                       <p className="text-[12px]">{obj.category.stringValue.charAt(0).toUpperCase() + obj.category.stringValue.slice(1)}</p>
                       <div className="flex w-full justify-between">
-                        <h5 className="text-[10px] text-grey">THG89X</h5>
-                        <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                          <span>
-                            <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                          </span>{" "}
-                          {obj.results.integerValue / obj.completed.integerValue}%
-                        </p>
+                        <h5 className="text-[10px] text-grey">{obj.uid.slice(0, 5)}</h5>
+                        <div className="flex flex-row items-center  max-[450px]:flex-col gap-4 max-[450px]:gap-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setQuizUrl(obj);
+                              setareSureDel(true);
+                            }}
+                            className="bg-lightRed rounded-[20px] px-5 py-2 text-[10px]"
+                          >
+                            Delete
+                          </button>
+                          <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                            <span>
+                              <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                            </span>{" "}
+                            {obj.results.integerValue / obj.completed.integerValue}%
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -151,10 +182,10 @@ function MyQuizPage() {
         <div className="statsMid">
           <img src="src/assets/images/Group 13start.svg" alt="" />
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
-          <h2 className="text-black text-[20px] mb-[20px] font-normal">Quiz Name</h2>
+          <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl.name.stringValue}</h2>
           <form onSubmit={() => console.log("laba diena")}>
             <button
-              onClick={() => navigate("/quiz/7Hgonr6p2B6ndU1onqoC")}
+              onClick={() => navigate(`/quiz/${QuizUrl.uid}`)}
               className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
             >
               Start
@@ -168,6 +199,33 @@ function MyQuizPage() {
 
           <div
             onClick={() => setareSure(!areSure)}
+            className="bg-white p-[6px] border-2 cursor-pointer border-lightGray mt-[10px] text-black w-full max-w-[400px] rounded-[20px] flex justify-center hover:outline-4 hover:border-blue "
+          >
+            <p>Back</p>
+          </div>
+        </div>
+      )}
+      {areSureDel && (
+        <div className="statsMid">
+          <img src="src/assets/images/Group 34notfoung.svg" alt="" />
+          <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
+          <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl?.name?.stringValue}</h2>
+
+          <button
+            onClick={() => deleteQuiz(QuizUrl.uid)}
+            className="bg-red p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
+          >
+            Delete
+          </button>
+
+          {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
+<p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
+<p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
+<p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
+*/}
+
+          <div
+            onClick={() => setareSureDel(false)}
             className="bg-white p-[6px] border-2 cursor-pointer border-lightGray mt-[10px] text-black w-full max-w-[400px] rounded-[20px] flex justify-center hover:outline-4 hover:border-blue "
           >
             <p>Back</p>
