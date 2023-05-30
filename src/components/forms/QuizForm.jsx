@@ -10,11 +10,13 @@ function QuizForm({ addQuiz }) {
   const [category, setCategory] = useState("history");
   const [numQuestions, setNumQuestions] = useState("5");
   const { user } = useAuthCtx();
+  const [activeFilter, setactiveFilter] = useState(true);
 
   const initialValues = {
     name: name,
     category: category,
     numQuestions: numQuestions,
+    public: activeFilter,
     questions: Array.from({ length: 5 }, () => ({
       question: "",
       answers: ["", "", "", ""],
@@ -24,6 +26,7 @@ function QuizForm({ addQuiz }) {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
+    public: Yup.boolean(),
     category: Yup.string().required("Required"),
     numQuestions: Yup.number().required("Required"),
     questions: Yup.array().of(
@@ -52,7 +55,7 @@ function QuizForm({ addQuiz }) {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      const quizObj = { userUid: user.uid, completed: 0, results: 0, ...values };
+      const quizObj = { userUid: user.uid, public: activeFilter, completed: 0, results: 0, ...values };
       addQuiz(quizObj);
       // console.log(values);
     },
@@ -90,12 +93,18 @@ function QuizForm({ addQuiz }) {
     <form onSubmit={formik.handleSubmit} className="bg-blue font-sans rounded-lg p-5 max-sm:p-2 pb-[30px]">
       <div className="flex justify-center mb-[50px]">
         <div className="max-w-[300px] bg-lightBlue rounded-[16px] p-1 flex justify-between">
-          <Link to={"/login"} className="px-[45px] text-blue py-[13px] max-w-full rounded-[16px] z-10">
+          <button
+            onClick={() => setactiveFilter(true)}
+            className={`${activeFilter ? "bg-blue text-white z-10" : ""} max-md:px-[20px] hover:text-black px-[45px] text-blue py-[13px] max-w-full rounded-[16px] z-10`}
+          >
             Public
-          </Link>
-          <Link to={"/register"} className="px-[45px] py-[13px] max-w-full rounded-[16px] bg-blue text-white z-10">
+          </button>
+          <button
+            onClick={() => setactiveFilter(false)}
+            className={`${!activeFilter ? "bg-blue text-white z-10" : ""} max-md:px-[20px] hover:text-black px-[45px] text-blue py-[13px] max-w-full rounded-[16px] z-10`}
+          >
             Private
-          </Link>
+          </button>
         </div>
       </div>
 

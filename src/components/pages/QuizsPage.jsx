@@ -23,6 +23,7 @@ function QuizsPage() {
   const navigate = useNavigate();
   const [userUserName, setuserUserName] = useState("");
   const [activeFilter, setactiveFilter] = useState("show all");
+  const [QuizUrl, setQuizUrl] = useState({});
 
   console.log("user ===", user);
 
@@ -58,6 +59,10 @@ function QuizsPage() {
   }, [valueInfo]);
 
   // console.log("arrK ===", arrK);
+  function openQuiz(uid) {
+    setareSure(!areSure);
+    setQuizUrl(uid);
+  }
 
   function filterWord(word) {
     setactiveFilter(word);
@@ -121,13 +126,13 @@ function QuizsPage() {
                 (obj, i) =>
                   obj.public.booleanValue && (
                     <CSSTransition key={i} timeout={500} classNames="fade">
-                      <div onClick={() => setareSure(!areSure)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2`}>
+                      <div onClick={() => openQuiz(obj)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-full`}>
                         <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
                         <div className="flex flex-col w-full items-start justify-around">
                           <h3 className="text-[15px]">{obj.name.stringValue}</h3>
                           <p className="text-[12px]">{obj.category.stringValue.charAt(0).toUpperCase() + obj.category.stringValue.slice(1)}</p>
                           <div className="flex w-full justify-between">
-                            <h5 className="text-[10px] text-grey">THG89X</h5>
+                            <h5 className="text-[10px] text-grey">{obj.uid.slice(0, 5)}</h5>
                             <p className=" text-[10px] text-grey font-bold pr-[20px]">
                               <span>
                                 <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
@@ -150,10 +155,10 @@ function QuizsPage() {
         <div className="statsMid">
           <img src="src/assets/images/Group 13start.svg" alt="" />
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
-          <h2 className="text-black text-[20px] mb-[20px] font-normal">Quiz Name</h2>
+          <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl.name.stringValue}</h2>
           <form onSubmit={() => console.log("laba diena")}>
             <button
-              onClick={() => navigate("/quiz/7Hgonr6p2B6ndU1onqoC")}
+              onClick={() => navigate(`/quiz/${QuizUrl.uid}`)}
               className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
             >
               Start

@@ -219,6 +219,13 @@ function Profile() {
             </div>
             <h1 className="text-[26px] font-bold text-black mb-2">{useris.username}</h1>
             <h2 className="text-[16px] text-blue bg-lightBlue py-[14px] px-[30px] mb-[45px] rounded-[20px]">{useris.email}</h2>
+            <div className="bg-white p-[12px] cursor-pointer mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between max-sm:w-full" onClick={() => navigate("/myquiz")}>
+              <div className="flex flex-row items-center">
+                <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/VectorstartQuiz.svg" alt="" />
+                <p>My quiz</p>
+              </div>
+              <img src="src/assets/images/chevron-downgoin.svg" alt="" />
+            </div>
             <div className="bg-white p-[12px]  mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between max-sm:w-full" onClick={() => seteditProf(!editProf)}>
               <div className="flex flex-row items-center">
                 <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/personprofileEd.svg" alt="" />
@@ -226,10 +233,11 @@ function Profile() {
               </div>
               <img src="src/assets/images/chevron-downgoin.svg" alt="" />
             </div>
+
             <div className="bg-white p-[12px] cursor-pointer mb-[30px] w-1/2 max-w-[400px] rounded-[20px] flex justify-between max-sm:w-full" onClick={() => setshowStats(!showStats)}>
               <div className="flex flex-row items-center">
                 <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/awardstats.svg" alt="" />
-                <p>Your stats</p>
+                <p>My stats</p>
               </div>
               <img src="src/assets/images/chevron-downgoin.svg" alt="" />
             </div>
@@ -240,6 +248,7 @@ function Profile() {
               </div>
               <img src="src/assets/images/chevron-downgoin.svg" alt="" />
             </div>
+
             <div className="bg-white p-[12px] mb-[30px] w-1/2 max-w-[400px] cursor-pointer rounded-[20px] flex justify-between max-sm:w-full" onClick={logoutinimas}>
               <div className="flex flex-row items-center">
                 <img className="inline p-[8px] mr-[15px] bg-lightBlue rounded-[16px]" src="src/assets/images/exitlogout.svg" alt="" />

@@ -85,10 +85,10 @@ function MyQuizPage() {
       <div className={`${areSure ? "blur-[5px]" : ""}`}>
         <div className=" mt-[35px] px-[30px]">
           <img className="cursor-pointer" onClick={() => navigate("/userhome")} src="src/assets/images/arrow-leftback.svg" alt="" />
-          <h3 className="text-center mb-[30px]">Public quiz</h3>
+          <h3 className="text-center mb-[30px]">My quiz</h3>
         </div>
         <div className="flex justify-center">
-          <div className="max-w-full bg-lightBlue rounded-[16px] mb-[30px] p-1 flex justify-between items-center max-[380px]:text-[9px] max-md:text-[13px] min-[780px]:w-2/3">
+          <div className="max-w-full bg-lightBlue rounded-[16px] mb-[30px] p-1 flex justify-between items-center max-[380px]:text-[9px] max-[960px]:text-[13px] min-[780px]:w-2/3">
             <button
               onClick={() => filterWord("show all")}
               to={"/login"}
@@ -121,29 +121,26 @@ function MyQuizPage() {
 
           {value && (
             <TransitionGroup className="w-full flex flex-col items-center">
-              {arrFiltered.map(
-                (obj, i) =>
-                  obj.public.booleanValue && (
-                    <CSSTransition key={i} timeout={500} classNames="fade">
-                      <div onClick={() => setareSure(!areSure)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2`}>
-                        <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-                        <div className="flex flex-col w-full items-start justify-around">
-                          <h3 className="text-[15px]">{obj.name.stringValue}</h3>
-                          <p className="text-[12px]">{obj.category.stringValue.charAt(0).toUpperCase() + obj.category.stringValue.slice(1)}</p>
-                          <div className="flex w-full justify-between">
-                            <h5 className="text-[10px] text-grey">THG89X</h5>
-                            <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                              <span>
-                                <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                              </span>{" "}
-                              {obj.results.integerValue / obj.completed.integerValue}%
-                            </p>
-                          </div>
-                        </div>
+              {arrFiltered.map((obj, i) => (
+                <CSSTransition key={i} timeout={500} classNames="fade">
+                  <div onClick={() => setareSure(!areSure)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-[650px]:w-full`}>
+                    <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+                    <div className="flex flex-col w-full items-start justify-around">
+                      <h3 className="text-[15px]">{obj.name.stringValue}</h3>
+                      <p className="text-[12px]">{obj.category.stringValue.charAt(0).toUpperCase() + obj.category.stringValue.slice(1)}</p>
+                      <div className="flex w-full justify-between">
+                        <h5 className="text-[10px] text-grey">THG89X</h5>
+                        <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                          <span>
+                            <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                          </span>{" "}
+                          {obj.results.integerValue / obj.completed.integerValue}%
+                        </p>
                       </div>
-                    </CSSTransition>
-                  )
-              )}
+                    </div>
+                  </div>
+                </CSSTransition>
+              ))}
             </TransitionGroup>
           )}
 

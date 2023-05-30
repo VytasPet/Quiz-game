@@ -22,6 +22,8 @@ function UserHomePage() {
   const navigate = useNavigate();
   const [userUserName, setuserUserName] = useState("");
   console.log("user ===", user);
+  const [QuizUrl, setQuizUrl] = useState({});
+  const [searchRez, setsearchRez] = useState("");
 
   let arrK = arrToShow;
   useEffect(() => {
@@ -67,13 +69,32 @@ function UserHomePage() {
     }
   }
 
+  function openQuiz(uid) {
+    setareSure(!areSure);
+    setQuizUrl(uid);
+  }
+
+  function searchQuiz(e) {
+    setsearchRez("");
+    e.preventDefault();
+    let quizSearch = e.target[0].value;
+    console.log("quizSearch ===", quizSearch);
+    const radimas = arrK.find((doc) => doc.uid.slice(0, 5) == quizSearch);
+    console.log("radimas ===", radimas);
+    if (radimas) {
+      setsearchRez(radimas);
+    } else {
+      setsearchRez("Quiz was not found!");
+    }
+  }
+
   //   useEffect(() => {}, [third]);
 
   //   const shopsWithUid = value && value.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
 
   return (
     <>
-      <div className={`mx-auto box-border mt-5 max-sm:mt-10 bg-profileBack ${areSure ? "blur-[5px]" : ""}`}>
+      <div className={`mx-auto box-border mt-5 max-sm:mt-10 bg-profileBack ${areSure || searchRez ? "blur-[5px]" : ""}`}>
         {value && (
           <div className={`flex justify-center mr-10 ${isLoggedIn ? "" : "hidden"}`}>
             <div className="bg-white p-[12px]  mb-[20px] max-w-[300px] rounded-[20px] flex ">
@@ -91,7 +112,7 @@ function UserHomePage() {
             <h3 className="text-left mb-[15px]">Find Quiz Code</h3>
             <p className="text-[16px] font-light text-left">Enter quiz code that given by teacher, and you can start gathering points!</p>
             <div className="flex items-center justify-center mt-[30px]">
-              <div className="relative w-1/2">
+              <form onSubmit={searchQuiz} className="relative w-1/2">
                 <img src="src/assets/images/searchsearch.svg" alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
                 <input
                   id="search"
@@ -103,7 +124,7 @@ function UserHomePage() {
                   type="text"
                   className="mt-1 pl-[50px] w-full py-4 px-3 text-[14px] text-black bg-lightGray rounded-[20px] shadow-sm focus:outline-none sm:text-sm"
                 />
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -119,13 +140,13 @@ function UserHomePage() {
               if (obj.public.booleanValue) {
                 return (
                   <div key={Math.random()} className="flex flex-col items-center">
-                    <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2  max-sm:w-full">
+                    <div onClick={() => openQuiz(obj)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2  max-sm:w-full">
                       <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
                       <div className="flex flex-col w-full items-start justify-around">
                         <h3 className="text-[15px]">{obj.name.stringValue}</h3>
                         <p className="text-[12px]">{obj.category.stringValue.charAt(0).toUpperCase() + obj.category.stringValue.slice(1)}</p>
                         <div className="flex w-full justify-between">
-                          <h5 className="text-[10px] text-grey">THG89X</h5>
+                          <h5 className="text-[10px] text-grey">{obj.uid.slice(0, 5)}</h5>
                           <p className=" text-[10px] text-grey font-bold pr-[20px]">
                             <span>
                               <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
@@ -146,12 +167,15 @@ function UserHomePage() {
       </div>
 
       {areSure && (
-        <div className="statsMid max-sm:w-2/3 flex flex-col justify-center">
+        <div className="statsMid">
           <img src="src/assets/images/Group 13start.svg" alt="" />
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
-          <h2 className="text-black text-[20px] mb-[20px] font-normal">Quiz Name</h2>
+          <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl.name.stringValue}</h2>
           <form onSubmit={() => console.log("laba diena")}>
-            <button type="submit" className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white ">
+            <button
+              onClick={() => navigate(`/quiz/${QuizUrl.uid}`)}
+              className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
+            >
               Start
             </button>
           </form>
@@ -167,6 +191,49 @@ function UserHomePage() {
           >
             <p>Back</p>
           </div>
+        </div>
+      )}
+      {searchRez && (
+        <div className="statsMid">
+          {searchRez == "Quiz was not found!" && (
+            <>
+              <img src="src/assets/images/Group 34notfoung.svg" alt="" />
+              <h2 className="text-red text-[20px] mb-[20px] font-normal">Quiz was not found!</h2>
+              <div
+                onClick={() => setsearchRez("")}
+                className="bg-white p-[6px] border-2 cursor-pointer border-lightGray text-black w-full max-w-[400px] rounded-[20px] mt-[45px] flex justify-center hover:outline-4 hover:border-blue "
+              >
+                <p>Back</p>
+              </div>
+            </>
+          )}
+          {searchRez !== "Quiz was not found!" && (
+            <>
+              <img src="src/assets/images/Group 13start.svg" alt="" />
+              <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
+              <h2 className="text-blue text-[24px] mb-[20px] font-light">{searchRez.name.stringValue}</h2>
+              <form onSubmit={() => console.log("laba diena")}>
+                <button
+                  onClick={() => navigate(`/quiz/${searchRez.uid}`)}
+                  className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
+                >
+                  Start
+                </button>
+              </form>
+              {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
+    <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
+    <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
+    <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
+    */}
+
+              <div
+                onClick={() => setsearchRez("")}
+                className="bg-white p-[6px] border-2 cursor-pointer border-lightGray mt-[10px] text-black w-full max-w-[400px] rounded-[20px] flex justify-center hover:outline-4 hover:border-blue "
+              >
+                <p>Back</p>
+              </div>
+            </>
+          )}
         </div>
       )}
     </>
