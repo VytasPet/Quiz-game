@@ -1,6 +1,9 @@
 import { useFormik } from "formik";
 import React from "react";
 import * as Yup from "yup";
+import personU from "/src/assets/images/personusername.svg";
+import emailU from "/src/assets/images/mailemail.svg";
+import union from "/src/assets/images/Unionspyna.svg";
 
 function RegisterForm({ onReg }) {
   const initialValues = {
@@ -31,7 +34,7 @@ function RegisterForm({ onReg }) {
       </label>
 
       <div className="relative mb-7">
-        <img src="src/assets/images/personusername.svg" alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
+        <img src={personU} alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
         <input
           id="username"
           name="username"
@@ -50,7 +53,7 @@ function RegisterForm({ onReg }) {
       </label>
 
       <div className="relative mb-7">
-        <img src="src/assets/images/mailemail.svg" alt="" className="absolute left-4 w-[21px] top-[54%] transform -translate-y-1/2" />
+        <img src={emailU} alt="" className="absolute left-4 w-[21px] top-[54%] transform -translate-y-1/2" />
         <input
           id="email"
           name="email"
@@ -70,7 +73,7 @@ function RegisterForm({ onReg }) {
       </label>
 
       <div className="relative mb-[55px]">
-        <img src="src/assets/images/Unionspyna.svg" alt="" className="absolute pl-2 left-2 top-[50%] transform -translate-y-1/2" />
+        <img src={union} alt="" className="absolute pl-2 left-2 top-[50%] transform -translate-y-1/2" />
         <input
           id="password"
           name="password"

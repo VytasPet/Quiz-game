@@ -13,26 +13,31 @@ import { Toaster } from "react-hot-toast";
 import Stats from "./components/pages/Stats";
 import UserHomePage from "./components/pages/UserHomePage";
 import LeaderBoard from "./components/pages/LeaderBoard";
+import { useAuthCtx } from "./store/AuthProvider";
 
 function App() {
+  const { isLoggedIn } = useAuthCtx();
   return (
     <>
       <Toaster />
       <Header />
-
       <div>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/quiz" element={<QuizsPage />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/stats" element={<Stats />} />
           <Route path="/leaderboard" element={<LeaderBoard />} />
-          <Route path="/addquiz" element={<AddQuizPage />} />
-          <Route path="/userhome" element={<UserHomePage />} />
-          <Route path="/myquiz" element={<MyQuizPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/quiz/:quizUid" element={<SingleQuizPage />} />
+          {isLoggedIn && (
+            <>
+              <Route path="/quiz" element={<QuizsPage />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/stats" element={<Stats />} />
+              <Route path="/addquiz" element={<AddQuizPage />} />
+              <Route path="/userhome" element={<UserHomePage />} />
+              <Route path="/myquiz" element={<MyQuizPage />} />
+              <Route path="/quiz/:quizUid" element={<SingleQuizPage />} />
+            </>
+          )}
         </Routes>
       </div>
     </>

@@ -7,7 +7,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, deleteDoc, doc } from "firebase/firestore";
 import medal from "/src/assets/images/Group 83placemedal.svg";
 import Splace from "/src/assets/images/2-3Place.svg";
-import crown from "/src/assets/images/2-3Place.svg";
+import crown from "/src/assets/images/crownking.svg";
 import oneStep from "/src/assets/images/1stStep.svg";
 import onePlace from "/src/assets/images/Group 7firstplace.svg";
 import twoPlace from "/src/assets/images/secPL.svg";

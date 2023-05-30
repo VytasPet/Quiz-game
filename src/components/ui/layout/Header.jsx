@@ -10,8 +10,14 @@ import toLeft from "/src/assets/images/toleft.svg";
 import { useAuthCtx } from "../../../store/AuthProvider";
 import { auth } from "../../../firebase/firebaseConfig";
 import toast from "react-hot-toast";
-import menu from "/src/assets/images/menu-svgrepo-com.svg";
 import { useState } from "react";
+import menu from "/src/assets/images/menu-svgrepo-com.svg";
+import homeU from "/src/assets/images/homehom.svg";
+import union from "/src/assets/images/Unionreward.svg";
+import explorer from "/src/assets/images/button-explorequizes.svg";
+import editD from "/src/assets/images/edit-2created.svg";
+import personP from "/src/assets/images/personprof.svg";
+import vector from "/src/assets/images/Vectoruser.svg";
 
 function Header() {
   const [signOut, loading, error] = useSignOut(auth);
@@ -36,34 +42,34 @@ function Header() {
         <div className="mx-auto bg-lightBlue max-w-5xl w-full flex justify-between items-center">
           <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={isLoggedIn ? "/userhome" : "/"}>
             {" "}
-            <img src="src/assets/images/homehom.svg" alt="" />{" "}
+            <img src={homeU} alt="" />{" "}
           </Link>
           {isLoggedIn && (
             <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/leaderBoard"}>
               {" "}
-              <img src="src/assets/images/Unionreward.svg" alt="" />{" "}
+              <img src={union} alt="" />{" "}
             </Link>
           )}
           <Link to={`${isLoggedIn ? "/userhome" : "/login"}`}>
-            <img className="w-[90px] max-sm:w-[60px]" src="src/assets/images/button-explorequizes.svg" alt="Logo" />
+            <img className="w-[90px] max-sm:w-[60px]" src={explorer} alt="Logo" />
           </Link>
 
           {isLoggedIn && (
             <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/addquiz"}>
               {" "}
-              <img src="src/assets/images/edit-2created.svg" alt="" />{" "}
+              <img src={editD} alt="" />{" "}
             </Link>
           )}
           {isLoggedIn && (
             <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/profile"}>
               {" "}
-              <img src="src/assets/images/personprof.svg" alt="" />{" "}
+              <img src={personP} alt="" />{" "}
             </Link>
           )}
           {!isLoggedIn && (
             <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/login"}>
               {" "}
-              <img src="src/assets/images/Vectoruser.svg" alt="" />{" "}
+              <img src={vector} alt="" />{" "}
             </Link>
           )}
         </div>

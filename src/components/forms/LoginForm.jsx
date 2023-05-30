@@ -4,6 +4,8 @@ import React from "react";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import personU from "/src/assets/images/personusername.svg";
+import emailU from "/src/assets/images/mailemail.svg";
 
 function LoginForm({ onLog }) {
   const navigate = useNavigate();
@@ -67,7 +69,7 @@ function LoginForm({ onLog }) {
       </label>
 
       <div className="relative mb-7">
-        <img src="src/assets/images/personusername.svg" alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
+        <img src={personU} alt="" className="absolute left-4 top-[50%] transform -translate-y-1/2" />
         <input
           id="email"
           name="email"
@@ -86,7 +88,7 @@ function LoginForm({ onLog }) {
       </label>
 
       <div className="relative mb-7">
-        <img src="src/assets/images/mailemail.svg" alt="" className="absolute left-4 w-[21px] top-[54%] transform -translate-y-1/2" />
+        <img src={emailU} alt="" className="absolute left-4 w-[21px] top-[54%] transform -translate-y-1/2" />
         <input
           id="password"
           name="password"
