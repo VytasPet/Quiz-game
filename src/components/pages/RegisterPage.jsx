@@ -27,7 +27,7 @@ function RegisterPage() {
           email: user.email,
           userUid: user.uid,
           username: useris,
-          profilePic: "src/assets/images/user.png",
+          profilePic: "/user.png",
         };
         console.log("info ===", info);
 

@@ -116,19 +116,19 @@ function Profile() {
       let newPic = "";
       switch (avatarChoose) {
         case 1:
-          newPic = "/src/assets/images/man.png";
+          newPic = "/man.png";
           break;
         case 2:
-          newPic = "/src/assets/images/businessman.png";
+          newPic = "/businessman.png";
           break;
         case 3:
-          newPic = "/src/assets/images/user.png";
+          newPic = "/user.png";
           break;
         case 4:
-          newPic = "/src/assets/images/woman2.png";
+          newPic = "/woman2.png";
           break;
         case 5:
-          newPic = "/src/assets/images/profile (1).png";
+          newPic = "/profile (1).png";
       }
 
       try {
