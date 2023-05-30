@@ -67,14 +67,16 @@ function AddQuizPage() {
   // navigate('/posts');
 
   return (
-    <div className="mt-10 box-border max-sm:mt-10">
-      <h1 className="text-5xl mb-10 max-sm:text-3xl font-light max-sm:font-light max-sm:mb-10">Create a quiz</h1>
+    <div className="full">
+      <div className="mt-10 box-border max-sm:mt-10">
+        <h1 className="text-4xl mb-10 max-sm:text-3xl font-light max-sm:font-light max-sm:mb-10">Create a quiz</h1>
 
-      <div className="flex flex-col items-center">
-        <div className="flex flex-col items-center px-4 pt-2 pb-5 w-full mb-10 bg-blue text-white rounded-lg max-sm:mb-5 max-sm:px-1">
-          {/* <p className="text-center text-qxl pb-1 max-sm:pb-0">Please fill the new quiz form</p> */}
-          <div className=" text-black pt-6 pb-3 px-5 max-sm:pt-2 max-sm:pb-1 max-sm:px-2 max-sm:w-full">
-            <QuizForm addQuiz={addNewShop} />
+        <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center px-4 pt-2 pb-5 w-full mb-10 bg-blue text-white rounded-lg max-sm:mb-5 max-sm:px-1">
+            {/* <p className="text-center text-qxl pb-1 max-sm:pb-0">Please fill the new quiz form</p> */}
+            <div className=" text-black pt-6 pb-3 px-5 max-sm:pt-2 max-sm:pb-1 max-sm:px-2 max-sm:w-full">
+              <QuizForm addQuiz={addNewShop} />
+            </div>
           </div>
         </div>
       </div>

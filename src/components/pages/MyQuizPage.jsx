@@ -100,7 +100,7 @@ function MyQuizPage() {
   //   const shopsWithUid = value && value.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
 
   return (
-    <>
+    <div className="full">
       <div className={`${areSure ? "blur-[5px]" : ""}`}>
         <div className=" mt-[35px] px-[30px]">
           <img className="cursor-pointer" onClick={() => navigate("/userhome")} src="src/assets/images/arrow-leftback.svg" alt="" />
@@ -156,7 +156,7 @@ function MyQuizPage() {
                               setQuizUrl(obj);
                               setareSureDel(true);
                             }}
-                            className="bg-lightRed rounded-[20px] px-5 py-2 text-[10px]"
+                            className="bg-lightRed rounded-[20px] px-5 py-2 text-[10px] text-white hover:outline hover:outline-black"
                           >
                             Delete
                           </button>
@@ -164,7 +164,8 @@ function MyQuizPage() {
                             <span>
                               <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
                             </span>{" "}
-                            {obj.results.integerValue / obj.completed.integerValue}%
+                            {obj.completed.integerValue == 0 && "New"}
+                            {obj.completed.integerValue > 0 && (obj.results.integerValue / obj.completed.integerValue).toFixed(2) + "%"}
                           </p>
                         </div>
                       </div>
@@ -179,18 +180,18 @@ function MyQuizPage() {
         </div>
       </div>
       {areSure && (
-        <div className="statsMid">
+        <div className="statsMid  flex flex-col items-center">
           <img src="src/assets/images/Group 13start.svg" alt="" />
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
           <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl.name.stringValue}</h2>
-          <form onSubmit={() => console.log("laba diena")}>
-            <button
-              onClick={() => navigate(`/quiz/${QuizUrl.uid}`)}
-              className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
-            >
-              Start
-            </button>
-          </form>
+
+          <button
+            onClick={() => navigate(`/quiz/${QuizUrl.uid}`)}
+            className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
+          >
+            Start
+          </button>
+
           {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
 <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
 <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
@@ -206,14 +207,14 @@ function MyQuizPage() {
         </div>
       )}
       {areSureDel && (
-        <div className="statsMid">
+        <div className="statsMid flex flex-col items-center">
           <img src="src/assets/images/Group 34notfoung.svg" alt="" />
-          <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
+          <h2 className="text-[20px] text-red mb-[20px] font-normal">Are you sure want delete quiz:</h2>
           <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl?.name?.stringValue}</h2>
 
           <button
             onClick={() => deleteQuiz(QuizUrl.uid)}
-            className="bg-red p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
+            className="bg-red p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:outline hover:outline-black "
           >
             Delete
           </button>
@@ -232,7 +233,7 @@ function MyQuizPage() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

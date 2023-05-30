@@ -34,12 +34,12 @@ function Header() {
     <div className="mx-auto bg-[#FAFAFA]">
       <header className=" px-[55px] py-[10px] rounded-b-[30px] bg-lightBlue max-sm:px-[20px]">
         <div className="mx-auto bg-lightBlue max-w-5xl w-full flex justify-between items-center">
-          <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer " to={isLoggedIn ? "/userhome" : "/"}>
+          <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={isLoggedIn ? "/userhome" : "/"}>
             {" "}
             <img src="src/assets/images/homehom.svg" alt="" />{" "}
           </Link>
           {isLoggedIn && (
-            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer" to={"/leaderBoard"}>
+            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/leaderBoard"}>
               {" "}
               <img src="src/assets/images/Unionreward.svg" alt="" />{" "}
             </Link>
@@ -49,21 +49,21 @@ function Header() {
           </Link>
 
           {isLoggedIn && (
-            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer" to={"/addquiz"}>
+            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/addquiz"}>
               {" "}
               <img src="src/assets/images/edit-2created.svg" alt="" />{" "}
             </Link>
           )}
           {isLoggedIn && (
-            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer" to={"/profile"}>
+            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/profile"}>
               {" "}
               <img src="src/assets/images/personprof.svg" alt="" />{" "}
             </Link>
           )}
           {!isLoggedIn && (
-            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer" to={"/register"}>
+            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/register"}>
               {" "}
-              <img src="src/assets/images/editsign.svg" alt="" />{" "}
+              <img src="src/assets/images/Vectoruser.svg" alt="" />{" "}
             </Link>
           )}
         </div>

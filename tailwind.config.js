@@ -19,7 +19,7 @@ export default {
         grey: "#737373",
         red: "#F8737F",
         transparent: "#f2f2f200",
-        lightRed: "#FFDFDC",
+        lightRed: "#F8737F",
         profileBack: "#F9F9F9",
         green: "#6CD89E",
       },

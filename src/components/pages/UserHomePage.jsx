@@ -93,7 +93,7 @@ function UserHomePage() {
   //   const shopsWithUid = value && value.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
 
   return (
-    <>
+    <div className="full">
       <div className={`mx-auto box-border mt-5 max-sm:mt-10 bg-profileBack ${areSure || searchRez ? "blur-[5px]" : ""}`}>
         {value && (
           <div className={`flex justify-center mr-10 ${isLoggedIn ? "" : "hidden"}`}>
@@ -151,7 +151,8 @@ function UserHomePage() {
                             <span>
                               <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
                             </span>{" "}
-                            {obj.results.integerValue / obj.completed.integerValue}%
+                            {obj.completed.integerValue == 0 && "New"}
+                            {obj.completed.integerValue > 0 && (obj.results.integerValue / obj.completed.integerValue).toFixed(2) + "%"}
                           </p>
                         </div>
                       </div>
@@ -236,7 +237,7 @@ function UserHomePage() {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }
 
