@@ -247,6 +247,15 @@
   color: #737373;
 }
 
-@media screen {
-  
+.fade-enter {
+  opacity: 0.01;
+  transform: translateY(-20px);
 }
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 600ms ease-in, transform 600ms ease-in;
+}
+
+

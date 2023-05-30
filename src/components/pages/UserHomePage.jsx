@@ -115,26 +115,31 @@ function UserHomePage() {
         {/* Public quiz list */}
         {value && (
           <div>
-            {arrK.map((obj) => (
-              <div key={Math.random()} className="flex flex-col items-center">
-                <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2  max-sm:w-full">
-                  <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-                  <div className="flex flex-col w-full items-start justify-around">
-                    <h3 className="text-[15px]">{obj.name.stringValue}</h3>
-                    <p className="text-[12px]">{obj.category.stringValue}</p>
-                    <div className="flex w-full justify-between">
-                      <h5 className="text-[10px] text-grey">THG89X</h5>
-                      <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                        <span>
-                          <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                        </span>{" "}
-                        {obj.results.integerValue / obj.completed.integerValue}%
-                      </p>
+            {arrK.slice(0, 2).map((obj) => {
+              if (obj.public.booleanValue) {
+                return (
+                  <div key={Math.random()} className="flex flex-col items-center">
+                    <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2  max-sm:w-full">
+                      <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+                      <div className="flex flex-col w-full items-start justify-around">
+                        <h3 className="text-[15px]">{obj.name.stringValue}</h3>
+                        <p className="text-[12px]">{obj.category.stringValue.charAt(0).toUpperCase() + obj.category.stringValue.slice(1)}</p>
+                        <div className="flex w-full justify-between">
+                          <h5 className="text-[10px] text-grey">THG89X</h5>
+                          <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                            <span>
+                              <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                            </span>{" "}
+                            {obj.results.integerValue / obj.completed.integerValue}%
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                );
+              }
+              // Returns nothing if obj.public.booleanValue is false
+            })}
           </div>
         )}
         {/* Public Quiz END */}

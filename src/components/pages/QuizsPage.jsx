@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthProvider";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 function QuizsPage() {
   const { user, isLoggedIn } = useAuthCtx();
@@ -22,6 +23,7 @@ function QuizsPage() {
   const navigate = useNavigate();
   const [userUserName, setuserUserName] = useState("");
   const [activeFilter, setactiveFilter] = useState("show all");
+
   console.log("user ===", user);
 
   let arrK = arrToShow;
@@ -114,27 +116,33 @@ function QuizsPage() {
           {/* One card */}
 
           {value && (
-            <div className="w-full flex flex-col items-center">
-              {arrFiltered.map((obj) => (
-                <div onClick={() => setareSure(!areSure)} className="bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2">
-                  <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
-                  <div className="flex flex-col w-full items-start justify-around">
-                    <h3 className="text-[15px]">{obj.name.stringValue}</h3>
-                    <p className="text-[12px]">{obj.category.stringValue}</p>
-                    <div className="flex w-full justify-between">
-                      <h5 className="text-[10px] text-grey">THG89X</h5>
-                      <p className=" text-[10px] text-grey font-bold pr-[20px]">
-                        <span>
-                          <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
-                        </span>{" "}
-                        {obj.results.integerValue / obj.completed.integerValue}%
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <TransitionGroup className="w-full flex flex-col items-center">
+              {arrFiltered.map(
+                (obj, i) =>
+                  obj.public.booleanValue && (
+                    <CSSTransition key={i} timeout={500} classNames="fade">
+                      <div onClick={() => setareSure(!areSure)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2`}>
+                        <img className="bg-lightBlue p-[15px] rounded-[20px]" src="src/assets/images/Group 14cate.svg" alt="" />
+                        <div className="flex flex-col w-full items-start justify-around">
+                          <h3 className="text-[15px]">{obj.name.stringValue}</h3>
+                          <p className="text-[12px]">{obj.category.stringValue.charAt(0).toUpperCase() + obj.category.stringValue.slice(1)}</p>
+                          <div className="flex w-full justify-between">
+                            <h5 className="text-[10px] text-grey">THG89X</h5>
+                            <p className=" text-[10px] text-grey font-bold pr-[20px]">
+                              <span>
+                                <img className="inline " src="src/assets/images/awardmedalblue.svg" alt="" />
+                              </span>{" "}
+                              {obj.results.integerValue / obj.completed.integerValue}%
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CSSTransition>
+                  )
+              )}
+            </TransitionGroup>
           )}
+
           {/* One card End */}
         </div>
       </div>
