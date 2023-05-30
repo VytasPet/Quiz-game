@@ -32,7 +32,7 @@ function Header() {
 
   return (
     <div className="mx-auto bg-[#FAFAFA]">
-      <header className=" px-[55px] py-[10px] rounded-b-[30px] bg-lightBlue max-sm:px-[20px]">
+      <header className=" px-[55px] py-[10px] pt-[20px] rounded-b-[30px] bg-lightBlue max-sm:px-[20px]">
         <div className="mx-auto bg-lightBlue max-w-5xl w-full flex justify-between items-center">
           <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={isLoggedIn ? "/userhome" : "/"}>
             {" "}
@@ -44,7 +44,7 @@ function Header() {
               <img src="src/assets/images/Unionreward.svg" alt="" />{" "}
             </Link>
           )}
-          <Link to="/userhome">
+          <Link to={`${isLoggedIn ? "/userhome" : "/login"}`}>
             <img className="w-[90px] max-sm:w-[60px]" src="src/assets/images/button-explorequizes.svg" alt="Logo" />
           </Link>
 
@@ -61,7 +61,7 @@ function Header() {
             </Link>
           )}
           {!isLoggedIn && (
-            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/register"}>
+            <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={"/login"}>
               {" "}
               <img src="src/assets/images/Vectoruser.svg" alt="" />{" "}
             </Link>

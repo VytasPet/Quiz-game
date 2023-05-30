@@ -154,7 +154,7 @@ function QuizPage() {
   const { handleSubmit, resetForm } = formik;
 
   return (
-    <>
+    <div className="full">
       {quizObj && (
         <div className="box-border  max-sm:mt-10">
           <div>
@@ -330,7 +330,7 @@ function QuizPage() {
           {/* <button onClick={addComplete}>add</button> */}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

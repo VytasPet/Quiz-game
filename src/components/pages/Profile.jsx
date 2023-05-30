@@ -205,11 +205,11 @@ function Profile() {
   }, [value]);
 
   return (
-    <>
+    <div className="full">
       {value && (
         <div>
           <div
-            className={`relative flex flex-col items-center px-6 py-10 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px] ${
+            className={`relative flex flex-col items-center px-6 py-3 max-w-1/2 mb-10 mt-10 bg-profileBack text-grey rounded-[16px] ${
               showStats || editProf || changePass || editImage ? "blur-[5px]" : ""
             }`}
           >
@@ -412,7 +412,7 @@ function Profile() {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

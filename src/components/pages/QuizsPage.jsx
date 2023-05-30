@@ -85,7 +85,7 @@ function QuizsPage() {
     <>
       <div className={`${areSure ? "blur-[5px]" : ""}`}>
         <div className=" mt-[35px] px-[30px]">
-          <img className="cursor-pointer" onClick={() => navigate("/userhome")} src="src/assets/images/arrow-leftback.svg" alt="" />
+          <img className="cursor-pointer" onClick={() => window.history.back()} src="src/assets/images/arrow-leftback.svg" alt="" />
           <h3 className="text-center mb-[30px]">Public quiz</h3>
         </div>
         <div className="flex justify-center">
