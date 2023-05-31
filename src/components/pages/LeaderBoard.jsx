@@ -16,6 +16,15 @@ function LeaderBoard() {
   const [sortArr, setsortArr] = useState([]);
   const quizCollRef = collection(db, "users");
   const [value, loading, error] = useCollection(quizCollRef);
+  const [loadingToast, setloadingToast] = useState(null);
+
+  useEffect(() => {
+    if (loading) {
+      setloadingToast(toast.loading("Loading..."));
+    } else {
+      toast.dismiss(loadingToast);
+    }
+  }, [loading]);
 
   function calculateAverage(userObj) {
     if (userObj.completed === 0) {
