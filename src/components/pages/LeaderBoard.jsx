@@ -11,6 +11,7 @@ import crown from "/src/assets/images/crownking.svg";
 import oneStep from "/src/assets/images/1stStep.svg";
 import onePlace from "/src/assets/images/Group 7firstplace.svg";
 import twoPlace from "/src/assets/images/secPL.svg";
+import toast from "react-hot-toast";
 
 function LeaderBoard() {
   const [sortArr, setsortArr] = useState([]);
