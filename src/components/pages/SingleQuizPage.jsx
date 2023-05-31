@@ -217,7 +217,6 @@ function QuizPage() {
                   // Quiz submission confirmation
 
                   <div className="border p-5 bg-profileBack rounded-[20px] flex flex-col items-center ">
-                    <img src={finito} alt="" />
                     <div className="bg-white p-[12px] w-2/3 mb-[20px] rounded-[20px] flex items-center justify-center ">
                       <div className="flex flex-col ">
                         <img src={finisas} alt="" />
