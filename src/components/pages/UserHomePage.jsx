@@ -102,7 +102,7 @@ function UserHomePage() {
 
   return (
     <div className="full">
-      <div className={`mx-auto box-border mt-5 max-sm:mt-10 bg-profileBack ${areSure || searchRez ? "blur-[5px]" : ""}`}>
+      <div className={`mx-auto max-w-5xl box-border mt-5 max-sm:mt-10 bg-profileBack ${areSure || searchRez ? "blur-[5px]" : ""}`}>
         {value && (
           <div className={`flex justify-center ${isLoggedIn ? "" : "hidden"}`}>
             <div className="bg-white p-[12px]  mb-[20px] max-w-[300px] rounded-[20px] flex ">

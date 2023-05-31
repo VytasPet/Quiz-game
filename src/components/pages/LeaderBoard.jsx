@@ -54,7 +54,7 @@ function LeaderBoard() {
   }, [value]);
 
   return (
-    <div className="fullB">
+    <div className="fullB mx-auto">
       <div className="flex flex-col items-center justify-center bg-blue">
         <div className="container flex flex-col mx-auto mt-10 max-w-5xl justify-center items-center max-sm:flex-col max-sm:mt-[35px]">
           {sortArr && (

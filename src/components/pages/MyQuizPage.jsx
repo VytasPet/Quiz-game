@@ -107,7 +107,7 @@ function MyQuizPage() {
 
   return (
     <div className="full">
-      <div className={`${areSure ? "blur-[5px]" : ""}`}>
+      <div className={`${areSure ? "blur-[5px]" : ""} mx-auto max-w-5xl`}>
         <div className=" mt-[35px] px-[30px]">
           <img className="cursor-pointer" onClick={() => window.history.back()} src={arrL} alt="" />
           <h3 className="text-center mb-[30px]">My quiz</h3>
