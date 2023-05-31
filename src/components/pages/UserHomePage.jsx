@@ -29,7 +29,7 @@ function UserHomePage() {
   const [areSure, setareSure] = useState(false);
   const navigate = useNavigate();
   const [userUserName, setuserUserName] = useState("");
-  console.log("user ===", user);
+  // console.log("user ===", user);
   const [QuizUrl, setQuizUrl] = useState({});
   const [searchRez, setsearchRez] = useState("");
 
@@ -49,17 +49,17 @@ function UserHomePage() {
       arrK = arrK.map((doc) => ({ uid: doc.id, ...doc._document.data.value.mapValue.fields }));
       setArr(arrK);
       setArrFilt(arrK);
-      console.log("arrK ===", arrK);
+      // console.log("arrK ===", arrK);
     }
   }, [value]);
 
   useEffect(() => {
     if (valueInfo) {
       let searchIt = valueInfo.docs;
-      console.log("searchIt ===", searchIt);
+      // console.log("searchIt ===", searchIt);
       searchIt = searchIt.find((doc) => doc._document.data.value.mapValue.fields.userUid.stringValue == user.uid);
       //console.log("value.docs.data ===", value.docs[0]._document.data.value.mapValue.fields);
-      console.log("searchIt ===", searchIt._document.data.value.mapValue.fields.username);
+      // console.log("searchIt ===", searchIt._document.data.value.mapValue.fields.username);
       setuserUserName(searchIt._document.data.value.mapValue.fields.username.stringValue);
     }
   }, [valueInfo]);
@@ -86,9 +86,9 @@ function UserHomePage() {
     setsearchRez("");
     e.preventDefault();
     let quizSearch = e.target[0].value;
-    console.log("quizSearch ===", quizSearch);
+    // console.log("quizSearch ===", quizSearch);
     const radimas = arrK.find((doc) => doc.uid.slice(0, 5) == quizSearch);
-    console.log("radimas ===", radimas);
+    // console.log("radimas ===", radimas);
     if (radimas) {
       setsearchRez(radimas);
     } else {
@@ -180,14 +180,14 @@ function UserHomePage() {
           <img src={rocket} alt="" />
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
           <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl.name.stringValue}</h2>
-          <form onSubmit={() => console.log("laba diena")}>
-            <button
-              onClick={() => navigate(`/quiz/${QuizUrl.uid}`)}
-              className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
-            >
-              Start
-            </button>
-          </form>
+
+          <button
+            onClick={() => navigate(`/quiz/${QuizUrl.uid}`)}
+            className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
+          >
+            Start
+          </button>
+
           {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
 <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
 <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
@@ -221,19 +221,13 @@ function UserHomePage() {
               <img src={sad} alt="" />
               <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
               <h2 className="text-blue text-[24px] mb-[20px] font-light">{searchRez.name.stringValue}</h2>
-              <form onSubmit={() => console.log("laba diena")}>
-                <button
-                  onClick={() => navigate(`/quiz/${searchRez.uid}`)}
-                  className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
-                >
-                  Start
-                </button>
-              </form>
-              {/* <p className="border-y py-2 w-full">Your ranking: {position}</p>
-    <p className="border-y py-2 w-full">Created Quiz: {useris.created}</p>
-    <p className="border-y py-2 w-full">Quiz Completed: {useris.completed}</p>
-    <p className="border-y py-2 w-full">Average result: {(Number(useris.result) / Number(useris.completed > 1 ? useris.completed : 1)).toFixed(2)}%</p>
-    */}
+
+              <button
+                onClick={() => navigate(`/quiz/${searchRez.uid}`)}
+                className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full max-w-[400px] rounded-[20px] flex justify-center hover:text-grey hover:border-white "
+              >
+                Start
+              </button>
 
               <div
                 onClick={() => setsearchRez("")}

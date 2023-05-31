@@ -88,12 +88,12 @@ function QuizPage() {
   const [erroras, setError] = useState("");
 
   const handleAnswerChange = (questionIndex, answerIndex) => {
-    console.log("handleAnswerChange ===", "paspaudem mygtuka");
+    // console.log("handleAnswerChange ===", "paspaudem mygtuka");
     const newUserAnswers = [...userAnswers];
     newUserAnswers[questionIndex] = answerIndex;
-    console.log("newUserAnswers ===", newUserAnswers);
+    // console.log("newUserAnswers ===", newUserAnswers);
     setUserAnswers(newUserAnswers);
-    console.log("userAnswers ===", userAnswers);
+    // console.log("userAnswers ===", userAnswers);
   };
 
   const compareAnswers = (corArr, userArr) => {
@@ -147,17 +147,12 @@ function QuizPage() {
     },
   });
 
-  useEffect(() => {
-    console.log("userAnswers ===", userAnswers);
-    console.log("toWatchResults ===", toWatchResults);
-  }, [userAnswers]);
-
   const { handleSubmit, resetForm } = formik;
 
   return (
     <div className="full">
       {quizObj && (
-        <div className="box-border  max-sm:mt-10">
+        <div className=" mt-[40px] mx-auto max-w-5xl box-border  max-sm:mt-10">
           <div>
             {/* Finish quiz */}
             {afterSub && (
@@ -165,7 +160,7 @@ function QuizPage() {
                 {showResults ? (
                   // Result view
 
-                  <div className="pb-[30px] bg-blue rounded-lg max-sm:p-1 max-sm:space-y-3 max-sm:">
+                  <div className="pb-[30px] bg-blue rounded-[20px] max-sm:p-1 max-sm:space-y-3 max-sm:">
                     {quizObj.questions.map(
                       (q, questionIndex) =>
                         questionIndex === currentResultQuestion && (
@@ -247,7 +242,7 @@ function QuizPage() {
             )}
           </div>
           {!afterSub && (
-            <form onSubmit={handleSubmit} className="pb-[30px] bg-blue rounded-lg max-sm:p-1 max-sm:space-y-3 max-sm:">
+            <form onSubmit={handleSubmit} className="pb-[30px] bg-blue rounded-[20px] max-sm:p-1 max-sm:space-y-3 max-sm:">
               {quizObj.questions.map(
                 (q, questionIndex) =>
                   questionIndex === currentQuestion && (

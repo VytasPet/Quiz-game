@@ -29,7 +29,7 @@ function RegisterPage() {
           username: useris,
           profilePic: "/user.png",
         };
-        console.log("info ===", info);
+        // console.log("info ===", info);
 
         setDoc(userDocRef, info);
         toast.dismiss(loadingToastId);

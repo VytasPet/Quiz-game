@@ -31,7 +31,7 @@ function MyQuizPage() {
   const [QuizUrl, setQuizUrl] = useState({});
   const [areSureDel, setareSureDel] = useState(false);
 
-  console.log("user ===", user);
+  // console.log("user ===", user);
 
   let arrK = arrToShow;
 
@@ -61,10 +61,10 @@ function MyQuizPage() {
   useEffect(() => {
     if (valueInfo) {
       let searchIt = valueInfo.docs;
-      console.log("searchIt ===", searchIt);
+      // console.log("searchIt ===", searchIt);
       searchIt = searchIt.find((doc) => doc._document.data.value.mapValue.fields.userUid.stringValue == user.uid);
       //console.log("value.docs.data ===", value.docs[0]._document.data.value.mapValue.fields);
-      console.log("searchIt ===", searchIt._document.data.value.mapValue.fields.username);
+      // console.log("searchIt ===", searchIt._document.data.value.mapValue.fields.username);
       setuserUserName(searchIt._document.data.value.mapValue.fields.username.stringValue);
     }
   }, [valueInfo]);
@@ -90,7 +90,7 @@ function MyQuizPage() {
 
   function filterWord(word) {
     setactiveFilter(word);
-    console.log("word ===", word);
+    // console.log("word ===", word);
     // console.log("bum ===", bum);
     if (word === "show all") {
       // console.log("bum ===", bum);
@@ -98,7 +98,7 @@ function MyQuizPage() {
     } else {
       setArrFilt(arrToShow.filter((quiz) => quiz.category.stringValue === word));
     }
-    console.log("arrFiltered ===", arrFiltered);
+    // console.log("arrFiltered ===", arrFiltered);
   }
 
   //   useEffect(() => {}, [third]);
@@ -146,6 +146,7 @@ function MyQuizPage() {
 
           {value && (
             <TransitionGroup className="w-full flex flex-col items-center">
+              {arrFiltered.length < 1 && <h2 className="text-center text-grey text-[24px] mt-[50px]">Sorry, there are no Quiz...</h2>}
               {arrFiltered.map((obj, i) => (
                 <CSSTransition key={i} timeout={500} classNames="fade">
                   <div onClick={() => openQuiz(obj)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-2/3 max-md:w-full`}>

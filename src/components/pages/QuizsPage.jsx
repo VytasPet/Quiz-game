@@ -29,7 +29,7 @@ function QuizsPage() {
   const [activeFilter, setactiveFilter] = useState("show all");
   const [QuizUrl, setQuizUrl] = useState({});
 
-  console.log("user ===", user);
+  // console.log("user ===", user);
 
   let arrK = arrToShow;
   useEffect(() => {
@@ -47,17 +47,17 @@ function QuizsPage() {
       arrK = arrK.map((doc) => ({ uid: doc.id, ...doc._document.data.value.mapValue.fields }));
       setArr(arrK);
       setArrFilt(arrK);
-      console.log("arrK ===", arrK);
+      // console.log("arrK ===", arrK);
     }
   }, [value]);
 
   useEffect(() => {
     if (valueInfo) {
       let searchIt = valueInfo.docs;
-      console.log("searchIt ===", searchIt);
+      // console.log("searchIt ===", searchIt);
       searchIt = searchIt.find((doc) => doc._document.data.value.mapValue.fields.userUid.stringValue == user.uid);
       //console.log("value.docs.data ===", value.docs[0]._document.data.value.mapValue.fields);
-      console.log("searchIt ===", searchIt._document.data.value.mapValue.fields.username);
+      // console.log("searchIt ===", searchIt._document.data.value.mapValue.fields.username);
       setuserUserName(searchIt._document.data.value.mapValue.fields.username.stringValue);
     }
   }, [valueInfo]);
@@ -70,7 +70,7 @@ function QuizsPage() {
 
   function filterWord(word) {
     setactiveFilter(word);
-    console.log("word ===", word);
+    // console.log("word ===", word);
     // console.log("bum ===", bum);
     if (word === "show all") {
       // console.log("bum ===", bum);
@@ -78,7 +78,7 @@ function QuizsPage() {
     } else {
       setArrFilt(arrToShow.filter((quiz) => quiz.category.stringValue === word));
     }
-    console.log("arrFiltered ===", arrFiltered);
+    // console.log("arrFiltered ===", arrFiltered);
   }
 
   //   useEffect(() => {}, [third]);
@@ -86,8 +86,8 @@ function QuizsPage() {
   //   const shopsWithUid = value && value.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
 
   return (
-    <>
-      <div className={`${areSure ? "blur-[5px]" : ""}`}>
+    <div className="full">
+      <div className={`${areSure ? "blur-[5px]" : ""} mx-auto max-w-5xl`}>
         <div className=" mt-[35px] px-[30px]">
           <img className="cursor-pointer" onClick={() => window.history.back()} src={arrL} alt="" />
           <h3 className="text-center mb-[30px]">Public quiz</h3>
@@ -182,7 +182,7 @@ function QuizsPage() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

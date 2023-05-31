@@ -72,7 +72,7 @@ function Profile() {
     if (value) {
       const bendras = value.docs;
       const valuesUsers = bendras.map((quiz) => quiz.data());
-      console.log("user ===", user);
+      // console.log("user ===", user);
 
       // Calculate averages and add to valuesUsers
       valuesUsers.forEach((userObj) => {
@@ -158,10 +158,10 @@ function Profile() {
   function changePassword(e) {
     e.preventDefault();
     const newPass = e.target[0].value;
-    console.log("newPass ===", newPass);
+    // console.log("newPass ===", newPass);
     const newPass2 = e.target[1].value;
-    console.log("newPass2 ===", newPass2);
-    console.log("auth.currentUser ===", auth.currentUser);
+    // console.log("newPass2 ===", newPass2);
+    // console.log("auth.currentUser ===", auth.currentUser);
 
     if (newPass !== newPass2) {
       toast.error("Password not match!");
@@ -179,12 +179,12 @@ function Profile() {
       try {
         if (auth.currentUser) {
           await updatePassword(auth.currentUser, newPass);
-          console.log("Password updated successfully");
+          // console.log("Password updated successfully");
           toast.success("Password change completed!");
           setchangePass(false);
         }
       } catch (error) {
-        console.error("Error updating password: ", error);
+        // console.error("Error updating password: ", error);
         toast.error("Unable to change password!");
       }
     };
@@ -217,7 +217,7 @@ function Profile() {
 
   useEffect(() => {
     const userIndex = findUserIndex(user.uid, sortArr);
-    console.log("User ranking position:", userIndex + 1);
+    // console.log("User ranking position:", userIndex + 1);
     setposition(userIndex + 1);
   }, [sortArr]);
 
