@@ -41,6 +41,8 @@ function Profile() {
   const [editImage, seteditImage] = useState(false);
   const [userDocId, setuserDocId] = useState("");
   const [avatarChoose, setavatarChoose] = useState("");
+  const [loadingToast, setloadingToast] = useState(null);
+  const [StatImg, setStatImg] = useState(false);
   const [signOut] = useSignOut(auth);
   const navigate = useNavigate();
 
@@ -51,6 +53,14 @@ function Profile() {
     }
     return (userObj.result / userObj.completed) * 100;
   }
+
+  useEffect(() => {
+    if (loading) {
+      setloadingToast(toast.loading("Loading..."));
+    } else {
+      toast.dismiss(loadingToast);
+    }
+  }, [loading]);
 
   function logoutinimas() {
     signOut();
@@ -212,6 +222,21 @@ function Profile() {
   }, [sortArr]);
 
   useEffect(() => {
+    if (showStats) {
+      if (StatImg) {
+        toast.dismiss(loadingToast);
+        return;
+      }
+      setloadingToast(toast.loading("Loading..."));
+      if (StatImg) {
+        toast.dismiss(loadingToast);
+      }
+    } else {
+      toast.dismiss(loadingToast);
+    }
+  }, [showStats, StatImg]);
+
+  useEffect(() => {
     if (value) {
       const bendras = value.docs;
       const valuesUsers = bendras.map((quiz) => quiz.data());
@@ -284,7 +309,7 @@ function Profile() {
           {/* VIEW STATS */}
           {showStats && (
             <div className="statsMid w-2/3 max-w-[600px] max-sm:w-2/3 max-lg:2/3 flex flex-col items-center justify-center">
-              <img className="p-0 m-0 max-h-[235px] max-w-[239px] " src={statsas} alt="" />
+              <img className="p-0 m-0 max-h-[235px] max-w-[239px] " src={statsas} onLoad={() => setStatImg(true)} alt="" />
               <div className="bg-white p-[12px] font-light mb-[10px] max-w-[400px] w-full min-sm:w-2/3 rounded-[20px] flex justify-between ">
                 <div className="flex flex-row items-center">
                   <img className="inline p-[8px] mr-[15px] bg-lightBlue  rounded-[16px]" src={people} alt="" />

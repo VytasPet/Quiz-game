@@ -10,9 +10,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthProvider";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import arrL from "/src/assets/images/arrow-leftback.svg";
-import cate from "/src/assets/images/arrow-leftback.svg";
+import cate from "/src/assets/images/1quizlog.svg";
 import awardM from "/src/assets/images/awardmedalblue.svg";
 import notF from "/src/assets/images/Group 34notfoung.svg";
+import start from "/src/assets/images/Group 13start.svg";
 
 function MyQuizPage() {
   const { user, isLoggedIn } = useAuthCtx();
@@ -33,6 +34,7 @@ function MyQuizPage() {
   console.log("user ===", user);
 
   let arrK = arrToShow;
+
   useEffect(() => {
     if (loading) {
       setloadingToast(toast.loading("Loading..."));
@@ -146,7 +148,7 @@ function MyQuizPage() {
             <TransitionGroup className="w-full flex flex-col items-center">
               {arrFiltered.map((obj, i) => (
                 <CSSTransition key={i} timeout={500} classNames="fade">
-                  <div onClick={() => openQuiz(obj)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-1/2 max-sm:w-full`}>
+                  <div onClick={() => openQuiz(obj)} className={`bg-white cursor-pointer p-[20px] rounded-[20px] flex gap-5 mt-[25px] w-2/3 max-md:w-full`}>
                     <img className="bg-lightBlue p-[15px] rounded-[20px]" src={cate} alt="" />
                     <div className="flex flex-col w-full">
                       <h3 className="text-[20px] mb-[20px] font-light text-center">{obj.name.stringValue}</h3>
@@ -191,7 +193,7 @@ function MyQuizPage() {
       </div>
       {areSure && (
         <div className="statsMid  flex flex-col items-center">
-          <img src="src/assets/images/Group 13start.svg" alt="" />
+          <img src={start} alt="" />
           <h2 className="text-black text-[20px] mb-[20px] font-normal">Are you ready to start quiz:</h2>
           <h2 className="text-blue text-[24px] mb-[20px] font-light">{QuizUrl.name.stringValue}</h2>
 
