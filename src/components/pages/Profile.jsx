@@ -418,8 +418,8 @@ function Profile() {
               <img className="p-0 m-0" src={emoji} alt="" />
               <h2 className="text-black font-medium mb-[20px]">Change your password</h2>
               <form className="w-full flex flex-col items-center" onSubmit={changePassword}>
-                <input placeholder="Password" className="bg-#F6F6F6  p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
-                <input placeholder="Repeat password" className="bg-#F6F6F6 p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
+                <input type="password" placeholder="Password" className="bg-#F6F6F6  p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
+                <input type="password" placeholder="Repeat password" className="bg-#F6F6F6 p-[12px] text-center mb-[10px] font-light w-2/3 max-w-[400px] rounded-[20px] flex justify-between "></input>
                 <button type="submit" className="bg-blue p-[6px] cursor-pointer mt-[30px] text-white w-full rounded-[20px] flex justify-center hover:bg-blue hover:text-white hover:border-blue ">
                   Change
                 </button>

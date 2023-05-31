@@ -81,7 +81,7 @@ function RegisterForm({ onReg }) {
           onBlur={formik.handleBlur}
           value={formik.values.password}
           placeholder="Enter your password"
-          type="text"
+          type="password"
           className="mt-1 pl-[50px] w-full py-4 px-3 text-[14px] text-black bg-lightGray rounded-[20px] shadow-sm focus:outline-none sm:text-sm"
         />
       </div>
