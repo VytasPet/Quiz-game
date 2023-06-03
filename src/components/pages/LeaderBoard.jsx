@@ -162,7 +162,7 @@ function LeaderBoard() {
                           {index + 4 !== 10 && <p className=" max-sm:ml-[-20px] text-center"> {index + 4} </p>}
 
                           <div className="bg-white p-[12px] font-light mb-[10px] w-full min-[550px]:w-[300px] min-[900px]:w-[500px] rounded-[20px] flex justify-between ">
-                            <div className="flex items-center w-full justify-between max-[530px]:justify-center ">
+                            <div className="flex items-center w-full justify-between max-[530px]:justify-between">
                               <img className="inline mr-[15px] bg-lightBlue rounded-[50px] h-[24px] min-w-[24px] max-w-[24px]" src={obj.profilePic} alt="" />
                               <div className="w-full max-[530px]:w-auto flex justify-between items-between ">
                                 <p className="text-black font-normal mr-[30px] max-sm:mr-[15px] max-[530px]:mr-[5px] max-sm:text-[12px] min-[900px]:[text-16px]">{obj.username}</p>
