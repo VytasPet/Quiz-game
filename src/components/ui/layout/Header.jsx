@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSignOut } from "react-firebase-hooks/auth";
 import logo from "/src/assets/images/logo_black.svg";
 import login from "/src/assets/images/icon_login.svg";
@@ -24,6 +24,8 @@ function Header() {
   const { user, isLoggedIn } = useAuthCtx();
   const navigate = useNavigate();
   const [menuOn, setmenuOn] = useState(false);
+  const location = useLocation();
+  console.log("location ===", location);
 
   function menuOpener() {
     setmenuOn(!menuOn);
@@ -37,7 +39,7 @@ function Header() {
   }
 
   return (
-    <div className="mx-auto bg-[#FAFAFA]">
+    <div className={`mx-auto ${location.pathname === "/leaderBoard" ? "bg-blue" : "bg-[#FAFAFA]"}`}>
       <header className=" px-[55px] py-[10px] pt-[20px] rounded-b-[30px] bg-lightBlue max-sm:px-[20px]">
         <div className="mx-auto bg-lightBlue max-w-5xl w-full flex justify-between items-center">
           <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={isLoggedIn ? "/userhome" : "/"}>

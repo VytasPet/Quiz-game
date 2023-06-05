@@ -65,19 +65,19 @@ function LeaderBoard() {
               <p className="py-3 w-1/3 bg-blue rounded-[13px]">Week</p>
               <p className="py-3 w-1/3 text-grey rounded-[13px]">Month</p>
             </div> */}
-              <div className="flex justify-around gap-5 bg-yellow text-black w-full mt-[170px] max-[520px]:mt-[100px] max-[440px]:mt-[50px]  rounded-lg  ">
-                <ul className="flex items-end max-w-full w-full justify-end ">
+              <div className="flex justify-center gap-5 bg-yellow text-black w-full mt-[110px] max-[570px]:mt-[50px] max-[440px]:mt-[0px]  rounded-lg  ">
+                <ul className="flex items-end max-w-full w-full justify-center">
                   {value &&
                     sortArr.slice(0, 3).map((obj, index) => (
                       <li
                         key={obj.userUid}
-                        className={`max-sm:text-sm  flex flex-col text-white font-medium w-1/3 w-max-full text-lg justify-end bg-cover rounded-t-3xl ${index === 0 ? "h-52" : "h-40"}`}
+                        className={`max-sm:text-sm  flex flex-col text-white font-medium w-1/4 w-max-full text-lg justify-end bg-cover rounded-t-3xl ${index === 0 ? "h-52" : "h-40"}`}
                         style={{ order: index === 1 ? -1 : index }}
                       >
                         {index + 1 === 3 ? (
                           <div className="relative flex items-end w-full justify-center">
                             <div className="absolute flex flex-col w-full max-w-full items-center">
-                              <div className="absolute max-w-[60%] max-sm:top-[-30%]">
+                              <div className="absolute max-w-[60%] top-[-50%] max-sm:top-[-30%]">
                                 <img className="absolute bottom-[-10%] left-[40%]" src={medal} alt="" />
                                 <img
                                   className="border-4 border-green rounded-[50%] h-[88px] w-[88px] max-sm:h-[68px] max-sm:w-[68px]"
@@ -85,7 +85,7 @@ function LeaderBoard() {
                                   alt=""
                                 />
                               </div>
-                              <img className="w-4/5 " src={Splace} w-full alt="lab" />
+                              <img className="h-1/2" src={Splace} w-full alt="lab" />
                             </div>
                             <div>
                               <p className="mb-[20px]">{obj.username}</p>
@@ -98,7 +98,7 @@ function LeaderBoard() {
                         ) : index + 1 === 1 ? (
                           <div className="relative flex items-end w-full justify-center">
                             <div className="absolute flex flex-col w-full items-center ">
-                              <div className="absolute max-w-[70%] max-sm:top-[-30%] flex flex-col items-center">
+                              <div className="absolute max-w-[70%] top-[-50%] max-sm:top-[-30%] flex flex-col items-center">
                                 <div>
                                   <img className="absolute top-[-40%] left-[32%] max-sm:left-[25%]" src={crown} alt="" />
                                   <img
@@ -109,7 +109,7 @@ function LeaderBoard() {
                                 </div>
                                 <img className="absolute bottom-[-10%] left-[40%] max-sm:left-[38%]" src={onePlace} alt="" />
                               </div>
-                              <img className="w-full " src={oneStep} alt="lab" />
+                              <img className="h-1/2 " src={oneStep} alt="lab" />
                             </div>
                             <div>
                               <p className="mb-[20px]">{obj.username}</p>
@@ -122,7 +122,7 @@ function LeaderBoard() {
                         ) : (
                           <div className="relative flex items-end w-full justify-center">
                             <div className="absolute flex flex-col w-full max-w-full items-center">
-                              <div className="absolute max-w-[60%] max-sm:top-[-30%]">
+                              <div className="absolute max-w-[60%] top-[-50%] max-sm:top-[-30%]">
                                 <img className="absolute bottom-[-10%] left-[40%] max-sm:left-[38%]" src={twoPlace} alt="" />
                                 <img
                                   className="border-4 border-green rounded-[50%] h-[88px] w-[88px] max-sm:h-[68px] max-sm:w-[68px]"
@@ -130,7 +130,7 @@ function LeaderBoard() {
                                   alt=""
                                 />
                               </div>
-                              <img className="w-4/5 " src={Splace} w-full alt="lab" />
+                              <img className="h-1/2 " src={Splace} w-full alt="lab" />
                             </div>
                             <div>
                               <p className="mb-[20px]">{obj.username}</p>
