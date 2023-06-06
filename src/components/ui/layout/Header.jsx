@@ -39,7 +39,7 @@ function Header() {
   }
 
   return (
-    <div className={`mx-auto ${location.pathname === "/leaderBoard" ? "bg-blue" : "bg-[#FAFAFA]"}`}>
+    <div className={`mx-auto ${location.pathname === "/leaderBoard" ? "bg-blue" : "bg-[#FAFAFA]"} sticky top-0 z-50`}>
       <header className=" px-[55px] py-[10px] pt-[20px] rounded-b-[30px] bg-lightBlue max-sm:px-[20px]">
         <div className="mx-auto bg-lightBlue max-w-5xl w-full flex justify-between items-center">
           <Link className="bg-white font-bold py-4 px-6 max-sm:py-2 max-sm:px-3 rounded-[16px] cursor-pointer hover:outline hover:outline-black" to={isLoggedIn ? "/userhome" : "/"}>
