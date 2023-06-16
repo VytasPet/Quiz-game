@@ -308,7 +308,7 @@ function Profile() {
 
           {/* VIEW STATS */}
           {showStats && (
-            <div className="statsMid w-2/3 max-w-[600px] max-sm:w-2/3 max-lg:2/3 flex flex-col items-center justify-center">
+            <div className="statsMid w-2/3 max-w-[600px] max-sm:w-2/3 max-lg:2/3 flex flex-col items-center justify-center ">
               <img className="p-0 m-0 max-h-[235px] max-w-[239px] " src={statsas} onLoad={() => setStatImg(true)} alt="" />
               <div className="bg-white p-[12px] font-light mb-[10px] max-w-[400px] w-full min-sm:w-2/3 rounded-[20px] flex justify-between ">
                 <div className="flex flex-row items-center">
@@ -350,7 +350,7 @@ function Profile() {
 
           {/* EDIT IMAGE */}
           {editImage && (
-            <div className="statsMid max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
+            <div className="statsMid pt-[30px] max-sm:w-2/3 w-2/3 max-w-[400px] flex flex-col items-center justify-center">
               <div className="flex justify-center flex-wrap gap-2 mb-[20px]">
                 <img onClick={() => setavatarChoose(1)} className={`${avatarChoose === 1 ? "border-4 border-green " : "rounded-[50px]"} w-1/4 rounded-[50px]`} src={man} alt="" />
                 <img onClick={() => setavatarChoose(2)} className={`${avatarChoose === 2 ? "border-4 border-green rounded-[50px]" : "rounded-[50px]"} w-1/4`} src={businessman} alt="" />
